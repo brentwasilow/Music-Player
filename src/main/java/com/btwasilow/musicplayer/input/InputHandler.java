@@ -50,18 +50,18 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 
 	public void mouseDragged(MouseEvent arg0) {
-        // get location of Window
-        int thisX = driver.getLocation().x;
-        int thisY = driver.getLocation().y;
+		// get location of Window
+		int thisX = driver.getLocation().x;
+		int thisY = driver.getLocation().y;
 
-        // Determine how much the mouse moved since the initial click
-        int xMoved = (thisX + arg0.getX()) - (thisX + mouseClickedPosition.x);
-        int yMoved = (thisY + arg0.getY()) - (thisY + mouseClickedPosition.y);
+		// Determine how much the mouse moved since the initial click
+		int xMoved = (thisX + arg0.getX()) - (thisX + mouseClickedPosition.x);
+		int yMoved = (thisY + arg0.getY()) - (thisY + mouseClickedPosition.y);
 
-        // Move window to this position
-        int X = thisX + xMoved;
-        int Y = thisY + yMoved;
-        driver.setLocation(X, Y);
+		// Move window to this position
+		int X = thisX + xMoved;
+		int Y = thisY + yMoved;
+		driver.setLocation(X, Y);
 	}
 
 	public void mouseMoved(MouseEvent arg0) {
