@@ -1,10 +1,12 @@
 package com.btwasilow.musicplayer.render;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 public class RenderMiniPlayer {
 	private static int currentSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
+	private static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
 	
 	private RenderMiniPlayer() {
 	}
@@ -12,11 +14,15 @@ public class RenderMiniPlayer {
 	public static void render(Graphics2D g) {
 		renderBackground(g);
 		renderArtworkDisplayBox(g);
+		
 		renderCenterButton(g);
 		renderLeftButton(g);
 		renderRightButton(g);
+		
 		renderTimeBarBox(g);
 		renderTimeBarFill(g);
+		
+		renderCurrentlyPlayingSong(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -91,5 +97,16 @@ public class RenderMiniPlayer {
 		// daker blue time bar fill outline
 		g.setColor(new Color(100, 140, 180));
 		g.drawRoundRect(10, 131, currentSongTimePosition, 7, 4, 4);
+	}
+	
+	private static void renderCurrentlyPlayingSong(Graphics2D g) {
+		// draw current song using Arial font with dark fill
+		g.setFont(new Font("Arial", 1, 13));
+		g.setColor(new Color(50, 50, 50));
+		g.drawString(currentlyPlayingSongName, 22, 116);
+		
+		// draw current song over dark fill with lighter fill to provide contrast
+		g.setColor(new Color(175, 175, 175));
+		g.drawString(currentlyPlayingSongName, 20, 114);
 	}
 }
