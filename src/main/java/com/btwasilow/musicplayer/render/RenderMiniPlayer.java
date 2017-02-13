@@ -27,6 +27,8 @@ public class RenderMiniPlayer {
 		renderVolumeBarFill(g);
 		
 		renderCurrentlyPlayingSong(g);
+		
+		renderMaximizeMusicPlayerButton(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -145,12 +147,31 @@ public class RenderMiniPlayer {
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
 		// draw current song using Arial font with dark fill
-		g.setFont(new Font("Arial", 1, 13));
+		g.setFont(new Font("Arial", 1, 12));
 		g.setColor(new Color(50, 50, 50));
-		g.drawString(currentlyPlayingSongName, 22, 116);
+		g.drawString(currentlyPlayingSongName, 22, 114);
 		
 		// draw current song over dark fill with lighter fill to provide contrast
 		g.setColor(new Color(175, 175, 175));
-		g.drawString(currentlyPlayingSongName, 20, 114);
+		g.drawString(currentlyPlayingSongName, 20, 112);
 	}
+	
+	private static void renderMaximizeMusicPlayerButton(Graphics2D g) {
+		// dark rectangle fill
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(182, 98, 16, 16, 4, 4);
+		
+		// darker rectangle outline
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(181, 97, 18, 17, 4, 4);
+		
+		// draw maximize music player representation (shown visually as items-in-a-list)
+		g.setColor(new Color(150, 150, 150));
+		g.drawLine(189,  101, 195, 101);
+		g.drawLine(189,  104, 195, 104);
+		g.drawLine(189, 107, 195, 107);
+		g.drawLine(189,  110, 195, 110);
+		g.fillOval(184, 101, 4, 4);
+		g.fillOval(184, 107, 4, 4);
+	}	
 }
