@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class RenderMiniPlayer {
+	private static int currentSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
+	
 	private RenderMiniPlayer() {
 	}
 	
@@ -13,7 +15,8 @@ public class RenderMiniPlayer {
 		renderCenterButton(g);
 		renderLeftButton(g);
 		renderRightButton(g);
-		renderTimeBar(g);
+		renderTimeBarBox(g);
+		renderTimeBarFill(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -70,7 +73,7 @@ public class RenderMiniPlayer {
 		g.fillOval(269, 31, 40, 40);
 	}
 	
-	private static void renderTimeBar(Graphics2D g) {
+	private static void renderTimeBarBox(Graphics2D g) {
 		// dark time bar fill
 		g.setColor(new Color(50, 50, 50));
 		g.fillRoundRect(10, 131, 328, 7, 4, 4);
@@ -78,5 +81,15 @@ public class RenderMiniPlayer {
 		// darker time bar inset
 		g.setColor(new Color(30, 30, 30));
 		g.drawRoundRect(9, 130, 330, 9, 4, 4);
+	}
+	
+	private static void renderTimeBarFill(Graphics2D g) {
+		// blue time bar fill color
+		g.setColor(new Color(161, 202, 241));
+		g.fillRoundRect(10, 131, currentSongTimePosition, 7, 3, 3);
+		
+		// daker blue time bar fill outline
+		g.setColor(new Color(100, 140, 180));
+		g.drawRoundRect(10, 131, currentSongTimePosition, 7, 4, 4);
 	}
 }
