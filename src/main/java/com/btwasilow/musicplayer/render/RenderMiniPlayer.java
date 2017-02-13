@@ -9,6 +9,7 @@ public class RenderMiniPlayer {
 	
 	public static void render(Graphics2D g) {
 		renderBackground(g);
+		renderArtworkDisplayBox(g);
 	}
 	
 	private static void renderBackground(Graphics2D g) {
@@ -23,5 +24,15 @@ public class RenderMiniPlayer {
 		// whiter in-set line to give depth at corner
 		g.setColor(new Color(100, 100, 100));
 		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
+	}
+	
+	private static void renderArtworkDisplayBox(Graphics2D g) {
+		// dark fill box (darker than miniplayer background)
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(20, 20, 60, 60, 10, 10);
+		
+		// fill box outline to provide contrast
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(19, 19, 62, 62, 10, 10);
 	}
 }
