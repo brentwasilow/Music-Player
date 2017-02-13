@@ -51,21 +51,21 @@ public class RenderMiniPlayer {
 	
 	private static void renderLeftButton(Graphics2D g) {
 		// dark left fill oval (smaller than center button)
-    	g.setColor(new Color(40, 40, 40));
-    	g.fillOval(114, 26, 50, 50);
-    	
-    	// light fill oval (also smaller than center button)
-    	g.setColor(new Color(100, 100, 100));
-    	g.fillOval(119, 31, 40, 40);
+		g.setColor(new Color(40, 40, 40));
+		g.fillOval(114, 26, 50, 50);
+
+		// light fill oval (also smaller than center button)
+		g.setColor(new Color(100, 100, 100));
+		g.fillOval(119, 31, 40, 40);
 	}
 	
 	private static void renderRightButton(Graphics2D g) {
 		// dark right fill oval (smaller than center button)
-    	g.setColor(new Color(40, 40, 40));
-    	g.fillOval(264, 26, 50, 50);
-    	
-    	// right fill oval (also smaller than center button)
-    	g.setColor(new Color(100, 100, 100));
-    	g.fillOval(269, 31, 40, 40);
+		g.setColor(new Color(40, 40, 40));
+		g.fillOval(264, 26, 50, 50);
+
+		// right fill oval (also smaller than center button)
+		g.setColor(new Color(100, 100, 100));
+		g.fillOval(269, 31, 40, 40);
 	}
 }
