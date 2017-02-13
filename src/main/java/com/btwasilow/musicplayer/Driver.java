@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.render.RenderMiniPlayer;
+import com.btwasilow.musicplayer.timer.Timer;
 
 public class Driver extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -19,12 +20,15 @@ public class Driver extends JFrame implements Runnable {
 	
 	private InputHandler input;
 	
+	private Timer timer;
+	
 	private Graphics2D g;
 
 	public Driver() {
 		// setup routines
 		setupGUI();
 		setupInput();
+		timer = new Timer();
 		
 		// start the program
 		start();
@@ -94,6 +98,7 @@ public class Driver extends JFrame implements Runnable {
 	
 	public void update() {
 		input.update();
+		timer.update();
 	}
 	
 	private void setupGUI() {
