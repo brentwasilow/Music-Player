@@ -29,6 +29,7 @@ public class RenderMiniPlayer {
 		renderCurrentlyPlayingSong(g);
 		
 		renderMaximizeMusicPlayerButton(g);
+		renderVolumeMuteButton(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -173,5 +174,24 @@ public class RenderMiniPlayer {
 		g.drawLine(189,  110, 195, 110);
 		g.fillOval(184, 101, 4, 4);
 		g.fillOval(184, 107, 4, 4);
-	}	
+	}
+	
+	private static void renderVolumeMuteButton(Graphics2D g) {
+		// lighter fill box
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(209, 98, 16, 16, 4, 4);
+		
+		// darker fill box outline
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(208, 97, 18, 17, 4, 4);
+		
+		// draw volume mute button representation (speaker with arc for noise disseminating outward)
+		g.setColor(new Color(150, 150, 150));
+		int[] volumeX = {219, 219, 212};
+		int[] volumeY = {111, 100, 105};
+		g.fillPolygon(volumeX, volumeY, 3);
+		g.fillRect(212, 103, 4, 5);
+		g.drawArc(218, 102, 4, 6, 0, -90);
+		g.drawArc(218, 102, 4, 7, 0, 90);
+	}
 }
