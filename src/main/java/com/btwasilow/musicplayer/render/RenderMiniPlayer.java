@@ -57,6 +57,12 @@ public class RenderMiniPlayer {
 		// light fill oval to provide contrast
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(190, 26, 50, 50);
+		
+		// render play button triangle
+		g.setColor(new Color(50, 50, 50));
+		int[] x = {208, 208, 225};
+		int[] y = {61, 41, 51};
+		g.fillPolygon(x, y, 3);
 	}
 	
 	private static void renderLeftButton(Graphics2D g) {
@@ -67,6 +73,13 @@ public class RenderMiniPlayer {
 		// light fill oval (also smaller than center button)
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(119, 31, 40, 40);
+		
+		// render left button triangle and bar
+		int[] x = {147, 147, 134};
+		int[] y = {58, 44, 51};
+		g.setColor(new Color(50, 50, 50));
+		g.fillPolygon(x, y, 3);
+		g.fillRect(129, 44, 6, 15);
 	}
 	
 	private static void renderRightButton(Graphics2D g) {
@@ -77,6 +90,13 @@ public class RenderMiniPlayer {
 		// right fill oval (also smaller than center button)
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(269, 31, 40, 40);
+		
+		// render right button triangle and bar
+		int[] x = {280, 280, 293};
+		int[] y = {58, 44, 51};
+		g.setColor(new Color(50, 50, 50));
+		g.fillPolygon(x, y, 3);
+		g.fillRect(292, 44, 6, 15);
 	}
 	
 	private static void renderTimeBarBox(Graphics2D g) {
