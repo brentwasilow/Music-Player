@@ -9,6 +9,7 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import com.btwasilow.musicplayer.input.InputHandler;
+import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 
 public class Driver extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -83,6 +84,9 @@ public class Driver extends JFrame implements Runnable {
 		g = (Graphics2D) bs.getDrawGraphics();	
 	    RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 	    g.setRenderingHints(rh);
+	    
+	    // rendering methods
+	    RenderMiniPlayer.render(g);
 		
 		g.dispose();
 		bs.show();
