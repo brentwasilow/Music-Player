@@ -3,11 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.btwasilow</groupId>
-  <artifactId>musicplayer</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>MUSIC-PLAYER</artifactId>
+  <version>0.0.1</version>
   <packaging>jar</packaging>
 
   <build>
+  <finalName>Music Player</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
