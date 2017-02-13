@@ -30,6 +30,8 @@ public class RenderMiniPlayer {
 		
 		renderMaximizeMusicPlayerButton(g);
 		renderVolumeMuteButton(g);
+		
+		renderExitButton(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -193,5 +195,15 @@ public class RenderMiniPlayer {
 		g.fillRect(212, 103, 4, 5);
 		g.drawArc(218, 102, 4, 6, 0, -90);
 		g.drawArc(218, 102, 4, 7, 0, 90);
+	}
+	
+	private static void renderExitButton(Graphics2D g) {
+		// dark fill circle in corner of music player
+		g.setColor(new Color(30, 30, 30));
+		g.fillOval(328, 8, 14, 14);
+		
+		// red fill circle as inset
+		g.setColor(new Color(255, 0, 0));
+		g.fillOval(330, 10, 10, 10);
 	}
 }
