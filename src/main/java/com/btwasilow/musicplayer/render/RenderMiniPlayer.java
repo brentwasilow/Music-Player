@@ -10,8 +10,9 @@ public class RenderMiniPlayer {
 	public static void render(Graphics2D g) {
 		renderBackground(g);
 		renderArtworkDisplayBox(g);
+		renderCenterButton(g);
 	}
-	
+
 	private static void renderBackground(Graphics2D g) {
 		// dark gray fill
 		g.setColor(new Color(64, 64, 64));
@@ -34,5 +35,15 @@ public class RenderMiniPlayer {
 		// fill box outline to provide contrast
 		g.setColor(new Color(30, 30, 30));
 		g.drawRoundRect(19, 19, 62, 62, 10, 10);
+	}
+	
+	private static void renderCenterButton(Graphics2D g) {
+		// dark fill oval (darker than miniplayer background)
+		g.setColor(new Color(40, 40, 40));
+		g.fillOval(185, 21,  60,  60);
+		
+		// light fill oval to provide contrast
+		g.setColor(new Color(100, 100, 100));
+		g.fillOval(190, 26, 50, 50);
 	}
 }
