@@ -14,8 +14,9 @@ import com.btwasilow.musicplayer.Driver;
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener {
 	public Driver driver; // reference to AWT container of main class
 
-	public Point mouseMovedPosition;
-	public Point mouseClickedPosition;
+	public Point mouseMovedPosition = new Point(0, 0);
+	public Point mouseClickedPosition = new Point (0, 0);
+	public boolean mouseClicked = false;
 
 	private boolean[] keys = new boolean[120]; // boolean array for determining which key was pressed
 	public boolean up; // handles up key
@@ -91,9 +92,12 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// get position of mouse click and determine parent container to allow movement
 		mouseClickedPosition = arg0.getPoint();
 		driver.getComponentAt(mouseClickedPosition);
+	
+		mouseClicked = true;
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
+		mouseClicked = false;
 	}
 
 }

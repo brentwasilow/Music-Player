@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+
 public class RenderMiniPlayer {
 	private static int currentlyPlayingSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
 	private static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
@@ -198,12 +200,22 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExitButton(Graphics2D g) {
-		// dark fill circle in corner of music player
-		g.setColor(new Color(30, 30, 30));
-		g.fillOval(328, 8, 14, 14);
+		if (!UpdateMiniPlayer.exitButtonHover) {
+			// dark fill circle in corner of music player
+			g.setColor(new Color(30, 30, 30));
+			g.fillOval(328, 8, 14, 14);
 		
-		// red fill circle as inset
-		g.setColor(new Color(255, 0, 0));
-		g.fillOval(330, 10, 10, 10);
+			// red fill circle as inset
+			g.setColor(new Color(255, 0, 0));
+			g.fillOval(330, 10, 10, 10);
+		} else {
+			// lighter fill circle in corner of music player
+			g.setColor(new Color(200, 200, 200));
+			g.fillOval(328, 8, 14, 14);
+			
+			// same red fill circle as inset
+			g.setColor(new Color(255, 0, 0));
+			g.fillOval(330, 10, 10, 10);
+		}
 	}
 }
