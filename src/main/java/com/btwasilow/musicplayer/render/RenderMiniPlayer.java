@@ -13,6 +13,7 @@ public class RenderMiniPlayer {
 		renderCenterButton(g);
 		renderLeftButton(g);
 		renderRightButton(g);
+		renderTimeBar(g);
 	}
 
 	private static void renderBackground(Graphics2D g) {
@@ -67,5 +68,15 @@ public class RenderMiniPlayer {
 		// right fill oval (also smaller than center button)
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(269, 31, 40, 40);
+	}
+	
+	private static void renderTimeBar(Graphics2D g) {
+		// dark time bar fill
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(10, 131, 328, 7, 4, 4);
+		
+		// darker time bar inset
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(9, 130, 330, 9, 4, 4);
 	}
 }
