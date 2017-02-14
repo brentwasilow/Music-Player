@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import com.btwasilow.musicplayer.Driver;
+import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener {
 	public Driver driver; // reference to AWT container of main class
@@ -78,6 +79,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
+		
 	}
 
 	public void mouseEntered(MouseEvent arg0) {
@@ -92,12 +94,13 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// get position of mouse click and determine parent container to allow movement
 		mouseClickedPosition = arg0.getPoint();
 		driver.getComponentAt(mouseClickedPosition);
-	
-		mouseClicked = true;
+//		mouseClicked = true;
+		
+		UpdateMiniPlayer.updateMuteVolumeButtonClickState();
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-		mouseClicked = false;
+//		mouseClicked = false;
 	}
 
 }

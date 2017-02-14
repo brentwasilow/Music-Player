@@ -24,12 +24,12 @@ public class UpdateMiniPlayer {
 	
 	public static void update(InputHandler input) {
 		resetStateVariables();
-		
+
 		updateExitButtonState(input);
 		updateLeftButtonState(input);
 		updateCenterButtonState(input);
 		updateRightButtonState(input);
-		updateMuteVolumeButtonState(input);
+		updateMuteVolumeButtonHoverState(input);
 		updateExpandMusicPlayerButtonState(input);
 		
 		updateVolumeButtonFillBar(input);
@@ -89,17 +89,19 @@ public class UpdateMiniPlayer {
 		}
 	}
 	
-	private static void updateMuteVolumeButtonState(InputHandler input) {
+	private static void updateMuteVolumeButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 210 && input.mouseMovedPosition.x <= 227 &&
 			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
 			muteVolumeButtonHover = true;
-			
-			if (input.mouseClicked) {
-				if (muteVolumeButtonClicked) { // if volume is muted, then un-mute
-					muteVolumeButtonClicked = false;
-				} else { // if volume is not muted
-					muteVolumeButtonClicked = true;
-				}
+		}
+	}
+	
+	public static void updateMuteVolumeButtonClickState() {
+		if (muteVolumeButtonHover) {
+			if (muteVolumeButtonClicked) { // if volume is muted, then un-mute
+				muteVolumeButtonClicked = false;
+			} else { // if volume is not muted
+				muteVolumeButtonClicked = true;
 			}
 		}
 	}
