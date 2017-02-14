@@ -35,21 +35,29 @@ public class RenderMiniPlayer {
 		renderExitButton(g);
 		
 		if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // expand music player
-			// set JFrame to new expanded music player shape and don't forget to pack
-			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
-			driver.pack();
-			driver.setMinimumSize(new Dimension(350, 550));
-			driver.setMaximumSize(new Dimension(350, 550));
+			expandedMusicPlayerGUISetup(driver);
 	    	
 			renderExpandedMusicPlayerBackground(g);
 			renderExpandedMusicPlayerScrollBar(g);
 		} else { // back to mini player
-			// set JFrame back to original miniplayer shape and pack
-			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
-			driver.pack();
-			driver.setMinimumSize(new Dimension(350, 150));
-			driver.setMaximumSize(new Dimension(350, 150));
+			miniMusicPlayerGUISetup(driver);
 		}
+	}
+	
+	private static void expandedMusicPlayerGUISetup(Driver driver) {
+		// set JFrame to new expanded music player shape and don't forget to pack
+		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
+		driver.pack();
+		driver.setMinimumSize(new Dimension(350, 550));
+		driver.setMaximumSize(new Dimension(350, 550));
+	}
+	
+	private static void miniMusicPlayerGUISetup(Driver driver) {
+		// set JFrame back to original miniplayer shape and pack
+		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
+		driver.pack();
+		driver.setMinimumSize(new Dimension(350, 150));
+		driver.setMaximumSize(new Dimension(350, 150));
 	}
 	
 	private static void renderExpandedMusicPlayerBackground(Graphics2D g) {
