@@ -21,6 +21,7 @@ public class UpdateMiniPlayer {
 		updateCenterButtonState(input);
 		updateRightButtonState(input);
 		updateMuteVolumeButtonState(input);
+		updateExpandMusicPlayerButtonState(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -83,6 +84,17 @@ public class UpdateMiniPlayer {
 			
 			if (input.mouseClicked) {
 				// mute volume click logic
+			}
+		}
+	}
+	
+	private static void updateExpandMusicPlayerButtonState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 183 && input.mouseMovedPosition.x <= 201 &&
+			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 118) {
+			expandMusicPlayerButtonHover = true;
+			
+			if (input.mouseClicked) {
+				// music player expand click logic
 			}
 		}
 	}
