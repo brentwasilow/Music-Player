@@ -91,7 +91,7 @@ public class Driver extends JFrame implements Runnable {
 	    g.setRenderingHints(rh);
 	    
 	    // rendering methods
-	    RenderMiniPlayer.render(g);
+	    RenderMiniPlayer.render(g, this);
 		
 		g.dispose();
 		bs.show();
@@ -110,7 +110,6 @@ public class Driver extends JFrame implements Runnable {
 		setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));  // miniplayer = (350x150) | fullplayer = (350x400)
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setMinimumSize(new Dimension(350, 150));
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

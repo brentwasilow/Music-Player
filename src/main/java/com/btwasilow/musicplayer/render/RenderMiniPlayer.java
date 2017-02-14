@@ -1,17 +1,20 @@
 package com.btwasilow.musicplayer.render;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.geom.RoundRectangle2D;
 
+import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
 	private RenderMiniPlayer() {
 	}
 	
-	public static void render(Graphics2D g) {
-		renderBackground(g);
+	public static void render(Graphics2D g, Driver driver) {
+		renderMiniPlayerBackground(g);
 		renderArtworkDisplayBox(g);
 		
 		renderCenterButton(g);
@@ -30,9 +33,25 @@ public class RenderMiniPlayer {
 		renderVolumeMuteButton(g);
 		
 		renderExitButton(g);
+		
+		if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // expand music player
+			// set JFrame to new expanded music player shape and dont forget to pack
+			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
+			driver.pack();
+			driver.setMinimumSize(new Dimension(350, 550));
+			driver.setMaximumSize(new Dimension(350, 550));
+	    	
+			renderExpandedMusicPlayerBackground(g);
+		} else { // back to mini player
+			// set JFrame back to original miniplayer shape and pack
+			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
+			driver.pack();
+			driver.setMinimumSize(new Dimension(350, 150));
+			driver.setMaximumSize(new Dimension(350, 150));
+		}
 	}
 
-	private static void renderBackground(Graphics2D g) {
+	private static void renderMiniPlayerBackground(Graphics2D g) {
 		// dark gray fill
 		g.setColor(new Color(64, 64, 64));
 		g.fillRect(0, 0, 350, 150);
@@ -44,6 +63,28 @@ public class RenderMiniPlayer {
 		// whiter in-set line to give depth at corner
 		g.setColor(new Color(100, 100, 100));
 		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
+	}
+	
+	private static void renderExpandedMusicPlayerBackground(Graphics2D g) {
+		// render same background but longer
+		g.setColor(new Color(64, 64, 64));
+		g.fillRect(0, 150, 350, 400);
+		
+		// dark outline to longer background
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(0, 150, 350-1, 400-1, 15, 15);
+		
+		// lighter outline to give contrast to longer background
+		g.setColor(new Color(100, 100, 100));
+		g.drawRoundRect(1, 151, 350-3, 400-3, 15, 15);
+	    
+	    // render darker inset color to provide contrast for where music library will be listed
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(10, 180, 328, 358, 10, 10);
+		
+		// provide darker outline to give more contrast to inset
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(9, 179, 331, 361, 10, 10);
 	}
 	
 	private static void renderArtworkDisplayBox(Graphics2D g) {
