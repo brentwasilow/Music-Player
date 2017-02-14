@@ -16,7 +16,10 @@ public class UpdateMiniPlayer {
 	public static void update(InputHandler input) {
 		resetStateVariables();
 		
-		updateExitState(input);
+		updateExitButtonState(input);
+		updateLeftButtonState(input);
+		updateCenterButtonState(input);
+		updateRightButtonState(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -28,13 +31,46 @@ public class UpdateMiniPlayer {
 		muteVolumeButtonHover = false;
 	}
 	
-	private static void updateExitState(InputHandler input) {
+	private static void updateExitButtonState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 328 && input.mouseMovedPosition.x <= 342 &&
 			input.mouseMovedPosition.y >= 8 && input.mouseMovedPosition.y <= 22) {
 			exitButtonHover = true;
 
 			if (input.mouseClicked) {
 				System.exit(0);
+			}
+		}
+	}
+	
+	private static void updateLeftButtonState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 119 && input.mouseMovedPosition.x <= 159 &&
+			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
+			leftButtonHover = true;
+			
+			if (input.mouseClicked) {
+				// left button click logic
+			}
+		}
+	}
+	
+	private static void updateCenterButtonState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 190 && input.mouseMovedPosition.x <= 240 &&
+			input.mouseMovedPosition.y >= 26 && input.mouseMovedPosition.y <= 76) {
+			centerButtonHover = true;
+			
+			if (input.mouseClicked) {
+				// center button click logic
+			}
+		}
+	}
+	
+	private static void updateRightButtonState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 269 && input.mouseMovedPosition.x <= 309 &&
+			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
+			rightButtonHover = true;
+			
+			if (input.mouseClicked) {
+				// right button click logic
 			}
 		}
 	}
