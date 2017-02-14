@@ -20,6 +20,7 @@ public class UpdateMiniPlayer {
 		updateLeftButtonState(input);
 		updateCenterButtonState(input);
 		updateRightButtonState(input);
+		updateMuteVolumeButtonState(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -71,6 +72,17 @@ public class UpdateMiniPlayer {
 			
 			if (input.mouseClicked) {
 				// right button click logic
+			}
+		}
+	}
+	
+	private static void updateMuteVolumeButtonState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 210 && input.mouseMovedPosition.x <= 228 &&
+			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 118) {
+			muteVolumeButtonHover = true;
+			
+			if (input.mouseClicked) {
+				// mute volume click logic
 			}
 		}
 	}

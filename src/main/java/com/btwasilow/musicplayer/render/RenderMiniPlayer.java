@@ -196,16 +196,30 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderVolumeMuteButton(Graphics2D g) {
-		// lighter fill box
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(209, 98, 16, 16, 4, 4);
+		if (!UpdateMiniPlayer.muteVolumeButtonHover) {
+			// lighter fill box
+			g.setColor(new Color(50, 50, 50));
+			g.fillRoundRect(209, 98, 16, 16, 4, 4);
+			
+			// darker fill box outline
+			g.setColor(new Color(30, 30, 30));
+			g.drawRoundRect(208, 97, 18, 17, 4, 4);
 		
-		// darker fill box outline
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(208, 97, 18, 17, 4, 4);
-		
+			// set volume mute button representation lighter
+			g.setColor(new Color(150, 150, 150));
+		} else {
+			// lighter fill box when hovered over
+			g.setColor(new Color(150, 150, 150));
+			g.fillRoundRect(209, 98, 17, 16, 4, 4);
+			
+			// darker fill box outline
+			g.setColor(new Color(30, 30, 30));
+			g.drawRoundRect(208, 97, 18, 17, 4, 4);
+			
+			// set volume mute button darker when hovered over
+			g.setColor(new Color(50, 50, 50));
+		}
 		// draw volume mute button representation (speaker with arc for noise disseminating outward)
-		g.setColor(new Color(150, 150, 150));
 		int[] volumeX = {219, 219, 212};
 		int[] volumeY = {111, 100, 105};
 		g.fillPolygon(volumeX, volumeY, 3);
