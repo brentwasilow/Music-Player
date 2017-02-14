@@ -61,15 +61,20 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderCenterButton(Graphics2D g) {
-		// dark fill oval (darker than miniplayer background)
-		g.setColor(new Color(40, 40, 40));
-		g.fillOval(185, 21,  60,  60);
-		
+		if (!UpdateMiniPlayer.centerButtonHover) { 
+			// dark fill oval (darker than miniplayer background)
+			g.setColor(new Color(40, 40, 40));
+			g.fillOval(185, 21,  60,  60);
+		} else {
+			// lighter fill oval when hovered over
+			g.setColor(new Color(200, 200, 200));
+			g.fillOval(185, 21, 60, 60);
+		}
 		// light fill oval to provide contrast
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(190, 26, 50, 50);
 		
-		// render play button triangle
+		// render play button triangle (always renders the same no matter if hovered or not)
 		g.setColor(new Color(50, 50, 50));
 		int[] x = {208, 208, 225};
 		int[] y = {61, 41, 51};
@@ -77,15 +82,20 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderLeftButton(Graphics2D g) {
-		// dark left fill oval (smaller than center button)
-		g.setColor(new Color(40, 40, 40));
-		g.fillOval(114, 26, 50, 50);
-
+		if (!UpdateMiniPlayer.leftButtonHover) {
+			// dark left fill oval (smaller than center button)
+			g.setColor(new Color(40, 40, 40));
+			g.fillOval(114, 26, 50, 50);
+		} else {
+			// lighter left fill oval if hovered over
+			g.setColor(new Color(200, 200, 200));
+			g.fillOval(114, 26, 50, 50);
+		}
 		// light fill oval (also smaller than center button)
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(119, 31, 40, 40);
 		
-		// render left button triangle and bar
+		// render left button triangle and bar (same regardless of hover)
 		int[] x = {147, 147, 134};
 		int[] y = {58, 44, 51};
 		g.setColor(new Color(50, 50, 50));
@@ -94,10 +104,15 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderRightButton(Graphics2D g) {
-		// dark right fill oval (smaller than center button)
-		g.setColor(new Color(40, 40, 40));
-		g.fillOval(264, 26, 50, 50);
-
+		if (!UpdateMiniPlayer.rightButtonHover) {
+			// dark right fill oval (smaller than center button)
+			g.setColor(new Color(40, 40, 40));
+			g.fillOval(264, 26, 50, 50);
+		} else {
+			// lighter right fill oval if hovered over
+			g.setColor(new Color(200, 200, 200));
+			g.fillOval(264, 26, 50, 50);
+		}
 		// right fill oval (also smaller than center button)
 		g.setColor(new Color(100, 100, 100));
 		g.fillOval(269, 31, 40, 40);
