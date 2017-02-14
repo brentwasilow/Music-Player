@@ -41,6 +41,7 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerScrollBar(g);
 			renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
+			renderExpandedMusicPlayerEqualizerBoxFill(g);
 		} else { // back to mini player
 			miniMusicPlayerGUISetup(driver);
 		}
@@ -133,6 +134,16 @@ public class RenderMiniPlayer {
 		// draw same header lines
 		g.drawLine(154, 190, 154, 200);
 		g.drawLine(203, 190, 203, 200);
+	}
+	
+	private static void renderExpandedMusicPlayerEqualizerBoxFill(Graphics2D g) {
+		// set color of darker inset fill
+		g.setColor(new Color(50, 50, 50));
+		g.fillRoundRect(200, 155, 139, 19, 10, 10);
+		
+		// set color of darker outline to provide contrast
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(200, 155, 140, 20, 10, 10);
 	}
 
 	private static void renderMiniPlayerBackground(Graphics2D g) {
