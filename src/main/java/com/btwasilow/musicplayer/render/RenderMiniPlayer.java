@@ -10,6 +10,11 @@ import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
+	private static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
+									 "Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
+									 "Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator"};
+	private static int currentSongSelection = 0;
+	
 	private RenderMiniPlayer() {
 	}
 	
@@ -42,6 +47,8 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
+			
+			renderExpandedMusicPlayerSongList(g);
 		} else { // back to mini player
 			miniMusicPlayerGUISetup(driver);
 		}
@@ -144,6 +151,24 @@ public class RenderMiniPlayer {
 		// set color of darker outline to provide contrast
 		g.setColor(new Color(30, 30, 30));
 		g.drawRoundRect(200, 155, 140, 20, 10, 10);
+	}
+	
+	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {
+		int height = 227;
+		int height2 = 225;
+		for (int i = currentSongSelection; (i < (currentSongSelection+14) && i < songs.length); i++) {
+			String songName = songs[i];
+			if (songName.length() >= 20) {
+				songName = songName.substring(0, 20);
+				songName = songName + "...";
+			}
+			g.setColor(new Color(30, 30, 30));
+			g.drawString(songName, 27, height);
+			height = height + 23;
+			g.setColor(new Color(175, 175, 175));
+			g.drawString(songName, 25, height2);
+			height2 = height2 + 23;
+		}
 	}
 
 	private static void renderMiniPlayerBackground(Graphics2D g) {
