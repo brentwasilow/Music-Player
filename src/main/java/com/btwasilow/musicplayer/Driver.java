@@ -49,7 +49,7 @@ public class Driver extends JFrame implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		double ups = 120.0;
+		double ups = 180.0;
 
 		// game loop using preset update rate with unbounded frame rate
 		while (running) {

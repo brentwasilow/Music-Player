@@ -78,8 +78,8 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void updateMuteVolumeButtonState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 210 && input.mouseMovedPosition.x <= 228 &&
-			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 118) {
+		if (input.mouseMovedPosition.x >= 210 && input.mouseMovedPosition.x <= 227 &&
+			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
 			muteVolumeButtonHover = true;
 			
 			if (input.mouseClicked) {
@@ -89,8 +89,8 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void updateExpandMusicPlayerButtonState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 183 && input.mouseMovedPosition.x <= 201 &&
-			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 118) {
+		if (input.mouseMovedPosition.x >= 183 && input.mouseMovedPosition.x <= 200 &&
+			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
 			expandMusicPlayerButtonHover = true;
 			
 			if (input.mouseClicked) {
