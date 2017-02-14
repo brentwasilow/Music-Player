@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
-	public static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
-	
 	private RenderMiniPlayer() {
 	}
 	
@@ -175,11 +173,11 @@ public class RenderMiniPlayer {
 		// draw current song using Arial font with dark fill
 		g.setFont(new Font("Arial", 1, 12));
 		g.setColor(new Color(50, 50, 50));
-		g.drawString(currentlyPlayingSongName, 22, 114);
+		g.drawString(UpdateMiniPlayer.currentlyPlayingSongName, 22, 114);
 		
 		// draw current song over dark fill with lighter fill to provide contrast
 		g.setColor(new Color(175, 175, 175));
-		g.drawString(currentlyPlayingSongName, 20, 112);
+		g.drawString(UpdateMiniPlayer.currentlyPlayingSongName, 20, 112);
 	}
 	
 	private static void renderExpandMusicPlayerButton(Graphics2D g) {

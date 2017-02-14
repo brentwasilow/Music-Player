@@ -18,6 +18,7 @@ public class UpdateMiniPlayer {
 	
 	public static boolean songTimeFillBarHover = false;
 	
+	public static String currentlyPlayingSongName = "Dirty Sessions - NeverH...";
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
 	
