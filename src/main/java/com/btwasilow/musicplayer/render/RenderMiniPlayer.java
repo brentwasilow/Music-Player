@@ -154,13 +154,21 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderVolumeBarFill(Graphics2D g) {
+		// if volume is muted then we render 0 volume otherwise render current song volume
+		int volume;
+		if (UpdateMiniPlayer.muteVolumeButtonClicked) {
+			volume = 0;
+		} else {
+			volume = UpdateMiniPlayer.currentlyPlayingSongVolume;
+		}
+		
 		// green volume bar fill color
 		g.setColor(new Color(90, 230, 0));
-		g.fillRoundRect(237, 103, UpdateMiniPlayer.currentlyPlayingSongVolume, 5, 3, 3);
+		g.fillRoundRect(237, 103, volume, 5, 3, 3);
 		
 		// darker volume bar outline to provide contrast
 		g.setColor(new Color(34, 140, 30));
-		g.drawRoundRect(237, 103, UpdateMiniPlayer.currentlyPlayingSongVolume, 5, 4, 4);
+		g.drawRoundRect(237, 103, volume, 5, 4, 4);
 	}
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
@@ -236,8 +244,12 @@ public class RenderMiniPlayer {
 		int[] volumeY = {111, 100, 105};
 		g.fillPolygon(volumeX, volumeY, 3);
 		g.fillRect(212, 103, 4, 5);
-		g.drawArc(218, 102, 4, 6, 0, -90);
-		g.drawArc(218, 102, 4, 7, 0, 90);
+	
+		// only draw arc if volume button isn't muted
+		if (!UpdateMiniPlayer.muteVolumeButtonClicked) {
+			g.drawArc(218, 102, 4, 6, 0, -90);
+			g.drawArc(218, 102, 4, 7, 0, 90);
+		}
 	}
 	
 	private static void renderExitButton(Graphics2D g) {

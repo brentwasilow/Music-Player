@@ -4,11 +4,17 @@ import com.btwasilow.musicplayer.input.InputHandler;
 
 public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
+	
 	public static boolean leftButtonHover = false;
+	
 	public static boolean centerButtonHover = false;
+	
 	public static boolean rightButtonHover = false;
+	
 	public static boolean expandMusicPlayerButtonHover = false;
+	
 	public static boolean muteVolumeButtonHover = false;
+	public static boolean muteVolumeButtonClicked = false;
 	
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
@@ -89,7 +95,11 @@ public class UpdateMiniPlayer {
 			muteVolumeButtonHover = true;
 			
 			if (input.mouseClicked) {
-				// mute volume click logic
+				if (muteVolumeButtonClicked) { // if volume is muted, then un-mute
+					muteVolumeButtonClicked = false;
+				} else { // if volume is not muted
+					muteVolumeButtonClicked = true;
+				}
 			}
 		}
 	}
