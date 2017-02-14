@@ -94,13 +94,85 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// get position of mouse click and determine parent container to allow movement
 		mouseClickedPosition = arg0.getPoint();
 		driver.getComponentAt(mouseClickedPosition);
-//		mouseClicked = true;
 		
-		UpdateMiniPlayer.updateMuteVolumeButtonClickState();
+		
+		mousePressedUpdateRoutines();
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
-//		mouseClicked = false;
+	}
+	
+	private void mousePressedUpdateRoutines() {
+		updateExitButtonClickState();
+		
+		updateLeftButtonClickState();
+		updateCenterButtonClickState();
+		updateRightButtonClickState();
+		
+		updateMuteVolumeButtonClickState();
+		updateVolumeFillBarClickState();
+		
+		updateExpandMusicPlayerButtonClickState();
+		
+		updateSongTimeFillBarClickState();
+	}
+	
+	private void updateExitButtonClickState() {
+		if (UpdateMiniPlayer.exitButtonHover) {
+			System.exit(0);
+		}
+	}
+	
+	private void updateLeftButtonClickState() {
+		if (UpdateMiniPlayer.leftButtonHover) {
+			// left button click logic
+		}
+	}
+	
+	private void updateCenterButtonClickState() {
+		if (UpdateMiniPlayer.centerButtonHover) {
+			// center button click logic
+		}
 	}
 
+	private void updateRightButtonClickState() {
+		if (UpdateMiniPlayer.rightButtonHover) {
+			// right button click logic
+		}
+	}
+	
+	private void updateMuteVolumeButtonClickState() {
+		if (UpdateMiniPlayer.muteVolumeButtonHover) {
+			if (UpdateMiniPlayer.muteVolumeButtonClicked) { // if volume is muted, then un-mute
+				UpdateMiniPlayer.muteVolumeButtonClicked = false;
+			} else { // if volume is not muted, then mute
+				UpdateMiniPlayer.muteVolumeButtonClicked = true;
+			}
+		}
+	}
+	
+	private void updateVolumeFillBarClickState() {
+		// if hovering over volume fill bar and clicked, then unmute if muted and
+		// update the volume value
+		if (UpdateMiniPlayer.volumeFillBarHover) {
+			UpdateMiniPlayer.muteVolumeButtonClicked = false;
+			UpdateMiniPlayer.currentlyPlayingSongVolume = (mouseClickedPosition.x - 237);
+		}
+	}
+	
+	private void updateExpandMusicPlayerButtonClickState() {
+		if (UpdateMiniPlayer.expandMusicPlayerButtonHover) {
+			if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // if music player is expanded then miniaturize
+				UpdateMiniPlayer.expandMusicPlayerButtonClicked = false;
+			} else { // expand music player
+				UpdateMiniPlayer.expandMusicPlayerButtonClicked = true;
+			}
+		}
+	}
+	
+	private void updateSongTimeFillBarClickState() {
+		if (UpdateMiniPlayer.songTimeFillBarHover) { // update song time position according to position clicked
+			UpdateMiniPlayer.currentlyPlayingSongTimePosition = (mouseClickedPosition.x - 10);
+		}
+	}
 }

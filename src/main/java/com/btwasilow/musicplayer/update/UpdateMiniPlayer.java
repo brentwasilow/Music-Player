@@ -6,15 +6,17 @@ public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
 	
 	public static boolean leftButtonHover = false;
-	
 	public static boolean centerButtonHover = false;
-	
 	public static boolean rightButtonHover = false;
-	
-	public static boolean expandMusicPlayerButtonHover = false;
 	
 	public static boolean muteVolumeButtonHover = false;
 	public static boolean muteVolumeButtonClicked = false;
+	public static boolean volumeFillBarHover = false;
+	
+	public static boolean expandMusicPlayerButtonHover = false;
+	public static boolean expandMusicPlayerButtonClicked = false;
+	
+	public static boolean songTimeFillBarHover = false;
 	
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
@@ -25,67 +27,60 @@ public class UpdateMiniPlayer {
 	public static void update(InputHandler input) {
 		resetStateVariables();
 
-		updateExitButtonState(input);
-		updateLeftButtonState(input);
-		updateCenterButtonState(input);
-		updateRightButtonState(input);
-		updateMuteVolumeButtonHoverState(input);
-		updateExpandMusicPlayerButtonState(input);
+		updateExitButtonHoverState(input);
 		
-		updateVolumeButtonFillBar(input);
-		updateTimeFillBar(input);
+		updateLeftButtonHoverState(input);
+		updateCenterButtonHoverState(input);
+		updateRightButtonHoverState(input);
+		
+		updateMuteVolumeButtonHoverState(input);
+		updateVolumeFillBarHoverState(input);
+		
+		updateExpandMusicPlayerButtonHoverState(input);
+		
+		updateSongTimeFillBarHoverState(input);
 	}
 	
 	private static void resetStateVariables() {
 		exitButtonHover = false;
+		
 		leftButtonHover = false;
 		centerButtonHover = false;
 		rightButtonHover = false;
-		expandMusicPlayerButtonHover = false;
+		
 		muteVolumeButtonHover = false;
+		volumeFillBarHover = false;
+		
+		expandMusicPlayerButtonHover = false;
+		
+		songTimeFillBarHover = false;
 	}
 	
-	private static void updateExitButtonState(InputHandler input) {
+	private static void updateExitButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 328 && input.mouseMovedPosition.x <= 342 &&
 			input.mouseMovedPosition.y >= 8 && input.mouseMovedPosition.y <= 22) {
 			exitButtonHover = true;
-
-			if (input.mouseClicked) {
-				System.exit(0);
-			}
 		}
 	}
 	
-	private static void updateLeftButtonState(InputHandler input) {
+	private static void updateLeftButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 119 && input.mouseMovedPosition.x <= 159 &&
 			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
 			leftButtonHover = true;
-			
-			if (input.mouseClicked) {
-				// left button click logic
-			}
 		}
 	}
 	
-	private static void updateCenterButtonState(InputHandler input) {
+	private static void updateCenterButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 190 && input.mouseMovedPosition.x <= 240 &&
 			input.mouseMovedPosition.y >= 26 && input.mouseMovedPosition.y <= 76) {
 			centerButtonHover = true;
-			
-			if (input.mouseClicked) {
-				// center button click logic
-			}
 		}
 	}
 	
-	private static void updateRightButtonState(InputHandler input) {
+	private static void updateRightButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 269 && input.mouseMovedPosition.x <= 309 &&
 			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
 			rightButtonHover = true;
-			
-			if (input.mouseClicked) {
-				// right button click logic
-			}
 		}
 	}
 	
@@ -96,42 +91,24 @@ public class UpdateMiniPlayer {
 		}
 	}
 	
-	public static void updateMuteVolumeButtonClickState() {
-		if (muteVolumeButtonHover) {
-			if (muteVolumeButtonClicked) { // if volume is muted, then un-mute
-				muteVolumeButtonClicked = false;
-			} else { // if volume is not muted
-				muteVolumeButtonClicked = true;
-			}
+	private static void updateVolumeFillBarHoverState(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 237 && input.mouseMovedPosition.x <= 339 &&
+			input.mouseMovedPosition.y >= 106 && input.mouseMovedPosition.y <= 111) {
+			volumeFillBarHover = true;
 		}
 	}
 	
-	private static void updateExpandMusicPlayerButtonState(InputHandler input) {
+	private static void updateExpandMusicPlayerButtonHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 183 && input.mouseMovedPosition.x <= 200 &&
 			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
 			expandMusicPlayerButtonHover = true;
-			
-			if (input.mouseClicked) {
-				// music player expand click logic
-			}
 		}
 	}
 	
-	private static void updateVolumeButtonFillBar(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 237 && input.mouseMovedPosition.x <= 339 &&
-			input.mouseMovedPosition.y >= 106 && input.mouseMovedPosition.y <= 111) {
-			if (input.mouseClicked) {
-				UpdateMiniPlayer.currentlyPlayingSongVolume = (input.mouseClickedPosition.x - 237);
-			}
-		}
-	}
-	
-	private static void updateTimeFillBar(InputHandler input) {
+	private static void updateSongTimeFillBarHoverState(InputHandler input) {
 		if (input.mouseMovedPosition.x >= 10 && input.mouseMovedPosition.x <= 339 &&
 			input.mouseMovedPosition.y >= 134 && input.mouseMovedPosition.y <= 142) {
-			if (input.mouseClicked) {
-				UpdateMiniPlayer.currentlyPlayingSongTimePosition = (input.mouseClickedPosition.x - 10);
-			}
+			songTimeFillBarHover = true;
 		}
 	}
 }
