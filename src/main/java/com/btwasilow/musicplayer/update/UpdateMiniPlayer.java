@@ -1,6 +1,7 @@
 package com.btwasilow.musicplayer.update;
 
 import com.btwasilow.musicplayer.input.InputHandler;
+import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 
 public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
@@ -22,6 +23,8 @@ public class UpdateMiniPlayer {
 		updateRightButtonState(input);
 		updateMuteVolumeButtonState(input);
 		updateExpandMusicPlayerButtonState(input);
+		
+		updateVolumeButtonFillBar(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -95,6 +98,15 @@ public class UpdateMiniPlayer {
 			
 			if (input.mouseClicked) {
 				// music player expand click logic
+			}
+		}
+	}
+	
+	private static void updateVolumeButtonFillBar(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 237 && input.mouseMovedPosition.x <= 339 &&
+			input.mouseMovedPosition.y >= 106 && input.mouseMovedPosition.y <= 111) {
+			if (input.mouseClicked) {
+				RenderMiniPlayer.currentlyPlayingSongVolume = (input.mouseClickedPosition.x - 237);
 			}
 		}
 	}

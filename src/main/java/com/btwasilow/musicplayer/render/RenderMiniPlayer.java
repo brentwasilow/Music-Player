@@ -7,9 +7,9 @@ import java.awt.Graphics2D;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
-	private static int currentlyPlayingSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
-	private static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
-	private static int currentlyPlayingSongVolume = 50; // 100 is the max (hard coded for now)
+	public static int currentlyPlayingSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
+	public static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
+	public static int currentlyPlayingSongVolume = 50; // 100 is the max (hard coded for now)
 	
 	private RenderMiniPlayer() {
 	}
