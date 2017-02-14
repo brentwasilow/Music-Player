@@ -1,7 +1,6 @@
 package com.btwasilow.musicplayer.update;
 
 import com.btwasilow.musicplayer.input.InputHandler;
-import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 
 public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
@@ -10,6 +9,9 @@ public class UpdateMiniPlayer {
 	public static boolean rightButtonHover = false;
 	public static boolean expandMusicPlayerButtonHover = false;
 	public static boolean muteVolumeButtonHover = false;
+	
+	public static int currentlyPlayingSongVolume = 25;
+	public static int currentlyPlayingSongTimePosition = 0;
 	
 	private UpdateMiniPlayer() {
 	}
@@ -25,6 +27,7 @@ public class UpdateMiniPlayer {
 		updateExpandMusicPlayerButtonState(input);
 		
 		updateVolumeButtonFillBar(input);
+		updateTimeFillBar(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -106,7 +109,16 @@ public class UpdateMiniPlayer {
 		if (input.mouseMovedPosition.x >= 237 && input.mouseMovedPosition.x <= 339 &&
 			input.mouseMovedPosition.y >= 106 && input.mouseMovedPosition.y <= 111) {
 			if (input.mouseClicked) {
-				RenderMiniPlayer.currentlyPlayingSongVolume = (input.mouseClickedPosition.x - 237);
+				UpdateMiniPlayer.currentlyPlayingSongVolume = (input.mouseClickedPosition.x - 237);
+			}
+		}
+	}
+	
+	private static void updateTimeFillBar(InputHandler input) {
+		if (input.mouseMovedPosition.x >= 10 && input.mouseMovedPosition.x <= 339 &&
+			input.mouseMovedPosition.y >= 134 && input.mouseMovedPosition.y <= 142) {
+			if (input.mouseClicked) {
+				UpdateMiniPlayer.currentlyPlayingSongTimePosition = (input.mouseClickedPosition.x - 10);
 			}
 		}
 	}

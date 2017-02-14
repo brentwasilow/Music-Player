@@ -7,9 +7,7 @@ import java.awt.Graphics2D;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
-	public static int currentlyPlayingSongTimePosition = 150; // for rendering blue time bar (hard coded for now)
 	public static String currentlyPlayingSongName = "Dirty Sessions - NeverH..."; // (hard coded for now)
-	public static int currentlyPlayingSongVolume = 50; // 100 is the max (hard coded for now)
 	
 	private RenderMiniPlayer() {
 	}
@@ -138,11 +136,11 @@ public class RenderMiniPlayer {
 	private static void renderTimeBarFill(Graphics2D g) {
 		// blue time bar fill color
 		g.setColor(new Color(161, 202, 241));
-		g.fillRoundRect(10, 131, currentlyPlayingSongTimePosition, 7, 3, 3);
+		g.fillRoundRect(10, 131, UpdateMiniPlayer.currentlyPlayingSongTimePosition, 7, 3, 3);
 		
 		// daker blue time bar fill outline
 		g.setColor(new Color(100, 140, 180));
-		g.drawRoundRect(10, 131, currentlyPlayingSongTimePosition, 7, 4, 4);
+		g.drawRoundRect(10, 131, UpdateMiniPlayer.currentlyPlayingSongTimePosition, 7, 4, 4);
 	}
 	
 	private static void renderVolumeBarBox(Graphics2D g) {
@@ -158,11 +156,11 @@ public class RenderMiniPlayer {
 	private static void renderVolumeBarFill(Graphics2D g) {
 		// green volume bar fill color
 		g.setColor(new Color(90, 230, 0));
-		g.fillRoundRect(237, 103, currentlyPlayingSongVolume, 5, 3, 3);
+		g.fillRoundRect(237, 103, UpdateMiniPlayer.currentlyPlayingSongVolume, 5, 3, 3);
 		
 		// darker volume bar outline to provide contrast
 		g.setColor(new Color(34, 140, 30));
-		g.drawRoundRect(237, 103, currentlyPlayingSongVolume, 5, 4, 4);
+		g.drawRoundRect(237, 103, UpdateMiniPlayer.currentlyPlayingSongVolume, 5, 4, 4);
 	}
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
