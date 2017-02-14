@@ -35,13 +35,14 @@ public class RenderMiniPlayer {
 		renderExitButton(g);
 		
 		if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // expand music player
-			// set JFrame to new expanded music player shape and dont forget to pack
+			// set JFrame to new expanded music player shape and don't forget to pack
 			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
 			driver.pack();
 			driver.setMinimumSize(new Dimension(350, 550));
 			driver.setMaximumSize(new Dimension(350, 550));
 	    	
 			renderExpandedMusicPlayerBackground(g);
+			renderExpandedMusicPlayerScrollBar(g);
 		} else { // back to mini player
 			// set JFrame back to original miniplayer shape and pack
 			driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
@@ -49,20 +50,6 @@ public class RenderMiniPlayer {
 			driver.setMinimumSize(new Dimension(350, 150));
 			driver.setMaximumSize(new Dimension(350, 150));
 		}
-	}
-
-	private static void renderMiniPlayerBackground(Graphics2D g) {
-		// dark gray fill
-		g.setColor(new Color(64, 64, 64));
-		g.fillRect(0, 0, 350, 150);
-		
-		// dark black outline to frame component
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(0, 0, 349, 149, 15, 15);
-		
-		// whiter in-set line to give depth at corner
-		g.setColor(new Color(100, 100, 100));
-		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
 	}
 	
 	private static void renderExpandedMusicPlayerBackground(Graphics2D g) {
@@ -85,6 +72,30 @@ public class RenderMiniPlayer {
 		// provide darker outline to give more contrast to inset
 		g.setColor(new Color(30, 30, 30));
 		g.drawRoundRect(9, 179, 331, 361, 10, 10);
+	}
+	
+	private static void renderExpandedMusicPlayerScrollBar(Graphics2D g) {
+		// darker inset inset
+		g.setColor(new Color(40, 40, 40));
+		g.fillRoundRect(327, 187, 5, 344, 3, 3);
+		
+		// lighter scroll bar drag area (white)
+		g.setColor(new Color(150, 150, 150));
+		g.fillRoundRect(327, 187, 5, UpdateMiniPlayer.scrollBarSize, 3, 3);
+	}
+
+	private static void renderMiniPlayerBackground(Graphics2D g) {
+		// dark gray fill
+		g.setColor(new Color(64, 64, 64));
+		g.fillRect(0, 0, 350, 150);
+		
+		// dark black outline to frame component
+		g.setColor(new Color(30, 30, 30));
+		g.drawRoundRect(0, 0, 349, 149, 15, 15);
+		
+		// whiter in-set line to give depth at corner
+		g.setColor(new Color(100, 100, 100));
+		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
 	}
 	
 	private static void renderArtworkDisplayBox(Graphics2D g) {

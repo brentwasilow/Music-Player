@@ -22,6 +22,8 @@ public class UpdateMiniPlayer {
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
 	
+	public static int scrollBarSize = 344;
+	
 	private UpdateMiniPlayer() {
 	}
 	
