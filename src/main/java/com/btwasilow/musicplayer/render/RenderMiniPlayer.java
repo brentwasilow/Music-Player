@@ -39,6 +39,7 @@ public class RenderMiniPlayer {
 	    	
 			renderExpandedMusicPlayerBackground(g);
 			renderExpandedMusicPlayerScrollBar(g);
+			renderExpandedMusicPlayerToolBar(g);
 		} else { // back to mini player
 			miniMusicPlayerGUISetup(driver);
 		}
@@ -90,6 +91,25 @@ public class RenderMiniPlayer {
 		// lighter scroll bar drag area (white)
 		g.setColor(new Color(150, 150, 150));
 		g.fillRoundRect(327, 187, 5, UpdateMiniPlayer.scrollBarSize, 3, 3);
+	}
+	
+	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {
+		// font and color of toolbar options
+		g.setFont(new Font("Arial", 1, 12));
+	
+		// render options dark inset color
+		g.setColor(new Color(30, 30, 30));
+		g.drawString("File", 22, 172);
+		g.drawString("Edit", 53, 172);
+		g.drawString("View", 86, 172);
+		g.drawString("Controls", 125, 172);
+		
+		// render options lighter fill color
+		g.setColor(new Color(175, 175, 175));
+		g.drawString("File", 20, 170);
+		g.drawString("Edit", 51, 170);
+		g.drawString("View", 84, 170);
+		g.drawString("Controls", 123, 170);
 	}
 
 	private static void renderMiniPlayerBackground(Graphics2D g) {
