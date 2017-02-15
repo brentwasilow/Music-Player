@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
+import java.util.Random;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
@@ -49,6 +50,7 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
+			renderExpandedMusicPlayerEqualizer(g);
 			
 			renderExpandedMusicPlayerSongList(g);
 		}
@@ -153,11 +155,33 @@ public class RenderMiniPlayer {
 	private static void renderExpandedMusicPlayerEqualizerBoxFill(Graphics2D g) {
 		// set color of darker inset fill
 		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(200, 155, 139, 19, 10, 10);
+		g.fillRoundRect(200, 155, 139, 19, 3, 3); // 10 arc
 		
 		// set color of darker outline to provide contrast
 		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(200, 155, 140, 20, 10, 10);
+		g.drawRoundRect(200, 155, 140, 20, 4, 4); // 10 arc
+	}
+	
+	private static void renderExpandedMusicPlayerEqualizer(Graphics2D g) {
+		// equalizer box loop
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < UpdateMiniPlayer.rand.nextInt(7); j++) {
+				if (j < 1) {
+					g.setColor(new Color(0, 255, 0));
+				} else if (j < 2) {
+					g.setColor(new Color(128, 255, 0));
+				} else if (j < 3) {
+					g.setColor(new Color(255, 255, 0));
+				} else if (j < 4){
+					g.setColor(new Color(255, 255, 0));
+				} else if (j < 5) {
+					g.setColor(new Color(255, 128, 0));
+				} else if (j < 6) {
+					g.setColor(new Color(255, 0, 0));
+				}
+				g.fillRoundRect(203+(i*9), 173-(j*3), 8, 2, 1, 2);
+			}
+		}
 	}
 	
 	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {

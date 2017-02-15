@@ -1,5 +1,7 @@
 package com.btwasilow.musicplayer.update;
 
+import java.util.Random;
+
 import com.btwasilow.musicplayer.input.InputHandler;
 
 public class UpdateMiniPlayer {
@@ -24,6 +26,8 @@ public class UpdateMiniPlayer {
 	public static int currentSongSelection = 0;
 	
 	public static int scrollBarSize = 344;
+	
+	public static Random rand = new Random();
 	
 	private UpdateMiniPlayer() {
 	}
