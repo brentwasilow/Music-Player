@@ -14,7 +14,6 @@ public class RenderMiniPlayer {
 									"Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
 									"Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator",
 									"Pompeii", "Generate", "Heading Home", "Youth", "Never Cry Again", "Arigato"};
-	public static int currentSongSelection = 0;
 	
 	private RenderMiniPlayer() {
 	}
@@ -98,9 +97,16 @@ public class RenderMiniPlayer {
 		g.setColor(new Color(40, 40, 40));
 		g.fillRoundRect(327, 187, 5, 344, 3, 3);
 		
+		// determine scroll bar size and change in scrollbar placement
+		float scrollBarChange = 14.0F / songs.length;
+		float scrollBarSize = scrollBarChange * UpdateMiniPlayer.scrollBarSize; 
+		float restOfScroll = UpdateMiniPlayer.scrollBarSize - scrollBarSize;
+		float restOfScrollIncrement = restOfScroll / (songs.length - 14.0F);
+		float scrollBarPlacement =  restOfScrollIncrement * UpdateMiniPlayer.currentSongSelection;
+		
 		// lighter scroll bar drag area (white)
 		g.setColor(new Color(150, 150, 150));
-		g.fillRoundRect(327, 187, 5, UpdateMiniPlayer.scrollBarSize, 3, 3);
+		g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
 	}
 	
 	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {
@@ -157,7 +163,7 @@ public class RenderMiniPlayer {
 	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {
 		int height = 227;
 		int height2 = 225;
-		for (int i = currentSongSelection; (i < (currentSongSelection+14) && i < songs.length); i++) {
+		for (int i = UpdateMiniPlayer.currentSongSelection; (i < (UpdateMiniPlayer.currentSongSelection+14) && i < songs.length); i++) {
 			String songName = songs[i];
 			if (songName.length() >= 20) {
 				songName = songName.substring(0, 20);
