@@ -11,8 +11,9 @@ import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
 	public static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
-									 "Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
-									 "Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator"};
+									"Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
+									"Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator",
+									"Pompeii", "Generate", "Heading Home", "Youth", "Never Cry Again", "Arigato"};
 	public static int currentSongSelection = 0;
 	
 	private RenderMiniPlayer() {

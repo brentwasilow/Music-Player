@@ -1,7 +1,6 @@
 package com.btwasilow.musicplayer.update;
 
 import com.btwasilow.musicplayer.input.InputHandler;
-import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 
 public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
@@ -43,8 +42,6 @@ public class UpdateMiniPlayer {
 		updateExpandMusicPlayerButtonHoverState(input);
 		
 		updateSongTimeFillBarHoverState(input);
-		
-		updateMusicLibrarySongsBeingDisplayed(input);
 	}
 	
 	private static void resetStateVariables() {
@@ -115,25 +112,6 @@ public class UpdateMiniPlayer {
 		if (input.mouseMovedPosition.x >= 10 && input.mouseMovedPosition.x <= 339 &&
 			input.mouseMovedPosition.y >= 134 && input.mouseMovedPosition.y <= 142) {
 			songTimeFillBarHover = true;
-		}
-	}
-	
-	private static void updateMusicLibrarySongsBeingDisplayed(InputHandler input) {
-		// reset song selection if songs list has been changed
-		if (RenderMiniPlayer.currentSongSelection >= RenderMiniPlayer.songs.length) {
-			RenderMiniPlayer.currentSongSelection = 0;
-		}
-		
-		if (input.down) {
-			if (RenderMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1)) {
-				RenderMiniPlayer.currentSongSelection++;
-			}
-		}
-		
-		if (input.up) {
-			if (RenderMiniPlayer.currentSongSelection > 0) {
-				RenderMiniPlayer.currentSongSelection--;
-			}
 		}
 	}
 }

@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import com.btwasilow.musicplayer.Driver;
+import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener {
@@ -39,13 +40,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		escape = keys[KeyEvent.VK_ESCAPE];
 		space = keys[KeyEvent.VK_SPACE];
 	}
-
+	
 	public void keyPressed(KeyEvent arg0) {
 		keys[arg0.getKeyCode()] = true;
+		update();
+		
+		keyPressedUpdateRoutines();
 	}
 
 	public void keyReleased(KeyEvent arg0) {
 		keys[arg0.getKeyCode()] = false;
+		update();
+	}
+	
+	private void keyPressedUpdateRoutines() {
+		updateMusicLibrarySongsBeingDisplayed();
 	}
 
 	public void keyTyped(KeyEvent arg0) {
@@ -173,6 +182,26 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void updateSongTimeFillBarClickState() {
 		if (UpdateMiniPlayer.songTimeFillBarHover) { // update song time position according to position clicked
 			UpdateMiniPlayer.currentlyPlayingSongTimePosition = (mouseClickedPosition.x - 10);
+		}
+	}
+	
+	private void updateMusicLibrarySongsBeingDisplayed() {
+		// reset song selection if songs list has been changed
+		//if (RenderMiniPlayer.currentSongSelection >= RenderMiniPlayer.songs.length) {
+		//	RenderMiniPlayer.currentSongSelection = 0;
+		//}
+		
+		if (down) {
+			if (RenderMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1) &&
+				RenderMiniPlayer.songs.length - RenderMiniPlayer.currentSongSelection > 14) {
+				RenderMiniPlayer.currentSongSelection++;
+			}
+		}
+		
+		if (up) {
+			if (RenderMiniPlayer.currentSongSelection > 0) {
+				RenderMiniPlayer.currentSongSelection--;
+			}
 		}
 	}
 }
