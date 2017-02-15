@@ -316,14 +316,20 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
+		// clip the currently playing song name
+		String songName = "";
+		if (UpdateMiniPlayer.currentlyPlayingSongName.length() >= 23) {
+			songName = UpdateMiniPlayer.currentlyPlayingSongName.substring(0, 23);
+			songName += "...";
+		}
 		// draw current song using Arial font with dark fill
 		g.setFont(new Font("Arial", 1, 12));
 		g.setColor(new Color(50, 50, 50));
-		g.drawString(UpdateMiniPlayer.currentlyPlayingSongName, 22, 114);
+		g.drawString(songName, 22, 114);
 		
 		// draw current song over dark fill with lighter fill to provide contrast
 		g.setColor(new Color(175, 175, 175));
-		g.drawString(UpdateMiniPlayer.currentlyPlayingSongName, 20, 112);
+		g.drawString(songName, 20, 112);
 	}
 	
 	private static void renderExpandMusicPlayerButton(Graphics2D g) {
