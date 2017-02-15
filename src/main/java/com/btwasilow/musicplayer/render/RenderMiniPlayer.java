@@ -142,7 +142,7 @@ public class RenderMiniPlayer {
 	
 	private static void renderExpandedMusicPlayerMusicLibraryHeader(Graphics2D g) {
 		// font setup (italic)
-		g.setFont(new Font("Arial", 2, 12));
+		g.setFont(new Font("Arial", 3, 12));
 		
 		// set color and draw darker header inset
 		g.setColor(new Color(30, 30, 30));
@@ -183,22 +183,23 @@ public class RenderMiniPlayer {
 	
 	private static void renderExpandedMusicPlayerEqualizer(Graphics2D g) {
 		// equalizer box loop
-		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < UpdateMiniPlayer.rand.nextInt(7); j++) {
-				if (j < 1) {
+		for (int width = 0; width < 15; width++) {
+			// change color depending on the height of the equalizer box. The higher it is the redder it is.
+			for (int height = 0; height < UpdateMiniPlayer.rand.nextInt(7); height++) {
+				if (height < 1) {
 					g.setColor(new Color(0, 255, 0));
-				} else if (j < 2) {
+				} else if (height < 2) {
 					g.setColor(new Color(128, 255, 0));
-				} else if (j < 3) {
+				} else if (height < 3) {
 					g.setColor(new Color(255, 255, 0));
-				} else if (j < 4){
+				} else if (height < 4){
 					g.setColor(new Color(255, 255, 0));
-				} else if (j < 5) {
+				} else if (height < 5) {
 					g.setColor(new Color(255, 128, 0));
-				} else if (j < 6) {
+				} else if (height < 6) {
 					g.setColor(new Color(255, 0, 0));
 				}
-				g.fillRoundRect(203+(i*9), 173-(j*3), 8, 2, 1, 2);
+				g.fillRoundRect(203+(width*9), 173-(height*3), 8, 2, 1, 2);
 			}
 		}
 	}
@@ -209,15 +210,20 @@ public class RenderMiniPlayer {
 		
 		int height = 227;
 		int height2 = 225;
+		// render song list based on the current song selection
 		for (int i = UpdateMiniPlayer.currentSongSelection; (i < (UpdateMiniPlayer.currentSongSelection+14) && i < songs.length); i++) {
+			// modify song name if exceeds characters that can be displayed
 			String songName = songs[i];
 			if (songName.length() >= 20) {
 				songName = songName.substring(0, 20);
 				songName = songName + "...";
 			}
+			// render darker underside and increment height for the next song
 			g.setColor(new Color(30, 30, 30));
 			g.drawString(songName, 27, height);
 			height = height + 23;
+			
+			// render lighter song name fill
 			g.setColor(new Color(175, 175, 175));
 			g.drawString(songName, 25, height2);
 			height2 = height2 + 23;
