@@ -92,6 +92,16 @@ public class RenderMiniPlayer {
 		// provide darker outline to give more contrast to inset
 		g.setColor(new Color(30, 30, 30));
 		g.drawRoundRect(9, 179, 331, 361, 10, 10);
+	
+		// name/artist/time header and song-list split (haven't decided yet)
+		//g.setColor(new Color(50, 50, 50));
+		//g.fillRoundRect(10, 180, 328, 28, 10, 10);
+		//g.fillRoundRect(10, 210, 328, 330, 10, 10);
+		
+		//g.setColor(new Color(30, 30, 30));
+		//g.drawRoundRect(9, 179, 331, 28, 10, 10);
+		//g.drawRoundRect(9, 209, 331, 330, 10, 10);
+	
 	}
 	
 	private static void renderExpandedMusicPlayerScrollBar(Graphics2D g) {
@@ -131,6 +141,9 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExpandedMusicPlayerMusicLibraryHeader(Graphics2D g) {
+		// font setup (italic)
+		g.setFont(new Font("Arial", 2, 12));
+		
 		// set color and draw darker header inset
 		g.setColor(new Color(30, 30, 30));
 		g.drawString("Name", 27, 202);
@@ -140,6 +153,9 @@ public class RenderMiniPlayer {
 		// draw lines separating each header piece
 		g.drawLine(156, 192, 156, 202);
 		g.drawLine(205, 192, 205, 202);
+		
+		// dark header line
+		//g.drawLine(27, 209, 310, 209);
 	    
 		// draw lighter header fill
 		g.setColor(new Color(175, 175, 175));
@@ -150,6 +166,9 @@ public class RenderMiniPlayer {
 		// draw same header lines
 		g.drawLine(154, 190, 154, 200);
 		g.drawLine(203, 190, 203, 200);
+		
+		// lighter header line
+		//g.drawLine(25, 207, 308, 207);
 	}
 	
 	private static void renderExpandedMusicPlayerEqualizerBoxFill(Graphics2D g) {
@@ -185,6 +204,9 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {
+		//set font (italic)
+		g.setFont(new Font("Arial", 2, 12));
+		
 		int height = 227;
 		int height2 = 225;
 		for (int i = UpdateMiniPlayer.currentSongSelection; (i < (UpdateMiniPlayer.currentSongSelection+14) && i < songs.length); i++) {
