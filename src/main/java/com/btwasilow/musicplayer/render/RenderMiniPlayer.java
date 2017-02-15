@@ -10,10 +10,10 @@ import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class RenderMiniPlayer {
-	private static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
+	public static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
 									 "Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
 									 "Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator"};
-	private static int currentSongSelection = 0;
+	public static int currentSongSelection = 0;
 	
 	private RenderMiniPlayer() {
 	}
@@ -39,7 +39,9 @@ public class RenderMiniPlayer {
 		
 		renderExitButton(g);
 		
-		if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // expand music player
+		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // miniplayer rendering routines
+			miniMusicPlayerGUISetup(driver);
+		} else { // expanded music player rendering routines
 			expandedMusicPlayerGUISetup(driver);
 	    	
 			renderExpandedMusicPlayerBackground(g);
@@ -49,8 +51,6 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
 			
 			renderExpandedMusicPlayerSongList(g);
-		} else { // back to mini player
-			miniMusicPlayerGUISetup(driver);
 		}
 	}
 	
