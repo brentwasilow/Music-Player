@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.font.TextAttribute;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Random;
+import java.util.Hashtable;
+import java.util.Map;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
@@ -143,6 +145,13 @@ public class RenderMiniPlayer {
 	private static void renderExpandedMusicPlayerMusicLibraryHeader(Graphics2D g) {
 		// font setup (italic)
 		g.setFont(new Font("Arial", 3, 12));
+		
+		// add underline to font
+		//Map<TextAttribute, Object> map =
+		//	    new Hashtable<TextAttribute, Object>();
+		//	map.put(TextAttribute.UNDERLINE,
+		//	    TextAttribute.UNDERLINE_ON);
+		//Font font2 = font.deriveFont(map);
 		
 		// set color and draw darker header inset
 		g.setColor(new Color(30, 30, 30));
