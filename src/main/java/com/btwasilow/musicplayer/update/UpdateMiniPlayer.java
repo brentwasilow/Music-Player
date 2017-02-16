@@ -29,6 +29,8 @@ public class UpdateMiniPlayer {
 	
 	public static Random rand = new Random();
 	
+	public static boolean songListHoverPosition[] = new boolean[14];
+	
 	private UpdateMiniPlayer() {
 	}
 	
@@ -47,6 +49,13 @@ public class UpdateMiniPlayer {
 		updateExpandMusicPlayerButtonHoverState(input);
 		
 		updateSongTimeFillBarHoverState(input);
+		
+		updateExpandedMusicPlayerSongListHoverState(input);
+		
+		for (int i = 0; i < 14; i++) {
+			System.out.println(songListHoverPosition[i]);
+		}
+		System.out.println();
 	}
 	
 	private static void resetStateVariables() {
@@ -62,6 +71,10 @@ public class UpdateMiniPlayer {
 		expandMusicPlayerButtonHover = false;
 		
 		songTimeFillBarHover = false;
+		
+		for (int i = 0; i < 14; i++) {
+			songListHoverPosition[i] = false;
+		}
 	}
 	
 	private static void updateExitButtonHoverState(InputHandler input) {
@@ -117,6 +130,15 @@ public class UpdateMiniPlayer {
 		if (input.mouseMovedPosition.x >= 10 && input.mouseMovedPosition.x <= 339 &&
 			input.mouseMovedPosition.y >= 134 && input.mouseMovedPosition.y <= 142) {
 			songTimeFillBarHover = true;
+		}
+	}
+	
+	private static void updateExpandedMusicPlayerSongListHoverState(InputHandler input) {
+		for (int i = 0; i < 14; i++) {
+			if (input.mouseMovedPosition.x >= 25 && input.mouseMovedPosition.x <= 333 &&
+				input.mouseMovedPosition.y >= (210+(i*23)) && input.mouseMovedPosition.y < (210+((i+1)*23))) {
+				songListHoverPosition[i] = true;
+			}
 		}
 	}
 }

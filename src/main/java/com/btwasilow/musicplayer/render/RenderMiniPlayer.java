@@ -55,6 +55,7 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerEqualizer(g);
 			
 			renderExpandedMusicPlayerSongList(g);
+			renderExpandedMusicPlayerSongList(g);
 		}
 	}
 	
@@ -237,6 +238,10 @@ public class RenderMiniPlayer {
 			g.drawString(songName, 25, height2);
 			height2 = height2 + 23;
 		}
+	}
+	
+	private static void renderExpandedMusicPlayerSongListHover(Graphics2D g) {
+		
 	}
 
 	private static void renderMiniPlayerBackground(Graphics2D g) {
