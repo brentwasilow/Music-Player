@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.font.TextAttribute;
 import java.awt.geom.RoundRectangle2D;
-import java.util.Hashtable;
-import java.util.Map;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
@@ -54,7 +51,7 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
 			renderExpandedMusicPlayerEqualizer(g);
 			
-			renderExpandedMusicPlayerSongList(g);
+			renderExpandedMusicPlayerSongListHover(g);
 			renderExpandedMusicPlayerSongList(g);
 		}
 	}
@@ -241,7 +238,15 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExpandedMusicPlayerSongListHover(Graphics2D g) {
-		
+		// for each of the 14 song display slots in the music library
+		for (int i = 0; i < 14; i++) {
+			// determine if that location is being hovered over, and if so
+			// render a lighter inset box to signify said action
+			if (UpdateMiniPlayer.songListHoverPosition[i]) {
+				g.setColor(new Color(64, 64, 64));
+				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
+			}
+		}
 	}
 
 	private static void renderMiniPlayerBackground(Graphics2D g) {

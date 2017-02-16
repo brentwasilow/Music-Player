@@ -51,11 +51,6 @@ public class UpdateMiniPlayer {
 		updateSongTimeFillBarHoverState(input);
 		
 		updateExpandedMusicPlayerSongListHoverState(input);
-		
-		for (int i = 0; i < 14; i++) {
-			System.out.println(songListHoverPosition[i]);
-		}
-		System.out.println();
 	}
 	
 	private static void resetStateVariables() {
