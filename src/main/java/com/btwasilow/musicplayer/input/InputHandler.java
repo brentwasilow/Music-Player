@@ -20,7 +20,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	public Point mouseClickedPosition = new Point (0, 0);
 	public boolean mouseClicked = false;
 
-	private boolean[] keys = new boolean[120]; // boolean array for determining which key was pressed
+	private boolean[] keys = new boolean[256]; // boolean array for determining which key was pressed
 	public boolean up; // handles up key
 	public boolean down; // handles down key
 	public boolean left; // handles left key
