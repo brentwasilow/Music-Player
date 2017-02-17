@@ -210,7 +210,7 @@ public class RenderMiniPlayer {
 			}
 		}
 	}
-	int base = 0;
+
 	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {
 		//set font (italic)
 		g.setFont(new Font("Arial", 2, 12));

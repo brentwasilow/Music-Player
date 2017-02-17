@@ -188,21 +188,28 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMusicLibrarySongsBeingDisplayed() {
-		// reset song selection if songs list has been changed
-		//if (RenderMiniPlayer.currentSongSelection >= RenderMiniPlayer.songs.length) {
-		//	RenderMiniPlayer.currentSongSelection = 0;
-		//}
-		
 		if (down) { // change current song selection by 1 but only if it isnt the end of the list
 			if (UpdateMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1) &&
 				RenderMiniPlayer.songs.length - UpdateMiniPlayer.currentSongSelection > 14) {
 				UpdateMiniPlayer.currentSongSelection++;
+				
+				// dont scroll list until we reach the bottom of the list
+				if (UpdateMiniPlayer.currentSongSelection < 14) {
+					// update clicked list so change is reflected
+					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection-1] = false;
+					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				}
 			}
 		}
 		
 		if (up) { // change current song selection until the start of the library list
 			if (UpdateMiniPlayer.currentSongSelection > 0) {
 				UpdateMiniPlayer.currentSongSelection--;
+				
+				if (UpdateMiniPlayer.currentSongSelection >= 0) {
+					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection+1] = false;
+					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				}
 			}
 		}
 	}
