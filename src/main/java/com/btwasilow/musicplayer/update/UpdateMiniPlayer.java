@@ -29,6 +29,8 @@ public class UpdateMiniPlayer {
 	
 	public static Random rand = new Random();
 	
+	public static int block = 0;
+	
 	public static boolean songListHoverPosition[] = new boolean[14];
 	public static boolean songListHoverPositionClicked[] = {true, false, false, false, false,
 															false, false, false, false, false,

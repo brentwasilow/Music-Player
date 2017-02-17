@@ -194,23 +194,49 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			//	RenderMiniPlayer.songs.length - UpdateMiniPlayer.currentSongSelection > 14) {
 				UpdateMiniPlayer.currentSongSelection++;
 				
-				// dont scroll list until we reach the bottom of the list
-				if (UpdateMiniPlayer.currentSongSelection < 14) {
-					// update clicked list so change is reflected
-					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection-1] = false;
-					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {
+					for (int i = 0; i < 14; i++) {
+						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
+							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+							UpdateMiniPlayer.songListHoverPositionClicked[i+1] = true;
+							break;
+						}
+					}
+				} else {
+					UpdateMiniPlayer.block++;
 				}
+				
+				// dont scroll list until we reach the bottom of the list
+				//if (UpdateMiniPlayer.currentSongSelection < 14) {
+				//	// update clicked list so change is reflected
+				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection-1] = false;
+				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				//}
 			}
 		}
 		
+		// fix up scrolling
 		if (up) { // change current song selection until the start of the library list
 			if (UpdateMiniPlayer.currentSongSelection > 0) {
 				UpdateMiniPlayer.currentSongSelection--;
 				
-				if (UpdateMiniPlayer.currentSongSelection >= 0 && UpdateMiniPlayer.currentSongSelection < 13) {
-					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection+1] = false;
-					UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				if (!UpdateMiniPlayer.songListHoverPositionClicked[0]) {
+					for (int i = 0; i < 14; i++) {
+						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
+							System.out.println(i);
+							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+							UpdateMiniPlayer.songListHoverPositionClicked[i-1] = true;
+							break;
+						}
+					}
+				} else {
+					UpdateMiniPlayer.block--;
 				}
+				
+				//if (UpdateMiniPlayer.currentSongSelection < 13) {
+				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection+1] = false;
+				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
+				//}
 			}
 		}
 	}
@@ -220,6 +246,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			if (UpdateMiniPlayer.songListHoverPosition[i]) {
 				resetClickedPositions();
 				UpdateMiniPlayer.songListHoverPositionClicked[i] = true;
+				
+				// click state still erroneous (i-UpdateMiniPlayer.currentSongSelection%14)) is wrong
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection variable accordingly

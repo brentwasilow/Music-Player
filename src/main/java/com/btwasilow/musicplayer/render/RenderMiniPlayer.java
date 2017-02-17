@@ -218,7 +218,8 @@ public class RenderMiniPlayer {
 		int height = 227;
 		int height2 = 225;
 		
-		for (int i = 0; i < 14; i++) {
+		int j = 0;
+		for (int i = UpdateMiniPlayer.block; j < 14 && i < songs.length; i++) {
 			// modify song name if exceeds characters that can be displayed
 			String songName = songs[i];
 			if (songName.length() >= 20) {
@@ -234,6 +235,8 @@ public class RenderMiniPlayer {
 			g.setColor(new Color(175, 175, 175));
 			g.drawString(songName, 25, height2);
 			height2 = height2 + 23;
+			
+			j++;
 		}
 	}
 	
