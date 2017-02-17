@@ -20,7 +20,7 @@ public class UpdateMiniPlayer {
 	
 	public static boolean songTimeFillBarHover = false;
 	
-	public static String currentlyPlayingSongName = "Dirty Sessions - NeverHome Podcast Session 1";
+	public static String currentlyPlayingSongName = "";
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
 	public static int currentSongSelection = 0;
@@ -30,6 +30,9 @@ public class UpdateMiniPlayer {
 	public static Random rand = new Random();
 	
 	public static boolean songListHoverPosition[] = new boolean[14];
+	public static boolean songListHoverPositionClicked[] = {true, false, false, false, false,
+															false, false, false, false, false,
+															false, false, false, false};
 	
 	private UpdateMiniPlayer() {
 	}

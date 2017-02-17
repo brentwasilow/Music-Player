@@ -124,6 +124,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		updateExpandMusicPlayerButtonClickState();
 		
 		updateSongTimeFillBarClickState();
+		
+		updateMusicLibrarySongSelectionClickState();
 	}
 	
 	private void updateExitButtonClickState() {
@@ -202,6 +204,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			if (UpdateMiniPlayer.currentSongSelection > 0) {
 				UpdateMiniPlayer.currentSongSelection--;
 			}
+		}
+	}
+	
+	private void updateMusicLibrarySongSelectionClickState() {
+		for (int i = 0; i < 14; i++) {
+			if (UpdateMiniPlayer.songListHoverPosition[i]) {
+				resetClickedPositions();
+				UpdateMiniPlayer.songListHoverPositionClicked[i] = true;
+			}
+		}
+	}
+	
+	private void resetClickedPositions() {
+		for (int i = 0; i < 14; i++) {
+			UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
 		}
 	}
 }

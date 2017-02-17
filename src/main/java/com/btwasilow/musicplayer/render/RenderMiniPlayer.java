@@ -240,9 +240,9 @@ public class RenderMiniPlayer {
 	private static void renderExpandedMusicPlayerSongListHover(Graphics2D g) {
 		// for each of the 14 song display slots in the music library
 		for (int i = 0; i < 14; i++) {
-			// determine if that location is being hovered over, and if so
-			// render a lighter inset box to signify said action
-			if (UpdateMiniPlayer.songListHoverPosition[i]) {
+			// render a lighter inset box to signify that song
+			// selection has been picked
+			if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
 				g.setColor(new Color(64, 64, 64));
 				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
 			}
