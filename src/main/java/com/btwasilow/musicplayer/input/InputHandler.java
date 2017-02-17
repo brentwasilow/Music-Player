@@ -242,6 +242,12 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
+		int j = 0;
+		for (; j < 14; j++) {
+			if (UpdateMiniPlayer.songListHoverPositionClicked[j]) {
+				break;
+			}
+		}
 		for (int i = 0; i < 14; i++) {
 			if (UpdateMiniPlayer.songListHoverPosition[i]) {
 				resetClickedPositions();
@@ -251,7 +257,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection variable accordingly
-				UpdateMiniPlayer.currentSongSelection += (i-(UpdateMiniPlayer.currentSongSelection%14));
+				//UpdateMiniPlayer.currentSongSelection += (i-(UpdateMiniPlayer.currentSongSelection%14));
+				UpdateMiniPlayer.currentSongSelection += (i-j);
 			}
 		}
 	}
