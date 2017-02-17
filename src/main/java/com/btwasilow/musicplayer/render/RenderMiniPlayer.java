@@ -51,7 +51,7 @@ public class RenderMiniPlayer {
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
 			renderExpandedMusicPlayerEqualizer(g);
 			
-			renderExpandedMusicPlayerSongListHover(g);
+			renderExpandedMusicPlayerSongListPositionSelected(g);
 			renderExpandedMusicPlayerSongList(g);
 		}
 	}
@@ -218,15 +218,7 @@ public class RenderMiniPlayer {
 		int height = 227;
 		int height2 = 225;
 		
-		//int i = UpdateMiniPlayer.currentSongSelection;
-		//int j = UpdateMiniPlayer.currentSongSelection+14;
-		//if (UpdateMiniPlayer.currentSongSelection < 14) {
-		//	i = 0;
-		//	j = 14;
-		//}
-		// render song list based on the current song selection
-		for (int i = UpdateMiniPlayer.currentSongSelection; (i < (UpdateMiniPlayer.currentSongSelection+14) && i < songs.length); i++) {
-		//for (; (i < j && i < songs.length); i++) {
+		for (int i = 0; i < 14; i++) {
 			// modify song name if exceeds characters that can be displayed
 			String songName = songs[i];
 			if (songName.length() >= 20) {
@@ -245,7 +237,7 @@ public class RenderMiniPlayer {
 		}
 	}
 	
-	private static void renderExpandedMusicPlayerSongListHover(Graphics2D g) {
+	private static void renderExpandedMusicPlayerSongListPositionSelected(Graphics2D g) {
 		// for each of the 14 song display slots in the music library
 		for (int i = 0; i < 14; i++) {
 			// render a lighter inset box to signify that song
