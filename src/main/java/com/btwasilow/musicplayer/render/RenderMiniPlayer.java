@@ -118,7 +118,7 @@ public class RenderMiniPlayer {
 		
 		// lighter scroll bar drag area (white)
 		g.setColor(new Color(150, 150, 150));
-		g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
+		//g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
 	}
 	
 	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {

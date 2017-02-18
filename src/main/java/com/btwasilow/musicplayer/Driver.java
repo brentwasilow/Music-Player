@@ -120,6 +120,7 @@ public class Driver extends JFrame implements Runnable {
 		addMouseListener(input);
 		addKeyListener(input);
 		addFocusListener(input);
+		addMouseWheelListener(input);
 	}
 	
 	public static void main(String[] args) {

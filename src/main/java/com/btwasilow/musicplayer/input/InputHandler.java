@@ -8,12 +8,14 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
-public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener {
+public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
 	public Driver driver; // reference to AWT container of main class
 
 	public Point mouseMovedPosition = new Point(0, 0);
@@ -189,55 +191,12 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void updateMusicLibrarySongsBeingDisplayed() {
 		if (down) { // change current song selection by 1 but only if it isnt the end of the list
-			if (UpdateMiniPlayer.currentSongSelection < RenderMiniPlayer.songs.length-1) {
-			//if (UpdateMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1) &&
-			//	RenderMiniPlayer.songs.length - UpdateMiniPlayer.currentSongSelection > 14) {
-				UpdateMiniPlayer.currentSongSelection++;
-				
-				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {
-					for (int i = 0; i < 14; i++) {
-						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
-							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
-							UpdateMiniPlayer.songListHoverPositionClicked[i+1] = true;
-							break;
-						}
-					}
-				} else {
-					UpdateMiniPlayer.block++;
-				}
-				
-				// dont scroll list until we reach the bottom of the list
-				//if (UpdateMiniPlayer.currentSongSelection < 14) {
-				//	// update clicked list so change is reflected
-				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection-1] = false;
-				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
-				//}
-			}
+			moveSongSelectionClickedDown();
 		}
 		
 		// fix up scrolling
 		if (up) { // change current song selection until the start of the library list
-			if (UpdateMiniPlayer.currentSongSelection > 0) {
-				UpdateMiniPlayer.currentSongSelection--;
-				
-				if (!UpdateMiniPlayer.songListHoverPositionClicked[0]) {
-					for (int i = 0; i < 14; i++) {
-						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
-							System.out.println(i);
-							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
-							UpdateMiniPlayer.songListHoverPositionClicked[i-1] = true;
-							break;
-						}
-					}
-				} else {
-					UpdateMiniPlayer.block--;
-				}
-				
-				//if (UpdateMiniPlayer.currentSongSelection < 13) {
-				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection+1] = false;
-				//	UpdateMiniPlayer.songListHoverPositionClicked[UpdateMiniPlayer.currentSongSelection] = true;
-				//}
-			}
+			moveSongSelectionClickedUp();
 		}
 	}
 	
@@ -266,6 +225,55 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void resetClickedPositions() {
 		for (int i = 0; i < 14; i++) {
 			UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+		}
+	}
+
+	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		int notches = arg0.getWheelRotation();
+		if (notches < 0) {
+			// moved up
+			moveSongSelectionClickedUp();
+		} else {
+			// moved down
+			moveSongSelectionClickedDown();
+		}
+	}
+	
+	private void moveSongSelectionClickedUp() {
+		if (UpdateMiniPlayer.currentSongSelection > 0) {
+			UpdateMiniPlayer.currentSongSelection--;
+			
+			if (!UpdateMiniPlayer.songListHoverPositionClicked[0]) {
+				for (int i = 0; i < 14; i++) {
+					if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
+						UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+						UpdateMiniPlayer.songListHoverPositionClicked[i-1] = true;
+						break;
+					}
+				}
+			} else {
+				UpdateMiniPlayer.block--;
+			}
+		}
+	}
+	
+	private void moveSongSelectionClickedDown() {
+		if (UpdateMiniPlayer.currentSongSelection < RenderMiniPlayer.songs.length-1) {
+			//if (UpdateMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1) &&
+			//	RenderMiniPlayer.songs.length - UpdateMiniPlayer.currentSongSelection > 14) {
+				UpdateMiniPlayer.currentSongSelection++;
+				
+				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {
+					for (int i = 0; i < 14; i++) {
+						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
+							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+							UpdateMiniPlayer.songListHoverPositionClicked[i+1] = true;
+							break;
+						}
+					}
+				} else {
+					UpdateMiniPlayer.block++;
+				}
 		}
 	}
 }
