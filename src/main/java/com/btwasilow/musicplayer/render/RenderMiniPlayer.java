@@ -114,11 +114,11 @@ public class RenderMiniPlayer {
 		float scrollBarSize = scrollBarChange * UpdateMiniPlayer.scrollBarSize; 
 		float restOfScroll = UpdateMiniPlayer.scrollBarSize - scrollBarSize;
 		float restOfScrollIncrement = restOfScroll / (songs.length - 14.0F);
-		float scrollBarPlacement =  restOfScrollIncrement * UpdateMiniPlayer.currentSongSelection;
+		float scrollBarPlacement =  restOfScrollIncrement * UpdateMiniPlayer.block;
 		
 		// lighter scroll bar drag area (white)
 		g.setColor(new Color(150, 150, 150));
-		//g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
+		g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
 	}
 	
 	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {
@@ -143,13 +143,6 @@ public class RenderMiniPlayer {
 	private static void renderExpandedMusicPlayerMusicLibraryHeader(Graphics2D g) {
 		// font setup (italic)
 		g.setFont(new Font("Arial", 3, 12));
-		
-		// add underline to font
-		//Map<TextAttribute, Object> map =
-		//	    new Hashtable<TextAttribute, Object>();
-		//	map.put(TextAttribute.UNDERLINE,
-		//	    TextAttribute.UNDERLINE_ON);
-		//Font font2 = font.deriveFont(map);
 		
 		// set color and draw darker header inset
 		g.setColor(new Color(30, 30, 30));
