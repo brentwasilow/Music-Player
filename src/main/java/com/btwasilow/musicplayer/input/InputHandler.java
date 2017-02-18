@@ -57,6 +57,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void keyPressedUpdateRoutines() {
 		updateMusicLibrarySongsBeingDisplayed();
+
 	}
 
 	public void keyTyped(KeyEvent arg0) {
@@ -190,6 +191,9 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMusicLibrarySongsBeingDisplayed() {
+		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+			return;
+		}
 		if (down) { // change current song selection by 1 but only if it isnt the end of the list
 			moveSongSelectionClickedDown();
 		}
@@ -199,6 +203,9 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
+		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+			return;
+		}
 		int j = 0;
 		for (; j < 14; j++) {
 			if (UpdateMiniPlayer.songListHoverPositionClicked[j]) {
@@ -224,6 +231,9 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
+		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+			return;
+		}
 		int notches = arg0.getWheelRotation();
 		if (notches < 0) {
 			// moved up
