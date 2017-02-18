@@ -372,6 +372,8 @@ public class RenderMiniPlayer {
 		if (UpdateMiniPlayer.currentlyPlayingSongName.length() >= 23) {
 			songName = UpdateMiniPlayer.currentlyPlayingSongName.substring(0, 23);
 			songName += "...";
+		} else {
+			songName = UpdateMiniPlayer.currentlyPlayingSongName;
 		}
 		// draw current song using Arial font with dark fill
 		g.setFont(new Font("Arial", 1, 12));

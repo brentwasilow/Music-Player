@@ -29,6 +29,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	public boolean right; // handles right key
 	public boolean escape; // handles escape key
 	public boolean space; // handles space key
+	public boolean enter;
 
 	public InputHandler(Driver driver) {
 		this.driver = driver;
@@ -41,6 +42,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		right = keys[KeyEvent.VK_RIGHT];
 		escape = keys[KeyEvent.VK_ESCAPE];
 		space = keys[KeyEvent.VK_SPACE];
+		enter = keys[KeyEvent.VK_ENTER];
 	}
 	
 	public void keyPressed(KeyEvent arg0) {
@@ -57,6 +59,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void keyPressedUpdateRoutines() {
 		updateMusicLibrarySongsBeingDisplayed();
+		updateCurrentSongSelection();
 
 	}
 
@@ -199,6 +202,17 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		}
 		if (up) { // change current song selection until the start of the library list
 			moveSongSelectionClickedUp();
+		}
+	}
+
+	private void updateCurrentSongSelection() {
+		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+			return;
+		}
+		if (enter) { // select this song to display it
+			UpdateMiniPlayer.currentlyPlayingSongName = RenderMiniPlayer.songs[UpdateMiniPlayer.currentSongSelection];
+
+			// start playing the song (no implementation yet)
 		}
 	}
 	
