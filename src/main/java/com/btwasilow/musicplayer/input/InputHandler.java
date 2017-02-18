@@ -193,7 +193,6 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		if (down) { // change current song selection by 1 but only if it isnt the end of the list
 			moveSongSelectionClickedDown();
 		}
-		
 		if (up) { // change current song selection until the start of the library list
 			moveSongSelectionClickedUp();
 		}
