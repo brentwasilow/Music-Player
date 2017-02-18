@@ -194,7 +194,6 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			moveSongSelectionClickedDown();
 		}
 		
-		// fix up scrolling
 		if (up) { // change current song selection until the start of the library list
 			moveSongSelectionClickedUp();
 		}
@@ -212,11 +211,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				resetClickedPositions();
 				UpdateMiniPlayer.songListHoverPositionClicked[i] = true;
 				
-				// click state still erroneous (i-UpdateMiniPlayer.currentSongSelection%14)) is wrong
-				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection variable accordingly
-				//UpdateMiniPlayer.currentSongSelection += (i-(UpdateMiniPlayer.currentSongSelection%14));
 				UpdateMiniPlayer.currentSongSelection += (i-j);
 			}
 		}
@@ -259,8 +255,6 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void moveSongSelectionClickedDown() {
 		if (UpdateMiniPlayer.currentSongSelection < RenderMiniPlayer.songs.length-1) {
-			//if (UpdateMiniPlayer.currentSongSelection < (RenderMiniPlayer.songs.length - 1) &&
-			//	RenderMiniPlayer.songs.length - UpdateMiniPlayer.currentSongSelection > 14) {
 				UpdateMiniPlayer.currentSongSelection++;
 				
 				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {
