@@ -8,8 +8,13 @@ public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
 	
 	public static boolean leftButtonHover = false;
+	public static boolean leftButtonClicked = false;
+	
 	public static boolean centerButtonHover = false;
+	public static boolean centerButtonClicked = false;
+	
 	public static boolean rightButtonHover = false;
+	public static boolean rightButtonClicked = false;
 	
 	public static boolean muteVolumeButtonHover = false;
 	public static boolean muteVolumeButtonClicked = false;

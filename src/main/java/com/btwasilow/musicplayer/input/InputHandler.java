@@ -10,6 +10,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.render.RenderMiniPlayer;
@@ -17,6 +22,8 @@ import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
 	public Driver driver; // reference to AWT container of main class
+	
+	public Clip clip;
 
 	public Point mouseMovedPosition = new Point(0, 0);
 	public Point mouseClickedPosition = new Point (0, 0);
@@ -143,18 +150,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void updateLeftButtonClickState() {
 		if (UpdateMiniPlayer.leftButtonHover) {
 			// left button click logic
+			UpdateMiniPlayer.leftButtonClicked = true;
 		}
 	}
 	
 	private void updateCenterButtonClickState() {
 		if (UpdateMiniPlayer.centerButtonHover) {
 			// center button click logic
+			UpdateMiniPlayer.centerButtonClicked = true;
 		}
 	}
 
 	private void updateRightButtonClickState() {
 		if (UpdateMiniPlayer.rightButtonHover) {
 			// right button click logic
+			UpdateMiniPlayer.rightButtonClicked = true;
 		}
 	}
 	
@@ -213,6 +223,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			UpdateMiniPlayer.currentlyPlayingSongName = RenderMiniPlayer.songs[UpdateMiniPlayer.currentSongSelection];
 
 			// start playing the song (no implementation yet)
+			//try {
+			//	clip.stop();
+			//	File file = new File("res/songs/" + RenderMiniPlayer.songs[UpdateMiniPlayer.currentSongSelection] + ".wav");
+			//	if (file.exists()) {
+			//		AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+			//		clip = AudioSystem.getClip();
+			//		clip.open(sound);
+			//		clip.setFramePosition(0);;
+			//		clip.start();
+			//	} else {
+			//		throw new RuntimeException("Sound: file not found: " + file.getName());
+			//	}
+			//} catch (Exception e) {
+			//	e.printStackTrace();
+			//}
 		}
 	}
 	
