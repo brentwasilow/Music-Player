@@ -460,7 +460,7 @@ public class RenderMiniPlayer {
 			// dark fill circle in corner of music player
 			g.setColor(new Color(30, 30, 30));
 			g.fillOval(328, 8, 14, 14);
-		
+			
 			// red fill circle as inset
 			g.setColor(new Color(255, 0, 0));
 			g.fillOval(330, 10, 10, 10);
