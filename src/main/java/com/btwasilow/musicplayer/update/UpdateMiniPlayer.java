@@ -46,40 +46,34 @@ public class UpdateMiniPlayer {
 	
 	public static void update(InputHandler input) {
 		resetStateVariables();
-
-		updateExitButtonHoverState(input);
-		
-		updateLeftButtonHoverState(input);
-		updateCenterButtonHoverState(input);
-		updateRightButtonHoverState(input);
-		
-		updateMuteVolumeButtonHoverState(input);
-		updateVolumeFillBarHoverState(input);
-		
-		updateExpandMusicPlayerButtonHoverState(input);
-		
-		updateSongTimeFillBarHoverState(input);
-		
-		updateExpandedMusicPlayerSongListHoverState(input);
+		updateHoverStates(input);
 	}
 	
 	private static void resetStateVariables() {
 		exitButtonHover = false;
-		
 		leftButtonHover = false;
 		centerButtonHover = false;
 		rightButtonHover = false;
-		
 		muteVolumeButtonHover = false;
 		volumeFillBarHover = false;
-		
 		expandMusicPlayerButtonHover = false;
-		
 		songTimeFillBarHover = false;
 		
 		for (int i = 0; i < 14; i++) {
 			songListHoverPosition[i] = false;
 		}
+	}
+	
+	private static void updateHoverStates(InputHandler input) {
+		updateExitButtonHoverState(input);
+		updateLeftButtonHoverState(input);
+		updateCenterButtonHoverState(input);
+		updateRightButtonHoverState(input);
+		updateMuteVolumeButtonHoverState(input);
+		updateVolumeFillBarHoverState(input);
+		updateExpandMusicPlayerButtonHoverState(input);
+		updateSongTimeFillBarHoverState(input);
+		updateExpandedMusicPlayerSongListHoverState(input);
 	}
 	
 	private static void updateExitButtonHoverState(InputHandler input) {
