@@ -19,6 +19,7 @@ import javax.sound.sampled.Clip;
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.render.RenderMiniPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.utility.Utility;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
 	public Driver driver; // reference to AWT container of main class
@@ -142,7 +143,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateExitButtonClickState() {
-		if (UpdateMiniPlayer.exitButtonHover) {
+		if (Utility.EXIT_BUTTON.isHoveredOver()) {
 			System.exit(0);
 		}
 	}

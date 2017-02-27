@@ -3,7 +3,7 @@ package com.btwasilow.musicplayer.update;
 import java.util.Random;
 
 import com.btwasilow.musicplayer.input.InputHandler;
-import com.btwasilow.musicplayer.utility.Constants;
+import com.btwasilow.musicplayer.utility.Utility;
 
 public class UpdateMiniPlayer {
 	public static boolean exitButtonHover = false;
@@ -51,7 +51,7 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void resetStateVariables() {
-		exitButtonHover = false;
+		Utility.EXIT_BUTTON.setHoveredOver(false);
 		leftButtonHover = false;
 		centerButtonHover = false;
 		rightButtonHover = false;
@@ -60,7 +60,7 @@ public class UpdateMiniPlayer {
 		expandMusicPlayerButtonHover = false;
 		songTimeFillBarHover = false;
 		
-		for (int i = 0; i < Constants.NUM_OF_SONG_POSITIONS; i++) {
+		for (int i = 0; i < Utility.NUM_OF_SONG_POSITIONS; i++) {
 			songListHoverPosition[i] = false;
 		}
 	}
@@ -83,8 +83,8 @@ public class UpdateMiniPlayer {
 		//	exitButtonHover = true;
 		//}
 		
-		if (Constants.EXIT_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
-			exitButtonHover = true;
+		if (Utility.EXIT_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+			Utility.EXIT_BUTTON.setHoveredOver(true);
 		}
 	}
 	

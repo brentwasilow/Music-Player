@@ -1,4 +1,4 @@
-package com.btwasilow.musicplayer.utility;
+package com.btwasilow.musicplayer.button;
 
 import java.awt.Color;
 import java.awt.Shape;
@@ -71,6 +71,10 @@ public class Button {
 	
 	public Color getHInsetColor() {
 		return hInsetColor;
+	}
+	
+	public void setHoveredOver(boolean hover) {
+		this.hover = hover;
 	}
 	
 	public boolean isHoveredOver() {

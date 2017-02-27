@@ -8,7 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
-import com.btwasilow.musicplayer.utility.Constants;
+import com.btwasilow.musicplayer.utility.Utility;
 
 public class RenderMiniPlayer {
 	public static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
@@ -457,30 +457,22 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExitButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.exitButtonHover) {
+		if (!Utility.EXIT_BUTTON.isHoveredOver()) {
 			// dark fill circle in corner of music player
-			//g.setColor(new Color(30, 30, 30));
-			//g.fillOval(328, 8, 14, 14);
-			g.setColor(Constants.EXIT_BUTTON.getUHFillColor());
-			g.fill(Constants.EXIT_BUTTON.getUHFillShape());
+			g.setColor(Utility.EXIT_BUTTON.getUHFillColor());
+			g.fill(Utility.EXIT_BUTTON.getUHFillShape());
 			
-			// red fill circle as inset
-			//g.setColor(new Color(255, 0, 0));
-			//g.fillOval(330, 10, 10, 10);
-			g.setColor(Constants.EXIT_BUTTON.getUHInsetColor());
-			g.fill(Constants.EXIT_BUTTON.getUHInsetShape());
+			// red circle inset
+			g.setColor(Utility.EXIT_BUTTON.getUHInsetColor());
+			g.fill(Utility.EXIT_BUTTON.getUHInsetShape());
 		} else {
-			// lighter fill circle in corner of music player
-			//g.setColor(new Color(200, 200, 200));
-			//g.fillOval(328, 8, 14, 14);
-			g.setColor(Constants.EXIT_BUTTON.getHFillColor());
-			g.fill(Constants.EXIT_BUTTON.getHFillShape());
+			// lighter fill circle in corner of music player when hovered over
+			g.setColor(Utility.EXIT_BUTTON.getHFillColor());
+			g.fill(Utility.EXIT_BUTTON.getHFillShape());
 			
-			// same red fill circle as inset
-			//g.setColor(new Color(255, 0, 0));
-			//g.fillOval(330, 10, 10, 10);
-			g.setColor(Constants.EXIT_BUTTON.getHInsetColor());
-			g.fill(Constants.EXIT_BUTTON.getHInsetShape());
+			// same red fill circle as inset regardless of hover
+			g.setColor(Utility.EXIT_BUTTON.getHInsetColor());
+			g.fill(Utility.EXIT_BUTTON.getHInsetShape());
 		}
 	}
 }
