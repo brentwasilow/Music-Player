@@ -83,7 +83,7 @@ public class UpdateMiniPlayer {
 		//	exitButtonHover = true;
 		//}
 		
-		if (Constants.EXIT_BUTTON.contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+		if (Constants.EXIT_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
 			exitButtonHover = true;
 		}
 	}
