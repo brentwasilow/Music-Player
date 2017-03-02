@@ -19,6 +19,7 @@ public class Button {
 	private Color hInsetColor;
 	
 	private boolean hover = false;
+	private boolean clicked = false;
 	
 	public Button(Shape boundingBox, Shape uhFillShape, Color uhFillColor, Shape uhInsetShape, Color uhInsetColor,
 				  Shape hFillShape, Color hFillColor, Shape hInsetShape, Color hInsetColor) {
@@ -79,5 +80,13 @@ public class Button {
 	
 	public boolean isHoveredOver() {
 		return hover;
+	}
+	
+	public void setClicked(boolean clicked) {
+		this.clicked = clicked;
+	}
+	
+	public boolean isClicked() {
+		return clicked;
 	}
 }

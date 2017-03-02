@@ -170,11 +170,18 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMuteVolumeButtonClickState() {
-		if (UpdateMiniPlayer.muteVolumeButtonHover) {
+		/*if (UpdateMiniPlayer.muteVolumeButtonHover) {
 			if (UpdateMiniPlayer.muteVolumeButtonClicked) { // if volume is muted, then un-mute
 				UpdateMiniPlayer.muteVolumeButtonClicked = false;
 			} else { // if volume is not muted, then mute
 				UpdateMiniPlayer.muteVolumeButtonClicked = true;
+			}
+		}*/
+		if (Utility.VOLUME_MUTE_BUTTON.isHoveredOver()) {
+			if (Utility.VOLUME_MUTE_BUTTON.isClicked()) {
+				Utility.VOLUME_MUTE_BUTTON.setClicked(false);
+			} else {
+				Utility.VOLUME_MUTE_BUTTON.setClicked(true);
 			}
 		}
 	}

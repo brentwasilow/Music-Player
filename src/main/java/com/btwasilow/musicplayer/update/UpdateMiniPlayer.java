@@ -55,7 +55,7 @@ public class UpdateMiniPlayer {
 		leftButtonHover = false;
 		centerButtonHover = false;
 		rightButtonHover = false;
-		muteVolumeButtonHover = false;
+		Utility.VOLUME_MUTE_BUTTON.setHoveredOver(false);
 		volumeFillBarHover = false;
 		expandMusicPlayerButtonHover = false;
 		songTimeFillBarHover = false;
@@ -78,11 +78,6 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void updateExitButtonHoverState(InputHandler input) {
-		//if (input.mouseMovedPosition.x >= 328 && input.mouseMovedPosition.x <= 342 &&
-		//	input.mouseMovedPosition.y >= 8 && input.mouseMovedPosition.y <= 22) {
-		//	exitButtonHover = true;
-		//}
-		
 		if (Utility.EXIT_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
 			Utility.EXIT_BUTTON.setHoveredOver(true);
 		}
@@ -110,9 +105,8 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void updateMuteVolumeButtonHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 210 && input.mouseMovedPosition.x <= 227 &&
-			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
-			muteVolumeButtonHover = true;
+		if (Utility.VOLUME_MUTE_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+			Utility.VOLUME_MUTE_BUTTON.setHoveredOver(true);
 		}
 	}
 	

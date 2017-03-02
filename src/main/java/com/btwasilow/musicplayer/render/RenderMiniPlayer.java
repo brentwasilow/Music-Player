@@ -420,29 +420,30 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderVolumeMuteButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.muteVolumeButtonHover) {
-			// lighter fill box
-			g.setColor(new Color(50, 50, 50));
-			g.fillRoundRect(209, 98, 16, 16, 4, 4);
+		if (!Utility.VOLUME_MUTE_BUTTON.isHoveredOver()) {
+			// dark fill box
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHFillColor());
+			g.fill(Utility.VOLUME_MUTE_BUTTON.getUHFillShape());
 			
-			// darker fill box outline
-			g.setColor(new Color(30, 30, 30));
-			g.drawRoundRect(208, 97, 18, 17, 4, 4);
-		
-			// set volume mute button representation lighter
-			g.setColor(new Color(150, 150, 150));
+			// even darker outline box
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHInsetColor());
+			g.draw(Utility.VOLUME_MUTE_BUTTON.getUHInsetShape());
+			
+			// lighter button representation color
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHFillColor());
 		} else {
-			// lighter fill box when hovered over
-			g.setColor(new Color(150, 150, 150));
-			g.fillRoundRect(209, 98, 17, 16, 4, 4);
+			// lighter fill box in comparison to not being hovered over
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHFillColor());
+			g.fill(Utility.VOLUME_MUTE_BUTTON.getHFillShape());
+		
+			// darker outline box but still lighter than when not being hovered over
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHInsetColor());
+			g.draw(Utility.VOLUME_MUTE_BUTTON.getHInsetShape());
 			
-			// darker fill box outline
-			g.setColor(new Color(30, 30, 30));
-			g.drawRoundRect(208, 97, 18, 17, 4, 4);
-			
-			// set volume mute button darker when hovered over
-			g.setColor(new Color(50, 50, 50));
+			// darker button representation color
+			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHFillColor());
 		}
+
 		// draw volume mute button representation (speaker with arc for noise disseminating outward)
 		int[] volumeX = {219, 219, 212};
 		int[] volumeY = {111, 100, 105};
@@ -450,7 +451,7 @@ public class RenderMiniPlayer {
 		g.fillRect(212, 103, 4, 5);
 	
 		// only draw arc if volume button isn't muted
-		if (!UpdateMiniPlayer.muteVolumeButtonClicked) {
+		if (!Utility.VOLUME_MUTE_BUTTON.isClicked()) {
 			g.drawArc(218, 102, 4, 6, 0, -90);
 			g.drawArc(218, 102, 4, 7, 0, 90);
 		}
