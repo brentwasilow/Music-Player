@@ -8,9 +8,9 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JFrame;
 
 import com.btwasilow.musicplayer.input.InputHandler;
-import com.btwasilow.musicplayer.render.RenderMiniPlayer;
-import com.btwasilow.musicplayer.timer.Timer;
+import com.btwasilow.musicplayer.render.RenderPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.utility.Utility;
 
 public class Driver extends JFrame implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -20,18 +20,40 @@ public class Driver extends JFrame implements Runnable {
 	
 	private InputHandler input;
 	
-	private Timer timer;
-	
 	private Graphics2D g;
+	private RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+															   RenderingHints.VALUE_ANTIALIAS_ON);
 
 	public Driver() {
 		// setup routines
 		setupGUI();
 		setupInput();
-		timer = new Timer();
 		
 		// start the program
 		start();
+	}
+	
+	private void setupGUI() {
+		// graphical user interface (GUI) setup
+		setUndecorated(true);
+		setShape(new RoundRectangle2D.Double(0, 0, Utility.MINI_MUSIC_PLAYER_WIDTH,
+												   Utility.MINI_MUSIC_PLAYER_HEIGHT,
+												   Utility.MUSIC_PLAYER_PIXEL_ARC_WIDTH,
+												   Utility.MUSIC_PLAYER_PIXEL_ARC_HEIGHT));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	private void setupInput() {
+		// setup input handling operations
+		input = new InputHandler(this);
+		addMouseMotionListener(input);
+		addMouseListener(input);
+		addKeyListener(input);
+		addFocusListener(input);
+		addMouseWheelListener(input);
 	}
 	
 	public void start() {
@@ -78,7 +100,7 @@ public class Driver extends JFrame implements Runnable {
 	
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
-
+		
 		if (bs == null) {
 			createBufferStrategy(3);
 			return;
@@ -86,41 +108,18 @@ public class Driver extends JFrame implements Runnable {
 		
 		// get graphics and set antialiasing
 		g = (Graphics2D) bs.getDrawGraphics();	
-	    RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-	    g.setRenderingHints(rh);
+	    g.setRenderingHints(renderingHints);
 	    
-	    // rendering methods
-	    RenderMiniPlayer.render(g, this);
+	    // perform ALL music player rendering
+	    RenderPlayer.render(g, this);
 		
 		g.dispose();
 		bs.show();
 	}
 	
 	public void update() {
-		input.update();
-		timer.update();
-		
+		// perform ALL music player updating
 		UpdateMiniPlayer.update(input);
-	}
-	
-	private void setupGUI() {
-		// graphical user interface (GUI) setup
-		setUndecorated(true);
-		setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));  // miniplayer = (350x150) | fullplayer = (350x400)
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setVisible(true);
-	}
-	
-	private void setupInput() {
-		// setup input handling operations
-		input = new InputHandler(this);
-		addMouseMotionListener(input);
-		addMouseListener(input);
-		addKeyListener(input);
-		addFocusListener(input);
-		addMouseWheelListener(input);
 	}
 	
 	public static void main(String[] args) {

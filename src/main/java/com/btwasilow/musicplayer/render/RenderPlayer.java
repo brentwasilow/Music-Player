@@ -10,13 +10,13 @@ import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 import com.btwasilow.musicplayer.utility.Utility;
 
-public class RenderMiniPlayer {
+public class RenderPlayer {
 	public static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
 									"Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
 									"Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator",
 									"Pompeii", "Generate", "Heading Home", "Youth", "Never Cry Again", "Arigato"};
 	
-	private RenderMiniPlayer() {
+	private RenderPlayer() {
 	}
 	
 	public static void render(Graphics2D g, Driver driver) {

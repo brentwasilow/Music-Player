@@ -17,7 +17,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.render.RenderMiniPlayer;
+import com.btwasilow.musicplayer.render.RenderPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
 import com.btwasilow.musicplayer.utility.Utility;
 
@@ -228,7 +228,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			return;
 		}
 		if (enter) { // select this song to display it
-			UpdateMiniPlayer.currentlyPlayingSongName = RenderMiniPlayer.songs[UpdateMiniPlayer.currentSongSelection];
+			UpdateMiniPlayer.currentlyPlayingSongName = RenderPlayer.songs[UpdateMiniPlayer.currentSongSelection];
 
 			// start playing the song (no implementation yet)
 			//try {
@@ -310,7 +310,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void moveSongSelectionClickedDown() {
-		if (UpdateMiniPlayer.currentSongSelection < RenderMiniPlayer.songs.length-1) {
+		if (UpdateMiniPlayer.currentSongSelection < RenderPlayer.songs.length-1) {
 				UpdateMiniPlayer.currentSongSelection++;
 				
 				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {

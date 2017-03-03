@@ -7,6 +7,12 @@ import java.awt.geom.RoundRectangle2D;
 import com.btwasilow.musicplayer.button.Button;
 
 public final class Utility {
+	public static final int MINI_MUSIC_PLAYER_WIDTH = 350;
+	public static final int MINI_MUSIC_PLAYER_HEIGHT = 150;
+	public static final int FULL_MUSIC_PLAYER_WIDTH = 350;
+	public static final int FULL_MUSIC_PLAYER_HEIGHT = 400;
+	public static final int MUSIC_PLAYER_PIXEL_ARC_WIDTH = 15;
+	public static final int MUSIC_PLAYER_PIXEL_ARC_HEIGHT = 15;
 	
 	public static final int SCROLL_BAR_PIXEL_WIDTH = 344;
 	public static final int NUM_OF_SONG_POSITIONS = 14;
