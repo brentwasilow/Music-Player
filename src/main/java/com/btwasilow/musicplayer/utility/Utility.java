@@ -20,10 +20,30 @@ public final class Utility {
 	public static final Button VOLUME_FILL_BAR = new Button(new RoundRectangle2D.Double(236, 102, 102, 7, 4, 4));
 	public static final Button EXPAND_MUSIC_PLAYER_BUTTON = new Button(new RoundRectangle2D.Double(181, 97, 18, 17, 4, 4));
 	public static final Button SONG_FILL_BAR = new Button(new RoundRectangle2D.Double(9, 130, 330, 9, 4, 4));
-	
 	public static final Button[] buttons = {EXIT_BUTTON, LEFT_BUTTON, CENTER_BUTTON, RIGHT_BUTTON,
 											VOLUME_MUTE_BUTTON, VOLUME_FILL_BAR, EXPAND_MUSIC_PLAYER_BUTTON,
 											SONG_FILL_BAR};
+	
+	public static final Button DISPLAYABLE_SONG_POSITION_1 = new Button(new RoundRectangle2D.Double(25, (210), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_2 = new Button(new RoundRectangle2D.Double(25, (233), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_3 = new Button(new RoundRectangle2D.Double(25, (256), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_4 = new Button(new RoundRectangle2D.Double(25, (279), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_5 = new Button(new RoundRectangle2D.Double(25, (302), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_6 = new Button(new RoundRectangle2D.Double(25, (325), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_7 = new Button(new RoundRectangle2D.Double(25, (348), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_8 = new Button(new RoundRectangle2D.Double(25, (371), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_9 = new Button(new RoundRectangle2D.Double(25, (394), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_10 = new Button(new RoundRectangle2D.Double(25, (417), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_11 = new Button(new RoundRectangle2D.Double(25, (440), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_12 = new Button(new RoundRectangle2D.Double(25, (463), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_13 = new Button(new RoundRectangle2D.Double(25, (486), 287, 23, 1, 1));
+	public static final Button DISPLAYABLE_SONG_POSITION_14 = new Button(new RoundRectangle2D.Double(25, (509), 287, 23, 1, 1));
+	
+	public static final Button[] DISPLAYABLE_SONG_POSITIONS = {DISPLAYABLE_SONG_POSITION_1, DISPLAYABLE_SONG_POSITION_2, DISPLAYABLE_SONG_POSITION_3,
+															   DISPLAYABLE_SONG_POSITION_4, DISPLAYABLE_SONG_POSITION_5, DISPLAYABLE_SONG_POSITION_6,
+															   DISPLAYABLE_SONG_POSITION_7, DISPLAYABLE_SONG_POSITION_8, DISPLAYABLE_SONG_POSITION_9,
+															   DISPLAYABLE_SONG_POSITION_10, DISPLAYABLE_SONG_POSITION_11, DISPLAYABLE_SONG_POSITION_12,
+															   DISPLAYABLE_SONG_POSITION_13, DISPLAYABLE_SONG_POSITION_14};
 	
 	private Utility() {
 	}

@@ -8,6 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class RenderPlayer {
@@ -102,8 +103,8 @@ public class RenderPlayer {
 		
 		// determine scroll bar size and change in scrollbar placement
 		float scrollBarChange = 14.0F / songs.length;
-		float scrollBarSize = scrollBarChange * UpdateMiniPlayer.scrollBarSize; 
-		float restOfScroll = UpdateMiniPlayer.scrollBarSize - scrollBarSize;
+		float scrollBarSize = scrollBarChange * Consts.SCROLL_BAR_PIXEL_HEIGHT; 
+		float restOfScroll = Consts.SCROLL_BAR_PIXEL_HEIGHT - scrollBarSize;
 		float restOfScrollIncrement = restOfScroll / (songs.length - 14.0F);
 		float scrollBarPlacement =  restOfScrollIncrement * UpdateMiniPlayer.block;
 		
@@ -352,7 +353,7 @@ public class RenderPlayer {
 	private static void renderVolumeBarFill(Graphics2D g) {
 		// if volume is muted then we render 0 volume otherwise render current song volume
 		int volume;
-		if (UpdateMiniPlayer.muteVolumeButtonClicked) {
+		if (Utility.VOLUME_MUTE_BUTTON.isClicked()) {
 			volume = 0;
 		} else {
 			volume = UpdateMiniPlayer.currentlyPlayingSongVolume;

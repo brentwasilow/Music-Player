@@ -14,8 +14,8 @@ public class Consts {
 	public static final int MUSIC_PLAYER_PIXEL_ARC_WIDTH = 15;
 	public static final int MUSIC_PLAYER_PIXEL_ARC_HEIGHT = 15;
 	
-	public static final int SCROLL_BAR_PIXEL_WIDTH = 344;
-	public static final int NUM_OF_SONG_POSITIONS = 14;
+	public static final int SCROLL_BAR_PIXEL_HEIGHT = 344;
+	public static final int NUM_OF_DISPLAYABLE_SONG_POSITIONS = 14;
 	
 	private Consts() {
 		throw new AssertionError();

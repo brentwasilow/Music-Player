@@ -7,32 +7,10 @@ import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class UpdateMiniPlayer {
-	public static boolean exitButtonHover = false;
-	
-	public static boolean leftButtonHover = false;
-	public static boolean leftButtonClicked = false;
-	
-	public static boolean centerButtonHover = false;
-	public static boolean centerButtonClicked = false;
-	
-	public static boolean rightButtonHover = false;
-	public static boolean rightButtonClicked = false;
-	
-	public static boolean muteVolumeButtonHover = false;
-	public static boolean muteVolumeButtonClicked = false;
-	public static boolean volumeFillBarHover = false;
-	
-	public static boolean expandMusicPlayerButtonHover = false;
-	public static boolean expandMusicPlayerButtonClicked = false;
-	
-	public static boolean songTimeFillBarHover = false;
-	
 	public static String currentlyPlayingSongName = "";
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
 	public static int currentSongSelection = 0;
-	
-	public static int scrollBarSize = 344;
 	
 	public static Random rand = new Random();
 	
@@ -44,6 +22,7 @@ public class UpdateMiniPlayer {
 															false, false, false, false};
 	
 	private UpdateMiniPlayer() {
+		throw new AssertionError();
 	}
 	
 	public static void update(InputHandler input) {
@@ -52,21 +31,14 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void resetStateVariables() {
-		//Utility.EXIT_BUTTON.setHoveredOver(false);
-		//leftButtonHover = false;
-		//centerButtonHover = false;
-		//rightButtonHover = false;
-		//Utility.VOLUME_MUTE_BUTTON.setHoveredOver(false);
-		//volumeFillBarHover = false;
-		//expandMusicPlayerButtonHover = false;
-		//songTimeFillBarHover = false;
-		
-		for (int i = 0; i < Utility.buttons.length; i++) {
-			Utility.buttons[i].setHoveredOver(false);
+		// reset the state of all buttons such that we assume none of them
+		// are being hovered over until deemed otherwise
+		for (int index = 0; index < Utility.buttons.length; index++) {
+			Utility.buttons[index].setHoveredOver(false);
 		}
 		
-		for (int i = 0; i < Consts.NUM_OF_SONG_POSITIONS; i++) {
-			songListHoverPosition[i] = false;
+		for (int index = 0; index < Consts.NUM_OF_DISPLAYABLE_SONG_POSITIONS; index++) {
+			songListHoverPosition[index] = false;
 		}
 	}
 	
@@ -76,69 +48,7 @@ public class UpdateMiniPlayer {
 				Utility.buttons[i].setHoveredOver(true);
 			}
 		}
-	//	updateExitButtonHoverState(input);
-	//	updateLeftButtonHoverState(input);
-	//	updateCenterButtonHoverState(input);
-	//	updateRightButtonHoverState(input);
-	//	updateMuteVolumeButtonHoverState(input);
-	//	updateVolumeFillBarHoverState(input);
-	//	updateExpandMusicPlayerButtonHoverState(input);
-	//	updateSongTimeFillBarHoverState(input);
 		updateExpandedMusicPlayerSongListHoverState(input);
-	}
-	
-	private static void updateExitButtonHoverState(InputHandler input) {
-		if (Utility.EXIT_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
-			Utility.EXIT_BUTTON.setHoveredOver(true);
-		}
-	}
-	
-	private static void updateLeftButtonHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 119 && input.mouseMovedPosition.x <= 159 &&
-			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
-			leftButtonHover = true;
-		}
-	}
-	
-	private static void updateCenterButtonHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 190 && input.mouseMovedPosition.x <= 240 &&
-			input.mouseMovedPosition.y >= 26 && input.mouseMovedPosition.y <= 76) {
-			centerButtonHover = true;
-		}
-	}
-	
-	private static void updateRightButtonHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 269 && input.mouseMovedPosition.x <= 309 &&
-			input.mouseMovedPosition.y >= 31 && input.mouseMovedPosition.y <= 71) {
-			rightButtonHover = true;
-		}
-	}
-	
-	private static void updateMuteVolumeButtonHoverState(InputHandler input) {
-		if (Utility.VOLUME_MUTE_BUTTON.getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
-			Utility.VOLUME_MUTE_BUTTON.setHoveredOver(true);
-		}
-	}
-	
-	private static void updateVolumeFillBarHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 237 && input.mouseMovedPosition.x <= 339 &&
-			input.mouseMovedPosition.y >= 106 && input.mouseMovedPosition.y <= 111) {
-			volumeFillBarHover = true;
-		}
-	}
-	
-	private static void updateExpandMusicPlayerButtonHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 183 && input.mouseMovedPosition.x <= 200 &&
-			input.mouseMovedPosition.y >= 101 && input.mouseMovedPosition.y <= 117) {
-			expandMusicPlayerButtonHover = true;
-		}
-	}
-	
-	private static void updateSongTimeFillBarHoverState(InputHandler input) {
-		if (input.mouseMovedPosition.x >= 10 && input.mouseMovedPosition.x <= 339 &&
-			input.mouseMovedPosition.y >= 134 && input.mouseMovedPosition.y <= 142) {
-			songTimeFillBarHover = true;
-		}
 	}
 	
 	private static void updateExpandedMusicPlayerSongListHoverState(InputHandler input) {
