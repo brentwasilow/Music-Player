@@ -149,23 +149,23 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateLeftButtonClickState() {
-		if (UpdateMiniPlayer.leftButtonHover) {
+		if (Utility.LEFT_BUTTON.isHoveredOver()) {
 			// left button click logic
-			UpdateMiniPlayer.leftButtonClicked = true;
+			Utility.LEFT_BUTTON.setClicked(true);
 		}
 	}
 	
 	private void updateCenterButtonClickState() {
-		if (UpdateMiniPlayer.centerButtonHover) {
+		if (Utility.CENTER_BUTTON.isHoveredOver()) {
 			// center button click logic
-			UpdateMiniPlayer.centerButtonClicked = true;
+			Utility.CENTER_BUTTON.setClicked(true);
 		}
 	}
 
 	private void updateRightButtonClickState() {
-		if (UpdateMiniPlayer.rightButtonHover) {
+		if (Utility.RIGHT_BUTTON.isHoveredOver()) {
 			// right button click logic
-			UpdateMiniPlayer.rightButtonClicked = true;
+			Utility.RIGHT_BUTTON.setClicked(true);
 		}
 	}
 	
@@ -189,30 +189,30 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void updateVolumeFillBarClickState() {
 		// if hovering over volume fill bar and clicked, then unmute if muted and
 		// update the volume value
-		if (UpdateMiniPlayer.volumeFillBarHover) {
-			UpdateMiniPlayer.muteVolumeButtonClicked = false;
+		if (Utility.VOLUME_FILL_BAR.isHoveredOver()) {
+			Utility.VOLUME_MUTE_BUTTON.setClicked(false);
 			UpdateMiniPlayer.currentlyPlayingSongVolume = (mouseClickedPosition.x - 237);
 		}
 	}
 	
 	private void updateExpandMusicPlayerButtonClickState() {
-		if (UpdateMiniPlayer.expandMusicPlayerButtonHover) {
-			if (UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // if music player is expanded then miniaturize
-				UpdateMiniPlayer.expandMusicPlayerButtonClicked = false;
+		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isHoveredOver()) {
+			if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) { // if music player is expanded then miniaturize
+				Utility.EXPAND_MUSIC_PLAYER_BUTTON.setClicked(false);
 			} else { // expand music player
-				UpdateMiniPlayer.expandMusicPlayerButtonClicked = true;
+				Utility.EXPAND_MUSIC_PLAYER_BUTTON.setClicked(true);;
 			}
 		}
 	}
 	
 	private void updateSongTimeFillBarClickState() {
-		if (UpdateMiniPlayer.songTimeFillBarHover) { // update song time position according to position clicked
+		if (Utility.SONG_FILL_BAR.isHoveredOver()) { // update song time position according to position clicked
 			UpdateMiniPlayer.currentlyPlayingSongTimePosition = (mouseClickedPosition.x - 10);
 		}
 	}
 	
 	private void updateMusicLibrarySongsBeingDisplayed() {
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
 			return;
 		}
 		if (down) { // change current song selection by 1 but only if it isnt the end of the list
@@ -224,7 +224,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 
 	private void updateCurrentSongSelection() {
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
 			return;
 		}
 		if (enter) { // select this song to display it
@@ -250,7 +250,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
 			return;
 		}
 		int j = 0;
@@ -278,7 +278,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
 			return;
 		}
 		int notches = arg0.getWheelRotation();

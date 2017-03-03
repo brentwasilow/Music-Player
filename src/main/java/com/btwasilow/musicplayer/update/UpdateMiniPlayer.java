@@ -51,14 +51,18 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void resetStateVariables() {
-		Utility.EXIT_BUTTON.setHoveredOver(false);
-		leftButtonHover = false;
-		centerButtonHover = false;
-		rightButtonHover = false;
-		Utility.VOLUME_MUTE_BUTTON.setHoveredOver(false);
-		volumeFillBarHover = false;
-		expandMusicPlayerButtonHover = false;
-		songTimeFillBarHover = false;
+		//Utility.EXIT_BUTTON.setHoveredOver(false);
+		//leftButtonHover = false;
+		//centerButtonHover = false;
+		//rightButtonHover = false;
+		//Utility.VOLUME_MUTE_BUTTON.setHoveredOver(false);
+		//volumeFillBarHover = false;
+		//expandMusicPlayerButtonHover = false;
+		//songTimeFillBarHover = false;
+		
+		for (int i = 0; i < Utility.buttons.length; i++) {
+			Utility.buttons[i].setHoveredOver(false);
+		}
 		
 		for (int i = 0; i < Utility.NUM_OF_SONG_POSITIONS; i++) {
 			songListHoverPosition[i] = false;
@@ -66,14 +70,19 @@ public class UpdateMiniPlayer {
 	}
 	
 	private static void updateHoverStates(InputHandler input) {
-		updateExitButtonHoverState(input);
-		updateLeftButtonHoverState(input);
-		updateCenterButtonHoverState(input);
-		updateRightButtonHoverState(input);
-		updateMuteVolumeButtonHoverState(input);
-		updateVolumeFillBarHoverState(input);
-		updateExpandMusicPlayerButtonHoverState(input);
-		updateSongTimeFillBarHoverState(input);
+		for (int i = 0; i < Utility.buttons.length; i++) {
+			if (Utility.buttons[i].getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+				Utility.buttons[i].setHoveredOver(true);
+			}
+		}
+	//	updateExitButtonHoverState(input);
+	//	updateLeftButtonHoverState(input);
+	//	updateCenterButtonHoverState(input);
+	//	updateRightButtonHoverState(input);
+	//	updateMuteVolumeButtonHoverState(input);
+	//	updateVolumeFillBarHoverState(input);
+	//	updateExpandMusicPlayerButtonHoverState(input);
+	//	updateSongTimeFillBarHoverState(input);
 		updateExpandedMusicPlayerSongListHoverState(input);
 	}
 	

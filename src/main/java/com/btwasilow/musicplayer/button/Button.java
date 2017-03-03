@@ -21,6 +21,10 @@ public class Button {
 	private boolean hover = false;
 	private boolean clicked = false;
 	
+	public Button(Shape boundingBox) {
+		this.boundingBox = boundingBox;
+	}
+	
 	public Button(Shape boundingBox, Shape uhFillShape, Color uhFillColor, Shape uhInsetShape, Color uhInsetColor,
 				  Shape hFillShape, Color hFillColor, Shape hInsetShape, Color hInsetColor) {
 		this.boundingBox = boundingBox;

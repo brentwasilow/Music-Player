@@ -40,7 +40,7 @@ public class RenderMiniPlayer {
 		
 		renderExitButton(g);
 		
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonClicked) { // miniplayer rendering routines
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) { // miniplayer rendering routines
 			miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
 			expandedMusicPlayerGUISetup(driver);
@@ -255,7 +255,7 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderCenterButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.centerButtonHover) { 
+		if (!Utility.CENTER_BUTTON.isHoveredOver()) { 
 			// dark fill oval (darker than miniplayer background)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(185, 21,  60,  60);
@@ -276,7 +276,7 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderLeftButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.leftButtonHover) {
+		if (!Utility.LEFT_BUTTON.isHoveredOver()) {
 			// dark left fill oval (smaller than center button)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(114, 26, 50, 50);
@@ -298,7 +298,7 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderRightButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.rightButtonHover) {
+		if (!Utility.RIGHT_BUTTON.isHoveredOver()) {
 			// dark right fill oval (smaller than center button)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(264, 26, 50, 50);
@@ -387,7 +387,7 @@ public class RenderMiniPlayer {
 	}
 	
 	private static void renderExpandMusicPlayerButton(Graphics2D g) {
-		if (!UpdateMiniPlayer.expandMusicPlayerButtonHover) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isHoveredOver()) {
 			// dark rectangle fill
 			g.setColor(new Color(50, 50, 50));
 			g.fillRoundRect(182, 98, 16, 16, 4, 4);
