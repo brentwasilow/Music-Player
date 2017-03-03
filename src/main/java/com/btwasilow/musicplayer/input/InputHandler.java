@@ -18,7 +18,7 @@ import javax.sound.sampled.Clip;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.render.RenderPlayer;
-import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.update.UpdatePlayer;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
@@ -191,7 +191,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// update the volume value
 		if (Utility.VOLUME_FILL_BAR.isHoveredOver()) {
 			Utility.VOLUME_MUTE_BUTTON.setClicked(false);
-			UpdateMiniPlayer.currentlyPlayingSongVolume = (mouseClickedPosition.x - 237);
+			UpdatePlayer.currentlyPlayingSongVolume = (mouseClickedPosition.x - 237);
 		}
 	}
 	
@@ -207,7 +207,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void updateSongTimeFillBarClickState() {
 		if (Utility.SONG_FILL_BAR.isHoveredOver()) { // update song time position according to position clicked
-			UpdateMiniPlayer.currentlyPlayingSongTimePosition = (mouseClickedPosition.x - 10);
+			UpdatePlayer.currentlyPlayingSongTimePosition = (mouseClickedPosition.x - 10);
 		}
 	}
 	
@@ -228,7 +228,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			return;
 		}
 		if (enter) { // select this song to display it
-			UpdateMiniPlayer.currentlyPlayingSongName = RenderPlayer.songs[UpdateMiniPlayer.currentSongSelection];
+			UpdatePlayer.currentlyPlayingSongName = RenderPlayer.songs[UpdatePlayer.currentSongSelection];
 
 			// start playing the song (no implementation yet)
 			//try {
@@ -255,25 +255,25 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		}
 		int j = 0;
 		for (; j < 14; j++) {
-			if (UpdateMiniPlayer.songListHoverPositionClicked[j]) {
+			if (UpdatePlayer.songListHoverPositionClicked[j]) {
 				break;
 			}
 		}
 		for (int i = 0; i < 14; i++) {
-			if (UpdateMiniPlayer.songListHoverPosition[i]) {
+			if (UpdatePlayer.songListHoverPosition[i]) {
 				resetClickedPositions();
-				UpdateMiniPlayer.songListHoverPositionClicked[i] = true;
+				UpdatePlayer.songListHoverPositionClicked[i] = true;
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection variable accordingly
-				UpdateMiniPlayer.currentSongSelection += (i-j);
+				UpdatePlayer.currentSongSelection += (i-j);
 			}
 		}
 	}
 	
 	private void resetClickedPositions() {
 		for (int i = 0; i < 14; i++) {
-			UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
+			UpdatePlayer.songListHoverPositionClicked[i] = false;
 		}
 	}
 
@@ -292,37 +292,37 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void moveSongSelectionClickedUp() {
-		if (UpdateMiniPlayer.currentSongSelection > 0) {
-			UpdateMiniPlayer.currentSongSelection--;
+		if (UpdatePlayer.currentSongSelection > 0) {
+			UpdatePlayer.currentSongSelection--;
 			
-			if (!UpdateMiniPlayer.songListHoverPositionClicked[0]) {
+			if (!UpdatePlayer.songListHoverPositionClicked[0]) {
 				for (int i = 0; i < 14; i++) {
-					if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
-						UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
-						UpdateMiniPlayer.songListHoverPositionClicked[i-1] = true;
+					if (UpdatePlayer.songListHoverPositionClicked[i]) {
+						UpdatePlayer.songListHoverPositionClicked[i] = false;
+						UpdatePlayer.songListHoverPositionClicked[i-1] = true;
 						break;
 					}
 				}
 			} else {
-				UpdateMiniPlayer.block--;
+				UpdatePlayer.block--;
 			}
 		}
 	}
 	
 	private void moveSongSelectionClickedDown() {
-		if (UpdateMiniPlayer.currentSongSelection < RenderPlayer.songs.length-1) {
-				UpdateMiniPlayer.currentSongSelection++;
+		if (UpdatePlayer.currentSongSelection < RenderPlayer.songs.length-1) {
+				UpdatePlayer.currentSongSelection++;
 				
-				if (!UpdateMiniPlayer.songListHoverPositionClicked[13]) {
+				if (!UpdatePlayer.songListHoverPositionClicked[13]) {
 					for (int i = 0; i < 14; i++) {
-						if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
-							UpdateMiniPlayer.songListHoverPositionClicked[i] = false;
-							UpdateMiniPlayer.songListHoverPositionClicked[i+1] = true;
+						if (UpdatePlayer.songListHoverPositionClicked[i]) {
+							UpdatePlayer.songListHoverPositionClicked[i] = false;
+							UpdatePlayer.songListHoverPositionClicked[i+1] = true;
 							break;
 						}
 					}
 				} else {
-					UpdateMiniPlayer.block++;
+					UpdatePlayer.block++;
 				}
 		}
 	}

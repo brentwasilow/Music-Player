@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.render.RenderPlayer;
-import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.update.UpdatePlayer;
 import com.btwasilow.musicplayer.utility.Consts;
 
 public class Driver extends JFrame implements Runnable {
@@ -119,7 +119,7 @@ public class Driver extends JFrame implements Runnable {
 	
 	public void update() {
 		// perform ALL music player updating
-		UpdateMiniPlayer.update(input);
+		UpdatePlayer.update(input);
 	}
 	
 	public static void main(String[] args) {

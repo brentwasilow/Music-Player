@@ -7,7 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
+import com.btwasilow.musicplayer.update.UpdatePlayer;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
@@ -106,7 +106,7 @@ public class RenderPlayer {
 		float scrollBarSize = scrollBarChange * Consts.SCROLL_BAR_PIXEL_HEIGHT; 
 		float restOfScroll = Consts.SCROLL_BAR_PIXEL_HEIGHT - scrollBarSize;
 		float restOfScrollIncrement = restOfScroll / (songs.length - 14.0F);
-		float scrollBarPlacement =  restOfScrollIncrement * UpdateMiniPlayer.block;
+		float scrollBarPlacement =  restOfScrollIncrement * UpdatePlayer.block;
 		
 		// lighter scroll bar drag area (white)
 		g.setColor(new Color(150, 150, 150));
@@ -171,7 +171,7 @@ public class RenderPlayer {
 		// equalizer box loop
 		for (int width = 0; width < 15; width++) {
 			// change color depending on the height of the equalizer box. The higher it is the redder it is.
-			for (int height = 0; height < UpdateMiniPlayer.rand.nextInt(7); height++) {
+			for (int height = 0; height < UpdatePlayer.rand.nextInt(7); height++) {
 				if (height < 1) {
 					g.setColor(new Color(0, 255, 0));
 				} else if (height < 2) {
@@ -198,7 +198,7 @@ public class RenderPlayer {
 		int height2 = 225;
 		
 		int j = 0;
-		for (int i = UpdateMiniPlayer.block; j < 14 && i < songs.length; i++) {
+		for (int i = UpdatePlayer.block; j < 14 && i < songs.length; i++) {
 			// modify song name if exceeds characters that can be displayed
 			String songName = songs[i];
 			if (songName.length() >= 20) {
@@ -224,7 +224,7 @@ public class RenderPlayer {
 		for (int i = 0; i < 14; i++) {
 			// render a lighter inset box to signify that song
 			// selection has been picked
-			if (UpdateMiniPlayer.songListHoverPositionClicked[i]) {
+			if (UpdatePlayer.songListHoverPositionClicked[i]) {
 				g.setColor(new Color(64, 64, 64));
 				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
 			}
@@ -333,11 +333,11 @@ public class RenderPlayer {
 	private static void renderTimeBarFill(Graphics2D g) {
 		// blue time bar fill color
 		g.setColor(new Color(161, 202, 241));
-		g.fillRoundRect(10, 131, UpdateMiniPlayer.currentlyPlayingSongTimePosition, 7, 3, 3);
+		g.fillRoundRect(10, 131, UpdatePlayer.currentlyPlayingSongTimePosition, 7, 3, 3);
 		
 		// daker blue time bar fill outline
 		g.setColor(new Color(100, 140, 180));
-		g.drawRoundRect(10, 131, UpdateMiniPlayer.currentlyPlayingSongTimePosition, 7, 4, 4);
+		g.drawRoundRect(10, 131, UpdatePlayer.currentlyPlayingSongTimePosition, 7, 4, 4);
 	}
 	
 	private static void renderVolumeBarBox(Graphics2D g) {
@@ -356,7 +356,7 @@ public class RenderPlayer {
 		if (Utility.VOLUME_MUTE_BUTTON.isClicked()) {
 			volume = 0;
 		} else {
-			volume = UpdateMiniPlayer.currentlyPlayingSongVolume;
+			volume = UpdatePlayer.currentlyPlayingSongVolume;
 		}
 		
 		// green volume bar fill color
@@ -371,11 +371,11 @@ public class RenderPlayer {
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
 		// clip the currently playing song name
 		String songName = "";
-		if (UpdateMiniPlayer.currentlyPlayingSongName.length() >= 23) {
-			songName = UpdateMiniPlayer.currentlyPlayingSongName.substring(0, 23);
+		if (UpdatePlayer.currentlyPlayingSongName.length() >= 23) {
+			songName = UpdatePlayer.currentlyPlayingSongName.substring(0, 23);
 			songName += "...";
 		} else {
-			songName = UpdateMiniPlayer.currentlyPlayingSongName;
+			songName = UpdatePlayer.currentlyPlayingSongName;
 		}
 		// draw current song using Arial font with dark fill
 		g.setFont(new Font("Arial", 1, 12));

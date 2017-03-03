@@ -6,7 +6,7 @@ import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
-public class UpdateMiniPlayer {
+public class UpdatePlayer {
 	public static String currentlyPlayingSongName = "";
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
@@ -21,7 +21,7 @@ public class UpdateMiniPlayer {
 															false, false, false, false, false,
 															false, false, false, false};
 	
-	private UpdateMiniPlayer() {
+	private UpdatePlayer() {
 		throw new AssertionError();
 	}
 	
