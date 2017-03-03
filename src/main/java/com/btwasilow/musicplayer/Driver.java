@@ -10,10 +10,10 @@ import javax.swing.JFrame;
 import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.render.RenderPlayer;
 import com.btwasilow.musicplayer.update.UpdateMiniPlayer;
-import com.btwasilow.musicplayer.utility.Utility;
+import com.btwasilow.musicplayer.utility.Consts;
 
 public class Driver extends JFrame implements Runnable {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -252037378789659231L;
 	
 	private Thread thread;
 	private boolean running = false;
@@ -34,12 +34,12 @@ public class Driver extends JFrame implements Runnable {
 	}
 	
 	private void setupGUI() {
-		// graphical user interface (GUI) setup
+		// graphical user interface (GUI) setup of JFrame component
 		setUndecorated(true);
-		setShape(new RoundRectangle2D.Double(0, 0, Utility.MINI_MUSIC_PLAYER_WIDTH,
-												   Utility.MINI_MUSIC_PLAYER_HEIGHT,
-												   Utility.MUSIC_PLAYER_PIXEL_ARC_WIDTH,
-												   Utility.MUSIC_PLAYER_PIXEL_ARC_HEIGHT));
+		setShape(new RoundRectangle2D.Double(0, 0, Consts.MINI_MUSIC_PLAYER_WIDTH,
+												   Consts.MINI_MUSIC_PLAYER_HEIGHT,
+												   Consts.MUSIC_PLAYER_PIXEL_ARC_WIDTH,
+												   Consts.MUSIC_PLAYER_PIXEL_ARC_HEIGHT));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -47,8 +47,9 @@ public class Driver extends JFrame implements Runnable {
 	}
 	
 	private void setupInput() {
-		// setup input handling operations
+		// setup input handling and associated listeners
 		input = new InputHandler(this);
+		
 		addMouseMotionListener(input);
 		addMouseListener(input);
 		addKeyListener(input);
@@ -70,18 +71,17 @@ public class Driver extends JFrame implements Runnable {
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
-		double ups = 60.0;
 
 		// game loop using preset update rate with unbounded frame rate
 		while (running) {
 			requestFocus();
 
-			final double ns = 1000000000.0 / ups;
+			final double ns = Consts.NANOSECONDS_PER_SECOND / Consts.UPDATES_PER_SECOND;
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 
-			while (delta >= 1) {
+			while (delta > 0) {
 				update();
 				updates++;
 				delta--;
@@ -89,8 +89,8 @@ public class Driver extends JFrame implements Runnable {
 			render();
 			frames++;
 
-			if ((System.currentTimeMillis() - timer) > 1000) {
-				timer += 1000;
+			if ((System.currentTimeMillis() - timer) > Consts.MILLISECONDS_PER_SECOND) {
+				timer += Consts.MILLISECONDS_PER_SECOND;
 				System.out.println(updates + " ups" + " | " + frames + " fps");
 				updates = 0;
 				frames = 0;
@@ -99,10 +99,10 @@ public class Driver extends JFrame implements Runnable {
 	}
 	
 	public void render() {
+		// get the buffer for the JFrame and/or create one 
 		BufferStrategy bs = getBufferStrategy();
-		
 		if (bs == null) {
-			createBufferStrategy(3);
+			createBufferStrategy(Consts.NUM_OF_STRATEGY_BUFFERS);
 			return;
 		}
 		

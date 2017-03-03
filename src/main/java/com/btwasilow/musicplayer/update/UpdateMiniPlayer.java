@@ -3,6 +3,7 @@ package com.btwasilow.musicplayer.update;
 import java.util.Random;
 
 import com.btwasilow.musicplayer.input.InputHandler;
+import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class UpdateMiniPlayer {
@@ -64,7 +65,7 @@ public class UpdateMiniPlayer {
 			Utility.buttons[i].setHoveredOver(false);
 		}
 		
-		for (int i = 0; i < Utility.NUM_OF_SONG_POSITIONS; i++) {
+		for (int i = 0; i < Consts.NUM_OF_SONG_POSITIONS; i++) {
 			songListHoverPosition[i] = false;
 		}
 	}
