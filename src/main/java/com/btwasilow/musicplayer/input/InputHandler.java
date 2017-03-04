@@ -10,11 +10,11 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.util.Random;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.Button;
 import com.btwasilow.musicplayer.render.RenderPlayer;
+import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
@@ -27,16 +27,6 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 
 	public boolean[] keys = new boolean[256]; // boolean array for determining which key was pressed
 	
-	public static String currentlyPlayingSongName = "";
-	public static int volume = 25;
-	public static int currentlyPlayingSongTimePosition = 0;
-	public static int currentSongSelection = 0;
-	public static int currentDisplayableSongPosition = 0;
-	
-	public static Random rand = new Random(); // used for equalizer rendering
-	
-	public static int block = 0;
-
 	public InputHandler(Driver driver) {
 		// necessary for updating any JFrame-specific settings
 		this.driver = driver;
@@ -76,36 +66,36 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void moveCurrentDisplayableSongPositionDownOne() {
 		// make sure we have not reached the end of the song list
-		if (currentSongSelection < RenderPlayer.songs.length-1) {
-				currentSongSelection++;
+		if (State.currentSongSelection < RenderPlayer.songs.length-1) {
+				State.currentSongSelection++;
 				
 				// we do not move the displayed song names/info until we have
 				// reached the last displayable song position, whereby it changes song info
 				// down by one place (handled by moving the block variable in the else) 
-				if (currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
-					currentDisplayableSongPosition++;
-					Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition-1].select(false);
-					Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition].select(true);
+				if (State.currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
+					State.currentDisplayableSongPosition++;
+					Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition-1].select(false);
+					Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
 				} else {
-					block++;
+					State.block++;
 				}
 		}
 	}
 	
 	private void moveCurrentDisplayableSongPositionUpOne() {
 		// make sure we have not reached the start of the song list
-		if (currentSongSelection > 0) {
-			currentSongSelection--;
+		if (State.currentSongSelection > 0) {
+			State.currentSongSelection--;
 
 			// we do not move the displayed song names/info until we have
 			// reached the first displayable song position, whereby it changes song info
 			// up by one place (handled by moving the block variable in the else) 
-			if (currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
-				currentDisplayableSongPosition--;
-				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition+1].select(false);
-				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition].select(true);
+			if (State.currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
+				State.currentDisplayableSongPosition--;
+				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition+1].select(false);
+				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
 			} else {
-				block--;
+				State.block--;
 			}
 		}
 	}
@@ -114,7 +104,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// set the currently playing song (will begin the logic for
 		// playing the audio)
 		if (keys[KeyEvent.VK_ENTER]) {
-			currentlyPlayingSongName = RenderPlayer.songs[currentSongSelection];
+			State.currentlyPlayingSongName = RenderPlayer.songs[State.currentSongSelection];
 		}
 	}
 
@@ -251,13 +241,13 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// unmute and update the volume level based on
 		// physical coordinates of click
 		Utility.MUTE_VOLUME_BUTTON.select(false);
-		volume = mouseClickedPosition.x - Consts.VOLUME_FILL_BAR_STARTING_PIXEL_POS;
+		State.volume = mouseClickedPosition.x - Consts.VOLUME_FILL_BAR_STARTING_PIXEL_POS;
 		
 		// squash volume level between 0 and 100 (min and max volume levels)
-		if (volume < Consts.MIN_VOLUME_LEVEL) {
-			volume = Consts.MIN_VOLUME_LEVEL;
- 		} else if (volume > Consts.MAX_VOLUME_LEVEL) {
- 			volume = Consts.MAX_VOLUME_LEVEL;
+		if (State.volume < Consts.MIN_VOLUME_LEVEL) {
+			State.volume = Consts.MIN_VOLUME_LEVEL;
+ 		} else if (State.volume > Consts.MAX_VOLUME_LEVEL) {
+ 			State.volume = Consts.MAX_VOLUME_LEVEL;
  		}
 	}
 	
@@ -274,7 +264,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void updateSongFillBarClickState() {
 		// update song temporal position according to physical
 		// coordinates of click
-		currentlyPlayingSongTimePosition = mouseClickedPosition.x - Consts.SONG_FILL_BAR_STARTING_PIXEL_POS;
+		State.currentlyPlayingSongTimePosition = mouseClickedPosition.x - Consts.SONG_FILL_BAR_STARTING_PIXEL_POS;
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
@@ -288,13 +278,13 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		for (int index = 0; index < Consts.NUM_OF_DISPLAYABLE_SONG_POSITIONS; index++) {
 			if (Utility.DISPLAYABLE_SONG_POSITIONS[index].isHoveredOver()) {
 				// unset the old displayable song position and set the new one
-				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition].select(false);
+				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(false);
 				Utility.DISPLAYABLE_SONG_POSITIONS[index].select(true);
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection and displayable song position variables accordingly
-				currentSongSelection += (index - currentDisplayableSongPosition);
-				currentDisplayableSongPosition = index;
+				State.currentSongSelection += (index - State.currentDisplayableSongPosition);
+				State.currentDisplayableSongPosition = index;
 			}
 		}
 	}
