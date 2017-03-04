@@ -354,10 +354,10 @@ public class RenderPlayer {
 	private static void renderVolumeBarFill(Graphics2D g) {
 		// if volume is muted then we render 0 volume otherwise render current song volume
 		int volume;
-		if (Utility.VOLUME_MUTE_BUTTON.isSelected()) {
+		if (Utility.MUTE_VOLUME_BUTTON.isSelected()) {
 			volume = 0;
 		} else {
-			volume = InputHandler.currentlyPlayingSongVolume;
+			volume = InputHandler.volume;
 		}
 		
 		// green volume bar fill color
@@ -422,28 +422,28 @@ public class RenderPlayer {
 	}
 	
 	private static void renderVolumeMuteButton(Graphics2D g) {
-		if (!Utility.VOLUME_MUTE_BUTTON.isHoveredOver()) {
+		if (!Utility.MUTE_VOLUME_BUTTON.isHoveredOver()) {
 			// dark fill box
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHFillColor());
-			g.fill(Utility.VOLUME_MUTE_BUTTON.getUHFillShape());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHFillColor());
+			g.fill(Utility.MUTE_VOLUME_BUTTON.getUHFillShape());
 			
 			// even darker outline box
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHInsetColor());
-			g.draw(Utility.VOLUME_MUTE_BUTTON.getUHInsetShape());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHInsetColor());
+			g.draw(Utility.MUTE_VOLUME_BUTTON.getUHInsetShape());
 			
 			// lighter button representation color
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHFillColor());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHFillColor());
 		} else {
 			// lighter fill box in comparison to not being hovered over
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHFillColor());
-			g.fill(Utility.VOLUME_MUTE_BUTTON.getHFillShape());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHFillColor());
+			g.fill(Utility.MUTE_VOLUME_BUTTON.getHFillShape());
 		
 			// darker outline box but still lighter than when not being hovered over
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getHInsetColor());
-			g.draw(Utility.VOLUME_MUTE_BUTTON.getHInsetShape());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHInsetColor());
+			g.draw(Utility.MUTE_VOLUME_BUTTON.getHInsetShape());
 			
 			// darker button representation color
-			g.setColor(Utility.VOLUME_MUTE_BUTTON.getUHFillColor());
+			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHFillColor());
 		}
 
 		// draw volume mute button representation (speaker with arc for noise disseminating outward)
@@ -453,7 +453,7 @@ public class RenderPlayer {
 		g.fillRect(212, 103, 4, 5);
 	
 		// only draw arc if volume button isn't muted
-		if (!Utility.VOLUME_MUTE_BUTTON.isSelected()) {
+		if (!Utility.MUTE_VOLUME_BUTTON.isSelected()) {
 			g.drawArc(218, 102, 4, 6, 0, -90);
 			g.drawArc(218, 102, 4, 7, 0, 90);
 		}

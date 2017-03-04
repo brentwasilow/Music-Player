@@ -11,7 +11,7 @@ public final class Utility {
 														new Ellipse2D.Double(330, 10, 10, 10), new Color(255, 0, 0),
 														new Ellipse2D.Double(328, 8, 14, 14), new Color(200, 200, 200),
 														new Ellipse2D.Double(330, 10, 10, 10), new Color(255, 0, 0));
-	public static final Button VOLUME_MUTE_BUTTON = new Button(new RoundRectangle2D.Double(208, 97, 18, 17, 4, 4), new RoundRectangle2D.Double(209, 98, 16, 16, 4, 4), new Color(50, 50, 50),
+	public static final Button MUTE_VOLUME_BUTTON = new Button(new RoundRectangle2D.Double(208, 97, 18, 17, 4, 4), new RoundRectangle2D.Double(209, 98, 16, 16, 4, 4), new Color(50, 50, 50),
 															   new RoundRectangle2D.Double(208, 97, 18, 17, 4, 4), new Color(30, 30, 30), new RoundRectangle2D.Double(209, 98, 17, 16, 4, 4),
 															   new Color(150, 150, 150), new RoundRectangle2D.Double(208, 97, 18, 17, 4, 4), new Color(30, 30, 30));
 	public static final Button LEFT_BUTTON = new Button(new Ellipse2D.Double(114, 26, 50, 50));
@@ -22,7 +22,7 @@ public final class Utility {
 	public static final Button SONG_FILL_BAR = new Button(new RoundRectangle2D.Double(9, 130, 330, 9, 4, 4));
 	
 	public static final Button[] buttons = {EXIT_BUTTON, LEFT_BUTTON, CENTER_BUTTON, RIGHT_BUTTON,
-											VOLUME_MUTE_BUTTON, VOLUME_FILL_BAR, EXPAND_MUSIC_PLAYER_BUTTON,
+											MUTE_VOLUME_BUTTON, VOLUME_FILL_BAR, EXPAND_MUSIC_PLAYER_BUTTON,
 											SONG_FILL_BAR};
 	
 	public static final Button DISPLAYABLE_SONG_POSITION_1 = new Button(new RoundRectangle2D.Double(25, 210, 287, 23, 1, 1), true);
