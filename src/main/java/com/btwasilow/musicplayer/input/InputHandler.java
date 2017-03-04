@@ -10,75 +10,137 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.io.File;
 import java.util.Random;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.render.RenderPlayer;
-import com.btwasilow.musicplayer.update.UpdatePlayer;
+import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
 	public Driver driver; // reference to AWT container of main class
-	
-	public Clip clip;
 
-	public Point mouseMovedPosition = new Point(0, 0);
-	public Point mouseClickedPosition = new Point (0, 0);
+	public Point mouseMovedPosition = new Point(0, 0); // position of mouse when moved
+	public Point mouseClickedPosition = new Point(0, 0); // position of mouse when clicked
 	public boolean mouseClicked = false;
 
-	private boolean[] keys = new boolean[256]; // boolean array for determining which key was pressed
-	public boolean up; // handles up key
-	public boolean down; // handles down key
-	public boolean left; // handles left key
-	public boolean right; // handles right key
-	public boolean escape; // handles escape key
-	public boolean space; // handles space key
-	public boolean enter;
+	public boolean[] keys = new boolean[256]; // boolean array for determining which key was pressed
 	
 	public static String currentlyPlayingSongName = "";
 	public static int currentlyPlayingSongVolume = 25;
 	public static int currentlyPlayingSongTimePosition = 0;
 	public static int currentSongSelection = 0;
+	public static int currentDisplayableSongPosition = 0;
 	
-	public static Random rand = new Random();
+	public static Random rand = new Random(); // used for equalizer rendering
 	
 	public static int block = 0;
 
 	public InputHandler(Driver driver) {
+		// necessary for updating any JFrame-specific settings
 		this.driver = driver;
-	}
-
-	public void update() {
-		up = keys[KeyEvent.VK_UP];
-		down = keys[KeyEvent.VK_DOWN];
-		left = keys[KeyEvent.VK_LEFT];
-		right = keys[KeyEvent.VK_RIGHT];
-		escape = keys[KeyEvent.VK_ESCAPE];
-		space = keys[KeyEvent.VK_SPACE];
-		enter = keys[KeyEvent.VK_ENTER];
 	}
 	
 	public void keyPressed(KeyEvent arg0) {
+		// set the key position, in the keys array, to true
 		keys[arg0.getKeyCode()] = true;
-		update();
 		
+		// handles all checks for possible scenarios
+		// of any given key press
 		keyPressedUpdateRoutines();
-	}
-
-	public void keyReleased(KeyEvent arg0) {
-		keys[arg0.getKeyCode()] = false;
-		update();
 	}
 	
 	private void keyPressedUpdateRoutines() {
-		updateMusicLibrarySongsBeingDisplayed();
+		// all key pressed update routines: for now only 2 (songs being displayed and
+		// the current song selection)
+		updateCurrentDisplayableSongPosition();
 		updateCurrentSongSelection();
+	}
+	
+	private void updateCurrentDisplayableSongPosition() {
+		// if in miniplayer mode then we cannot move our song selection
+		// up or down so do nothing and just return
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+			return;
+		}
+		
+		// change currently selected displayable song position down by 1
+		if (keys[KeyEvent.VK_DOWN]) {
+			moveCurrentDisplayableSongPositionDownOne();
+		}
+		
+		// change currently selected displayable song position up by 1
+		if (keys[KeyEvent.VK_UP]) {
+			moveCurrentDisplayableSongPositionUpOne();
+		}
+	}
+	
+	private void moveCurrentDisplayableSongPositionDownOne() {
+		// make sure we have not reached the end of the song list
+		if (currentSongSelection < RenderPlayer.songs.length-1) {
+				currentSongSelection++;
+				
+				// allows us to not scroll the display list until we have
+				// reached the bottom (the 14th position), whereby we scroll
+				// the songs by one position in the downward direction for
+				// each down key press
+				//if (!Utility.DISPLAYABLE_SONG_POSITIONS[Consts.LAST_DISPLAYABLE_SONG_POSITION_INDEX].isSelected()) {
+				//	for (int i = 0; i < 14; i++) {
+				//		if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
+				//			Utility.DISPLAYABLE_SONG_POSITIONS[i].select(false);
+				//			Utility.DISPLAYABLE_SONG_POSITIONS[i+1].select(true);
+				//			break;
+				//		}
+				//	}
+				//} else {
+				//	block++;
+				//}
+				if (currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
+					currentDisplayableSongPosition++;
+					Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition-1].select(false);
+					Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition].select(true);
+				} else {
+					block++;
+				}
+		}
+	}
+	
+	private void moveCurrentDisplayableSongPositionUpOne() {
+		// make sure we have not reached the start of the song list
+		if (currentSongSelection > 0) {
+			currentSongSelection--;
+			
+			//if (!Utility.DISPLAYABLE_SONG_POSITIONS[0].isSelected()) {
+			//	for (int i = 0; i < 14; i++) {
+			//		if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
+			//			Utility.DISPLAYABLE_SONG_POSITIONS[i].select(false);
+			//			Utility.DISPLAYABLE_SONG_POSITIONS[i-1].select(true);
+			//			break;
+			//		}
+			//	}
+			if (currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
+				currentDisplayableSongPosition--;
+				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition+1].select(false);
+				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition].select(true);
+			} else {
+				block--;
+			}
+		}
+	}
 
+	private void updateCurrentSongSelection() {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+			return;
+		}
+		if (keys[KeyEvent.VK_ENTER]) { // select this song to display it
+			currentlyPlayingSongName = RenderPlayer.songs[currentSongSelection];
+		}
+	}
+
+	public void keyReleased(KeyEvent arg0) {
+		// when the key is released revert that key position
+		// back to false
+		keys[arg0.getKeyCode()] = false;
 	}
 
 	public void keyTyped(KeyEvent arg0) {
@@ -161,21 +223,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void updateLeftButtonClickState() {
 		if (Utility.LEFT_BUTTON.isHoveredOver()) {
 			// left button click logic
-			Utility.LEFT_BUTTON.setClicked(true);
+			Utility.LEFT_BUTTON.select(true);
 		}
 	}
 	
 	private void updateCenterButtonClickState() {
 		if (Utility.CENTER_BUTTON.isHoveredOver()) {
 			// center button click logic
-			Utility.CENTER_BUTTON.setClicked(true);
+			Utility.CENTER_BUTTON.select(true);
 		}
 	}
 
 	private void updateRightButtonClickState() {
 		if (Utility.RIGHT_BUTTON.isHoveredOver()) {
 			// right button click logic
-			Utility.RIGHT_BUTTON.setClicked(true);
+			Utility.RIGHT_BUTTON.select(true);
 		}
 	}
 	
@@ -188,10 +250,10 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			}
 		}*/
 		if (Utility.VOLUME_MUTE_BUTTON.isHoveredOver()) {
-			if (Utility.VOLUME_MUTE_BUTTON.isClicked()) {
-				Utility.VOLUME_MUTE_BUTTON.setClicked(false);
+			if (Utility.VOLUME_MUTE_BUTTON.isSelected()) {
+				Utility.VOLUME_MUTE_BUTTON.select(false);
 			} else {
-				Utility.VOLUME_MUTE_BUTTON.setClicked(true);
+				Utility.VOLUME_MUTE_BUTTON.select(true);
 			}
 		}
 	}
@@ -200,17 +262,17 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// if hovering over volume fill bar and clicked, then unmute if muted and
 		// update the volume value
 		if (Utility.VOLUME_FILL_BAR.isHoveredOver()) {
-			Utility.VOLUME_MUTE_BUTTON.setClicked(false);
+			Utility.VOLUME_MUTE_BUTTON.select(false);
 			currentlyPlayingSongVolume = (mouseClickedPosition.x - 237);
 		}
 	}
 	
 	private void updateExpandMusicPlayerButtonClickState() {
 		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isHoveredOver()) {
-			if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) { // if music player is expanded then miniaturize
-				Utility.EXPAND_MUSIC_PLAYER_BUTTON.setClicked(false);
+			if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) { // if music player is expanded then miniaturize
+				Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(false);
 			} else { // expand music player
-				Utility.EXPAND_MUSIC_PLAYER_BUTTON.setClicked(true);;
+				Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(true);;
 			}
 		}
 	}
@@ -221,58 +283,20 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		}
 	}
 	
-	private void updateMusicLibrarySongsBeingDisplayed() {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
-			return;
-		}
-		if (down) { // change current song selection by 1 but only if it isnt the end of the list
-			moveSongSelectionClickedDown();
-		}
-		if (up) { // change current song selection until the start of the library list
-			moveSongSelectionClickedUp();
-		}
-	}
-
-	private void updateCurrentSongSelection() {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
-			return;
-		}
-		if (enter) { // select this song to display it
-			currentlyPlayingSongName = RenderPlayer.songs[currentSongSelection];
-
-			// start playing the song (no implementation yet)
-			//try {
-			//	clip.stop();
-			//	File file = new File("res/songs/" + RenderMiniPlayer.songs[UpdateMiniPlayer.currentSongSelection] + ".wav");
-			//	if (file.exists()) {
-			//		AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-			//		clip = AudioSystem.getClip();
-			//		clip.open(sound);
-			//		clip.setFramePosition(0);;
-			//		clip.start();
-			//	} else {
-			//		throw new RuntimeException("Sound: file not found: " + file.getName());
-			//	}
-			//} catch (Exception e) {
-			//	e.printStackTrace();
-			//}
-		}
-	}
-	
 	private void updateMusicLibrarySongSelectionClickState() {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
 			return;
 		}
 		int j = 0;
 		for (; j < 14; j++) {
-			if (Utility.DISPLAYABLE_SONG_POSITIONS[j].isClicked()) {
+			if (Utility.DISPLAYABLE_SONG_POSITIONS[j].isSelected()) {
 				break;
 			}
 		}
 		for (int i = 0; i < 14; i++) {
 			if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isHoveredOver()) {
 				resetClickedPositions();
-				Utility.DISPLAYABLE_SONG_POSITIONS[i].setClicked(true);
+				Utility.DISPLAYABLE_SONG_POSITIONS[i].select(true);
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection variable accordingly
@@ -283,57 +307,21 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void resetClickedPositions() {
 		for (int i = 0; i < 14; i++) {
-			Utility.DISPLAYABLE_SONG_POSITIONS[i].setClicked(false);
+			Utility.DISPLAYABLE_SONG_POSITIONS[i].select(false);
 		}
 	}
 
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) {
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
 			return;
 		}
 		int notches = arg0.getWheelRotation();
 		if (notches < 0) {
 			// moved up
-			moveSongSelectionClickedUp();
+			moveCurrentDisplayableSongPositionUpOne();
 		} else {
 			// moved down
-			moveSongSelectionClickedDown();
-		}
-	}
-	
-	private void moveSongSelectionClickedUp() {
-		if (currentSongSelection > 0) {
-			currentSongSelection--;
-			
-			if (!Utility.DISPLAYABLE_SONG_POSITIONS[0].isClicked()) {
-				for (int i = 0; i < 14; i++) {
-					if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isClicked()) {
-						Utility.DISPLAYABLE_SONG_POSITIONS[i].setClicked(false);
-						Utility.DISPLAYABLE_SONG_POSITIONS[i-1].setClicked(true);
-						break;
-					}
-				}
-			} else {
-				block--;
-			}
-		}
-	}
-	
-	private void moveSongSelectionClickedDown() {
-		if (currentSongSelection < RenderPlayer.songs.length-1) {
-				currentSongSelection++;
-				
-				if (!Utility.DISPLAYABLE_SONG_POSITIONS[13].isClicked()) {
-					for (int i = 0; i < 14; i++) {
-						if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isClicked()) {
-							Utility.DISPLAYABLE_SONG_POSITIONS[i].setClicked(false);
-							Utility.DISPLAYABLE_SONG_POSITIONS[i+1].setClicked(true);
-							break;
-						}
-					}
-				} else {
-					block++;
-				}
+			moveCurrentDisplayableSongPositionDownOne();
 		}
 	}
 }

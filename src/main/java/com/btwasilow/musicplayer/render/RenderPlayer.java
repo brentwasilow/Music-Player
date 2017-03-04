@@ -42,7 +42,7 @@ public class RenderPlayer {
 		
 		renderExitButton(g);
 		
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isClicked()) { // miniplayer rendering routines
+		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) { // miniplayer rendering routines
 			miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
 			expandedMusicPlayerGUISetup(driver);
@@ -225,7 +225,7 @@ public class RenderPlayer {
 		for (int i = 0; i < 14; i++) {
 			// render a lighter inset box to signify that song
 			// selection has been picked
-			if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isClicked()) {
+			if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
 				g.setColor(new Color(64, 64, 64));
 				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
 			}
@@ -354,7 +354,7 @@ public class RenderPlayer {
 	private static void renderVolumeBarFill(Graphics2D g) {
 		// if volume is muted then we render 0 volume otherwise render current song volume
 		int volume;
-		if (Utility.VOLUME_MUTE_BUTTON.isClicked()) {
+		if (Utility.VOLUME_MUTE_BUTTON.isSelected()) {
 			volume = 0;
 		} else {
 			volume = InputHandler.currentlyPlayingSongVolume;
@@ -453,7 +453,7 @@ public class RenderPlayer {
 		g.fillRect(212, 103, 4, 5);
 	
 		// only draw arc if volume button isn't muted
-		if (!Utility.VOLUME_MUTE_BUTTON.isClicked()) {
+		if (!Utility.VOLUME_MUTE_BUTTON.isSelected()) {
 			g.drawArc(218, 102, 4, 6, 0, -90);
 			g.drawArc(218, 102, 4, 7, 0, 90);
 		}

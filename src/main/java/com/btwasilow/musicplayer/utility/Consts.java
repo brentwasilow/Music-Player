@@ -16,6 +16,8 @@ public class Consts {
 	
 	public static final int SCROLL_BAR_PIXEL_HEIGHT = 344;
 	public static final int NUM_OF_DISPLAYABLE_SONG_POSITIONS = 14;
+	public static final int LAST_DISPLAYABLE_SONG_POSITION = 13;
+	public static final int FIRST_DISPLAYABLE_SONG_POSITION = 0;
 	
 	private Consts() {
 		throw new AssertionError();

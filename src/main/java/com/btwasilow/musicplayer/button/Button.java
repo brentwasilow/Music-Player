@@ -19,15 +19,15 @@ public class Button {
 	private Color hInsetColor;
 	
 	private boolean hover = false;
-	private boolean clicked = false;
+	private boolean selected = false;
 	
 	public Button(Shape boundingBox) {
 		this.boundingBox = boundingBox;
 	}
 	
-	public Button(Shape boundingBox, boolean clicked) {
+	public Button(Shape boundingBox, boolean selected) {
 		this.boundingBox = boundingBox;
-		this.clicked = clicked;
+		this.selected = selected;
 	}
 	
 	public Button(Shape boundingBox, Shape uhFillShape, Color uhFillColor, Shape uhInsetShape, Color uhInsetColor,
@@ -91,11 +91,11 @@ public class Button {
 		return hover;
 	}
 	
-	public void setClicked(boolean clicked) {
-		this.clicked = clicked;
+	public void select(boolean clicked) {
+		this.selected = clicked;
 	}
 	
-	public boolean isClicked() {
-		return clicked;
+	public boolean isSelected() {
+		return selected;
 	}
 }
