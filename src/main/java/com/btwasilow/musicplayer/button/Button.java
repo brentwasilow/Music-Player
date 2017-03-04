@@ -25,6 +25,11 @@ public class Button {
 		this.boundingBox = boundingBox;
 	}
 	
+	public Button(Shape boundingBox, boolean clicked) {
+		this.boundingBox = boundingBox;
+		this.clicked = clicked;
+	}
+	
 	public Button(Shape boundingBox, Shape uhFillShape, Color uhFillColor, Shape uhInsetShape, Color uhInsetColor,
 				  Shape hFillShape, Color hFillColor, Shape hInsetShape, Color hInsetColor) {
 		this.boundingBox = boundingBox;
