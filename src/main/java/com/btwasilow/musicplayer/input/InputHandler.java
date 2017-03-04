@@ -95,6 +95,10 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				//} else {
 				//	block++;
 				//}
+				
+				// we do not move the displayed song names/info until we have
+				// reached the last displayable song position, whereby it changes song info
+				// down by one place (handled by moving the block variable in the else) 
 				if (currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
 					currentDisplayableSongPosition++;
 					Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition-1].select(false);
@@ -118,6 +122,10 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			//			break;
 			//		}
 			//	}
+			
+			// we do not move the displayed song names/info until we have
+			// reached the first displayable song position, whereby it changes song info
+			// up by one place (handled by moving the block variable in the else) 
 			if (currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
 				currentDisplayableSongPosition--;
 				Utility.DISPLAYABLE_SONG_POSITIONS[currentDisplayableSongPosition+1].select(false);
