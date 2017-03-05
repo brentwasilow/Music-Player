@@ -13,6 +13,14 @@ import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.Button;
+import com.btwasilow.musicplayer.button.CenterButton;
+import com.btwasilow.musicplayer.button.ExitButton;
+import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.button.LeftButton;
+import com.btwasilow.musicplayer.button.MuteVolumeButton;
+import com.btwasilow.musicplayer.button.RightButton;
+import com.btwasilow.musicplayer.button.SongFillBar;
+import com.btwasilow.musicplayer.button.VolumeFillBar;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
@@ -45,7 +53,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// the current song selection) - only update if in expanded music player mode
 		// otherwise it would not make sense to be allowed to move the song selection
 		// position up and down
-		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
 			updateCurrentDisplayableSongPosition();
 			updateCurrentSongSelection();
 		}
@@ -73,8 +81,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				// down by one place (handled by moving the block variable in the else) 
 				if (State.currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
 					State.currentDisplayableSongPosition++;
-					Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition-1].select(false);
-					Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
+					State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition-1].select(false);
+					State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
 				} else {
 					State.block++;
 				}
@@ -91,8 +99,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			// up by one place (handled by moving the block variable in the else) 
 			if (State.currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
 				State.currentDisplayableSongPosition--;
-				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition+1].select(false);
-				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
+				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition+1].select(false);
+				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
 			} else {
 				State.block--;
 			}
@@ -140,7 +148,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+		if (!ExpandMusicPlayerButton.getInstance().isSelected()) {
 			return;
 		}
 		
@@ -184,27 +192,28 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void mousePressedUpdateRoutines() {
 		// update all of the clickable music player boxes/shapes/components
-		for (int index = 0; index < Utility.buttons.length; index++) {
-			Button button = Utility.buttons[index];
-			
+		for (int index = 0; index < State.BUTTONS.length; index++) {
+			Button button = State.BUTTONS[index];
+	
 			if (button.isHoveredOver()) {
-				if (button == Utility.EXIT_BUTTON) {
+	/*			if (button == ExitButton.getInstance()) {
 					updateExitButtonClickState();
-				} else if (button == Utility.LEFT_BUTTON) {
+				} else if (button == LeftButton.getInstance()) {
 					updateLeftButtonClickState();
-				} else if (button == Utility.CENTER_BUTTON) {
+				} else if (button == CenterButton.getInstance()) {
 					updateCenterButtonClickState();
-				} else if (button == Utility.RIGHT_BUTTON) {
+				} else if (button == RightButton.getInstance()) {
 					updateRightButtonClickState();
-				} else if (button == Utility.MUTE_VOLUME_BUTTON) {
+				} else if (button == MuteVolumeButton.getInstance()) {
 					updateMuteVolumeButtonClickState();
-				} else if (button == Utility.VOLUME_FILL_BAR) {
+				} else if (button == VolumeFillBar.getInstance()) {
 					updateVolumeFillBarClickState();
-				} else if (button == Utility.EXPAND_MUSIC_PLAYER_BUTTON) {
+				} else if (button == ExpandMusicPlayerButton.getInstance()) {
 					updateExpandMusicPlayerButtonClickState();
-				} else if (button == Utility.SONG_FILL_BAR) {
+				} else if (button == SongFillBar.getInstance()) {
 					updateSongFillBarClickState();
-				}
+				} */
+				button.updateClickState(this);
 			}
 		}
 		updateMusicLibrarySongSelectionClickState();
@@ -215,70 +224,70 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	}
 	
 	private void updateLeftButtonClickState() {
-		Utility.LEFT_BUTTON.select(true);
+		LeftButton.getInstance().select(true);
 	}
 	
 	private void updateCenterButtonClickState() {
-		Utility.CENTER_BUTTON.select(true);
+		CenterButton.getInstance().select(true);
 	}
 
 	private void updateRightButtonClickState() {
-		Utility.RIGHT_BUTTON.select(true);
+		RightButton.getInstance().select(true);
 	}
 	
 	private void updateMuteVolumeButtonClickState() {
 		// like a switch (turns off button if clicked already
 		// or turns on button if not clicked already)
-		if (Utility.MUTE_VOLUME_BUTTON.isSelected()) {
-			Utility.MUTE_VOLUME_BUTTON.select(false);
-		} else {
-			Utility.MUTE_VOLUME_BUTTON.select(true);
-		}
+	//	if (Utility.MUTE_VOLUME_BUTTON.isSelected()) {
+	//		Utility.MUTE_VOLUME_BUTTON.select(false);
+	//	} else {
+	//		Utility.MUTE_VOLUME_BUTTON.select(true);
+	//	}
 	}
 	
 	private void updateVolumeFillBarClickState() {
 		// unmute and update the volume level based on
 		// physical coordinates of click
-		Utility.MUTE_VOLUME_BUTTON.select(false);
-		State.volume = mouseClickedPosition.x - Consts.VOLUME_FILL_BAR_STARTING_PIXEL_POS;
+//		Utility.MUTE_VOLUME_BUTTON.select(false);
+//		State.volume = mouseClickedPosition.x - Consts.VOLUME_FILL_BAR_STARTING_PIXEL_POS;
 		
 		// squash volume level between 0 and 100 (min and max volume levels)
-		if (State.volume < Consts.MIN_VOLUME_LEVEL) {
-			State.volume = Consts.MIN_VOLUME_LEVEL;
- 		} else if (State.volume > Consts.MAX_VOLUME_LEVEL) {
- 			State.volume = Consts.MAX_VOLUME_LEVEL;
- 		}
+//		if (State.volume < Consts.MIN_VOLUME_LEVEL) {
+//			State.volume = Consts.MIN_VOLUME_LEVEL;
+// 		} else if (State.volume > Consts.MAX_VOLUME_LEVEL) {
+// 			State.volume = Consts.MAX_VOLUME_LEVEL;
+// 		}
 	}
 	
 	private void updateExpandMusicPlayerButtonClickState() {
 		// switch music player mode based on current state
 		// (make mini if already expanded or expand if already mini)
-		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
-			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(false);
-		} else {
-			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(true);
-		}
+//		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+//			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(false);
+//		} else {
+//			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(true);
+//		}
 	}
 	
 	private void updateSongFillBarClickState() {
 		// update song temporal position according to physical
 		// coordinates of click
-		State.currentlyPlayingSongTimePosition = mouseClickedPosition.x - Consts.SONG_FILL_BAR_STARTING_PIXEL_POS;
+//		State.currentlyPlayingSongTimePosition = mouseClickedPosition.x - Consts.SONG_FILL_BAR_STARTING_PIXEL_POS;
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
 		// only update song selection if in expanded music player mode
 		// otherwise it would not make sense to move song position
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
+		if (!ExpandMusicPlayerButton.getInstance().isSelected()) {
 			return;
 		}
 		
 		// check each displayable song position for the one being clicked right now
 		for (int index = 0; index < Consts.NUM_OF_DISPLAYABLE_SONG_POSITIONS; index++) {
-			if (Utility.DISPLAYABLE_SONG_POSITIONS[index].isHoveredOver()) {
+			if (State.DISPLAYABLE_SONG_POSITIONS[index].isHoveredOver()) {
 				// unset the old displayable song position and set the new one
-				Utility.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(false);
-				Utility.DISPLAYABLE_SONG_POSITIONS[index].select(true);
+				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(false);
+				State.DISPLAYABLE_SONG_POSITIONS[index].select(true);
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection and displayable song position variables accordingly

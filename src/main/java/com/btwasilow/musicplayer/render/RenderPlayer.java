@@ -1,12 +1,15 @@
 package com.btwasilow.musicplayer.render;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.Driver;
+import com.btwasilow.musicplayer.button.CenterButton;
+import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.button.LeftButton;
+import com.btwasilow.musicplayer.button.MuteVolumeButton;
+import com.btwasilow.musicplayer.button.RightButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
@@ -32,11 +35,15 @@ public class RenderPlayer {
 		renderCurrentlyPlayingSong(g);
 		
 		renderExpandMusicPlayerButton(g);
-		renderVolumeMuteButton(g);
+//		renderVolumeMuteButton(g);
 		
-		renderExitButton(g);
+//		renderExitButton(g);
+	
+		for (int index = 0; index < State.BUTTONS.length; index++) {
+			State.BUTTONS[index].render(g);
+		}
 		
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) { // miniplayer rendering routines
+		if (!ExpandMusicPlayerButton.getInstance().isSelected()) { // miniplayer rendering routines
 			Utility.miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
 			Utility.expandedMusicPlayerGUISetup(driver);
@@ -203,7 +210,7 @@ public class RenderPlayer {
 		for (int i = 0; i < 14; i++) {
 			// render a lighter inset box to signify that song
 			// selection has been picked
-			if (Utility.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
+			if (State.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
 				g.setColor(new Color(64, 64, 64));
 				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
 			}
@@ -235,7 +242,7 @@ public class RenderPlayer {
 	}
 	
 	private static void renderCenterButton(Graphics2D g) {
-		if (!Utility.CENTER_BUTTON.isHoveredOver()) { 
+		if (!CenterButton.getInstance().isHoveredOver()) { 
 			// dark fill oval (darker than miniplayer background)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(185, 21,  60,  60);
@@ -256,7 +263,7 @@ public class RenderPlayer {
 	}
 	
 	private static void renderLeftButton(Graphics2D g) {
-		if (!Utility.LEFT_BUTTON.isHoveredOver()) {
+		if (!LeftButton.getInstance().isHoveredOver()) {
 			// dark left fill oval (smaller than center button)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(114, 26, 50, 50);
@@ -278,7 +285,7 @@ public class RenderPlayer {
 	}
 	
 	private static void renderRightButton(Graphics2D g) {
-		if (!Utility.RIGHT_BUTTON.isHoveredOver()) {
+		if (!RightButton.getInstance().isHoveredOver()) {
 			// dark right fill oval (smaller than center button)
 			g.setColor(new Color(40, 40, 40));
 			g.fillOval(264, 26, 50, 50);
@@ -332,7 +339,7 @@ public class RenderPlayer {
 	private static void renderVolumeBarFill(Graphics2D g) {
 		// if volume is muted then we render 0 volume otherwise render current song volume
 		int volume;
-		if (Utility.MUTE_VOLUME_BUTTON.isSelected()) {
+		if (MuteVolumeButton.getInstance().isSelected()) {
 			volume = 0;
 		} else {
 			volume = State.volume;
@@ -367,7 +374,7 @@ public class RenderPlayer {
 	}
 	
 	private static void renderExpandMusicPlayerButton(Graphics2D g) {
-		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isHoveredOver()) {
+		if (!ExpandMusicPlayerButton.getInstance().isHoveredOver()) {
 			// dark rectangle fill
 			g.setColor(new Color(50, 50, 50));
 			g.fillRoundRect(182, 98, 16, 16, 4, 4);
@@ -400,7 +407,7 @@ public class RenderPlayer {
 	}
 	
 	private static void renderVolumeMuteButton(Graphics2D g) {
-		if (!Utility.MUTE_VOLUME_BUTTON.isHoveredOver()) {
+/*		if (!Utility.MUTE_VOLUME_BUTTON.isHoveredOver()) {
 			// dark fill box
 			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHFillColor());
 			g.fill(Utility.MUTE_VOLUME_BUTTON.getUHFillShape());
@@ -434,11 +441,11 @@ public class RenderPlayer {
 		if (!Utility.MUTE_VOLUME_BUTTON.isSelected()) {
 			g.drawArc(218, 102, 4, 6, 0, -90);
 			g.drawArc(218, 102, 4, 7, 0, 90);
-		}
+		}*/
 	}
 	
 	private static void renderExitButton(Graphics2D g) {
-		if (!Utility.EXIT_BUTTON.isHoveredOver()) {
+/*		if (!Utility.EXIT_BUTTON.isHoveredOver()) {
 			// dark fill circle in corner of music player
 			g.setColor(Utility.EXIT_BUTTON.getUHFillColor());
 			g.fill(Utility.EXIT_BUTTON.getUHFillShape());
@@ -454,6 +461,6 @@ public class RenderPlayer {
 			// same red fill circle as inset regardless of hover
 			g.setColor(Utility.EXIT_BUTTON.getHInsetColor());
 			g.fill(Utility.EXIT_BUTTON.getHInsetShape());
-		}
-	}
+		}*/
+	} 
 }

@@ -11,7 +11,7 @@ import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.Button;
 
 public final class Utility {
-	public static final Button EXIT_BUTTON = new Button(new Ellipse2D.Double(328, 8, 14, 14), new Ellipse2D.Double(328, 8, 14, 14), new Color(30, 30, 30),
+/*	public static final Button EXIT_BUTTON = new Button(new Ellipse2D.Double(328, 8, 14, 14), new Ellipse2D.Double(328, 8, 14, 14), new Color(30, 30, 30),
 														new Ellipse2D.Double(330, 10, 10, 10), new Color(255, 0, 0),
 														new Ellipse2D.Double(328, 8, 14, 14), new Color(200, 200, 200),
 														new Ellipse2D.Double(330, 10, 10, 10), new Color(255, 0, 0));
@@ -49,7 +49,7 @@ public final class Utility {
 															   DISPLAYABLE_SONG_POSITION_7, DISPLAYABLE_SONG_POSITION_8, DISPLAYABLE_SONG_POSITION_9,
 															   DISPLAYABLE_SONG_POSITION_10, DISPLAYABLE_SONG_POSITION_11, DISPLAYABLE_SONG_POSITION_12,
 															   DISPLAYABLE_SONG_POSITION_13, DISPLAYABLE_SONG_POSITION_14};
-	
+*/	
 	private Utility() {
 	}
 	
