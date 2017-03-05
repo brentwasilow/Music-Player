@@ -8,16 +8,10 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.state.State;
-import com.btwasilow.musicplayer.update.UpdatePlayer;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class RenderPlayer {
-	public static String[] songs = {"Break Up", "Changes", "I Need You", "Dirty Sessions", "The Ocean",
-									"Don't You Worry Child", "Big Sky", "Got a Feeling", "Can't Afford it All",
-									"Happy Endings", "Younger", "Sunday", "No Eyes", "Let Her Go", "Wonkavator",
-									"Pompeii", "Generate", "Heading Home", "Youth", "Never Cry Again", "Arigato"};
-	
 	private RenderPlayer() {
 	}
 	
@@ -43,9 +37,9 @@ public class RenderPlayer {
 		renderExitButton(g);
 		
 		if (!Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) { // miniplayer rendering routines
-			miniMusicPlayerGUISetup(driver);
+			Utility.miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
-			expandedMusicPlayerGUISetup(driver);
+			Utility.expandedMusicPlayerGUISetup(driver);
 	    	
 			renderExpandedMusicPlayerBackground(g);
 			renderExpandedMusicPlayerScrollBar(g);
@@ -57,22 +51,6 @@ public class RenderPlayer {
 			renderExpandedMusicPlayerSongListPositionSelected(g);
 			renderExpandedMusicPlayerSongList(g);
 		}
-	}
-	
-	private static void expandedMusicPlayerGUISetup(Driver driver) {
-		// set JFrame to new expanded music player shape and don't forget to pack
-		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
-		driver.pack();
-		driver.setMinimumSize(new Dimension(350, 550));
-		driver.setMaximumSize(new Dimension(350, 550));
-	}
-	
-	private static void miniMusicPlayerGUISetup(Driver driver) {
-		// set JFrame back to original miniplayer shape and pack
-		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
-		driver.pack();
-		driver.setMinimumSize(new Dimension(350, 150));
-		driver.setMaximumSize(new Dimension(350, 150));
 	}
 	
 	private static void renderExpandedMusicPlayerBackground(Graphics2D g) {
@@ -103,10 +81,10 @@ public class RenderPlayer {
 		g.fillRoundRect(327, 187, 5, 344, 3, 3);
 		
 		// determine scroll bar size and change in scrollbar placement
-		float scrollBarChange = 14.0F / songs.length;
+		float scrollBarChange = 14.0F / State.songs.length;
 		float scrollBarSize = scrollBarChange * Consts.SCROLL_BAR_PIXEL_HEIGHT; 
 		float restOfScroll = Consts.SCROLL_BAR_PIXEL_HEIGHT - scrollBarSize;
-		float restOfScrollIncrement = restOfScroll / (songs.length - 14.0F);
+		float restOfScrollIncrement = restOfScroll / (State.songs.length - 14.0F);
 		float scrollBarPlacement =  restOfScrollIncrement * State.block;
 		
 		// lighter scroll bar drag area (white)
@@ -199,9 +177,9 @@ public class RenderPlayer {
 		int height2 = 225;
 		
 		int j = 0;
-		for (int i = State.block; j < 14 && i < songs.length; i++) {
+		for (int i = State.block; j < 14 && i < State.songs.length; i++) {
 			// modify song name if exceeds characters that can be displayed
-			String songName = songs[i];
+			String songName = State.songs[i];
 			if (songName.length() >= 20) {
 				songName = songName.substring(0, 20);
 				songName = songName + "...";

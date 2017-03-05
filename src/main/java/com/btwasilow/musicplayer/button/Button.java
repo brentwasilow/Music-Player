@@ -1,6 +1,7 @@
 package com.btwasilow.musicplayer.button;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Shape;
 
 public class Button {
@@ -97,5 +98,9 @@ public class Button {
 	
 	public boolean isSelected() {
 		return selected;
+	}
+	
+	public void render(Graphics2D g) {
+		
 	}
 }

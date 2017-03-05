@@ -13,7 +13,6 @@ import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.Button;
-import com.btwasilow.musicplayer.render.RenderPlayer;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
@@ -66,7 +65,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void moveCurrentDisplayableSongPositionDownOne() {
 		// make sure we have not reached the end of the song list
-		if (State.currentSongSelection < RenderPlayer.songs.length-1) {
+		if (State.currentSongSelection < State.songs.length-1) {
 				State.currentSongSelection++;
 				
 				// we do not move the displayed song names/info until we have
@@ -104,7 +103,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// set the currently playing song (will begin the logic for
 		// playing the audio)
 		if (keys[KeyEvent.VK_ENTER]) {
-			State.currentlyPlayingSongName = RenderPlayer.songs[State.currentSongSelection];
+			State.currentlyPlayingSongName = State.songs[State.currentSongSelection];
 		}
 	}
 

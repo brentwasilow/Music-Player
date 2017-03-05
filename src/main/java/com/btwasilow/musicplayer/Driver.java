@@ -1,8 +1,6 @@
 package com.btwasilow.musicplayer;
 
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
@@ -11,6 +9,7 @@ import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.render.RenderPlayer;
 import com.btwasilow.musicplayer.update.UpdatePlayer;
 import com.btwasilow.musicplayer.utility.Consts;
+import com.btwasilow.musicplayer.utility.Utility;
 
 public class Driver extends JFrame implements Runnable {
 	private static final long serialVersionUID = -252037378789659231L;
@@ -21,29 +20,14 @@ public class Driver extends JFrame implements Runnable {
 	private InputHandler input;
 	
 	private Graphics2D g;
-	private RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
-															   RenderingHints.VALUE_ANTIALIAS_ON);
 
 	public Driver() {
 		// setup routines
-		setupGUI();
+		Utility.initialGUISetup(this);
 		setupInput();
 		
 		// start the program
 		start();
-	}
-	
-	private void setupGUI() {
-		// graphical user interface (GUI) setup of JFrame component
-		setUndecorated(true);
-		setShape(new RoundRectangle2D.Double(0, 0, Consts.MINI_MUSIC_PLAYER_WIDTH,
-												   Consts.MINI_MUSIC_PLAYER_HEIGHT,
-												   Consts.MUSIC_PLAYER_PIXEL_ARC_WIDTH,
-												   Consts.MUSIC_PLAYER_PIXEL_ARC_HEIGHT));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setVisible(true);
 	}
 	
 	private void setupInput() {
@@ -108,7 +92,7 @@ public class Driver extends JFrame implements Runnable {
 		
 		// get graphics and set antialiasing
 		g = (Graphics2D) bs.getDrawGraphics();	
-	    g.setRenderingHints(renderingHints);
+	    g.setRenderingHints(Consts.renderingHints);
 	    
 	    // perform ALL music player rendering
 	    RenderPlayer.render(g, this);

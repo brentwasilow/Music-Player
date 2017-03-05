@@ -1,5 +1,7 @@
 package com.btwasilow.musicplayer.utility;
 
+import java.awt.RenderingHints;
+
 public class Consts {
 	public static final double UPDATES_PER_SECOND = 60.0;
 	public static final double NANOSECONDS_PER_SECOND = 1000000000.0;
@@ -25,6 +27,9 @@ public class Consts {
 	public static final int MAX_VOLUME_LEVEL = 100;
 	
 	public static final int SONG_FILL_BAR_STARTING_PIXEL_POS = 10;
+	
+	public static final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
+																		   RenderingHints.VALUE_ANTIALIAS_ON);
 	
 	private Consts() {
 		throw new AssertionError();
