@@ -6,6 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JFrame;
 
 import com.btwasilow.musicplayer.Driver;
+import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 
 public final class Utility {
 	private Utility() {
@@ -25,7 +26,7 @@ public final class Utility {
 		driver.setVisible(true);
 	}
 	
-	public static void expandedMusicPlayerGUISetup(Driver driver) {
+	private static void expandedMusicPlayerGUISetup(Driver driver) {
 		// set JFrame to new expanded music player shape and don't forget to pack
 		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 550, 15 ,15));
 		driver.pack();
@@ -33,11 +34,19 @@ public final class Utility {
 		driver.setMaximumSize(new Dimension(350, 550));
 	}
 	
-	public static void miniMusicPlayerGUISetup(Driver driver) {
+	private static void miniMusicPlayerGUISetup(Driver driver) {
 		// set JFrame back to original miniplayer shape and pack
 		driver.setShape(new RoundRectangle2D.Double(0, 0, 350, 150, 15, 15));
 		driver.pack();
 		driver.setMinimumSize(new Dimension(350, 150));
 		driver.setMaximumSize(new Dimension(350, 150));
+	}
+	
+	public static void musicPlayerGUISetup(Driver driver) {
+		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
+			expandedMusicPlayerGUISetup(driver);
+		} else {
+			miniMusicPlayerGUISetup(driver);
+		}
 	}
 }

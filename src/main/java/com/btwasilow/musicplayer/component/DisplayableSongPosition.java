@@ -27,9 +27,11 @@ public class DisplayableSongPosition extends ClickableComponent {
 
 	@Override
 	public void render(Graphics2D g) {
-		if (selected) {
-			g.setColor(outerRectangleFillColor);
-			g.fill(outerRectangleFillShape);
+		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
+			if (selected) {
+				g.setColor(outerRectangleFillColor);
+				g.fill(outerRectangleFillShape);
+			}
 		}
 	}
 

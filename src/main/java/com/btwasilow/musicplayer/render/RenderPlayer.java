@@ -15,7 +15,7 @@ public class RenderPlayer {
 	}
 	
 	public static void render(Graphics2D g, Driver driver) {
-		// render all non clickable and clickable components
+		// render all components
 		for (int index = 0; index < State.NON_CLICKABLE_COMPONENTS.length; index++) {
 			State.NON_CLICKABLE_COMPONENTS[index].render(g);
 		}
@@ -24,45 +24,19 @@ public class RenderPlayer {
 			State.CLICKABLE_COMPONENTS[index].render(g);
 		}
 		
+		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
+			State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].render(g);
+		}
+		
+		Utility.musicPlayerGUISetup(driver);
+		
 		if (!ExpandMusicPlayerButton.getInstance().isSelected()) { // miniplayer rendering routines
-			Utility.miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
-			Utility.expandedMusicPlayerGUISetup(driver);
-			
-			renderExpandedMusicPlayerBackground(g);
 			renderExpandedMusicPlayerScrollBar(g);
 			renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
-			renderExpandedMusicPlayerEqualizerBoxFill(g);
-			renderExpandedMusicPlayerEqualizer(g);
-			
-			for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
-				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].render(g);
-			}
 			renderExpandedMusicPlayerSongList(g);
 		}
-	}
-	
-	private static void renderExpandedMusicPlayerBackground(Graphics2D g) {
-		// render same background but longer
-		g.setColor(new Color(64, 64, 64));
-		g.fillRect(0, 150, 350, 400);
-		
-		// dark outline to longer background
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(0, 150, 350-1, 400-1, 15, 15);
-		
-		// lighter outline to give contrast to longer background
-		g.setColor(new Color(100, 100, 100));
-		g.drawRoundRect(1, 151, 350-3, 400-3, 15, 15);
-	    
-	    // render darker inset color to provide contrast for where music library will be listed
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(10, 180, 328, 358, 10, 10);
-		
-		// provide darker outline to give more contrast to inset
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(9, 179, 331, 361, 10, 10);	
 	}
 	
 	private static void renderExpandedMusicPlayerScrollBar(Graphics2D g) {
@@ -124,39 +98,6 @@ public class RenderPlayer {
 		// draw same header lines
 		g.drawLine(154, 190, 154, 200);
 		g.drawLine(203, 190, 203, 200);
-	}
-	
-	private static void renderExpandedMusicPlayerEqualizerBoxFill(Graphics2D g) {
-		// set color of darker inset fill
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(200, 155, 139, 19, 3, 3); // 10 arc
-		
-		// set color of darker outline to provide contrast
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(200, 155, 140, 20, 4, 4); // 10 arc
-	}
-	
-	private static void renderExpandedMusicPlayerEqualizer(Graphics2D g) {
-		// equalizer box loop
-		for (int width = 0; width < 15; width++) {
-			// change color depending on the height of the equalizer box. The higher it is the redder it is.
-			for (int height = 0; height < State.rand.nextInt(7); height++) {
-				if (height < 1) {
-					g.setColor(new Color(0, 255, 0));
-				} else if (height < 2) {
-					g.setColor(new Color(128, 255, 0));
-				} else if (height < 3) {
-					g.setColor(new Color(255, 255, 0));
-				} else if (height < 4){
-					g.setColor(new Color(255, 255, 0));
-				} else if (height < 5) {
-					g.setColor(new Color(255, 128, 0));
-				} else if (height < 6) {
-					g.setColor(new Color(255, 0, 0));
-				}
-				g.fillRoundRect(203+(width*9), 173-(height*3), 8, 2, 1, 2);
-			}
-		}
 	}
 
 	private static void renderExpandedMusicPlayerSongList(Graphics2D g) {
