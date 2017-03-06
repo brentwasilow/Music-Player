@@ -3,6 +3,7 @@ package com.btwasilow.musicplayer.state;
 import java.awt.geom.RoundRectangle2D;
 import java.util.Random;
 
+import com.btwasilow.musicplayer.button.ArtworkDisplayBox;
 import com.btwasilow.musicplayer.button.Button;
 import com.btwasilow.musicplayer.button.CenterButton;
 import com.btwasilow.musicplayer.button.DisplayableSongPosition;
@@ -17,7 +18,7 @@ import com.btwasilow.musicplayer.button.VolumeFillBar;
 public class State {
 	public static final Button[] BUTTONS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 										    RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
-										    SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance()};
+										    SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance(), ArtworkDisplayBox.getInstance()};
 	
 	private static final DisplayableSongPosition POSITION_1 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 210, 287, 23, 1, 1), true);
 	private static final DisplayableSongPosition POSITION_2 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 233, 287, 23, 1, 1), false);

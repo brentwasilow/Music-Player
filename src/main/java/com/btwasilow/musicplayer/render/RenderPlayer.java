@@ -5,10 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.button.CenterButton;
 import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
-import com.btwasilow.musicplayer.button.LeftButton;
-import com.btwasilow.musicplayer.button.RightButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
@@ -19,11 +16,6 @@ public class RenderPlayer {
 	
 	public static void render(Graphics2D g, Driver driver) {
 		renderMiniPlayerBackground(g);
-		renderArtworkDisplayBox(g);
-		
-//		renderCenterButton(g);
-//		renderLeftButton(g);
-//		renderRightButton(g);
 	
 		// render all buttons
 		for (int index = 0; index < State.BUTTONS.length; index++) {
@@ -218,16 +210,6 @@ public class RenderPlayer {
 		// whiter in-set line to give depth at corner
 		g.setColor(new Color(100, 100, 100));
 		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
-	}
-	
-	private static void renderArtworkDisplayBox(Graphics2D g) {
-		// dark fill box (darker than miniplayer background)
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(20, 20, 60, 60, 10, 10);
-		
-		// fill box outline to provide contrast
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(19, 19, 62, 62, 10, 10);
 	}
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
