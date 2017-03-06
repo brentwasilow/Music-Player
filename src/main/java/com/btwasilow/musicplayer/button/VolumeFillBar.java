@@ -1,5 +1,6 @@
 package com.btwasilow.musicplayer.button;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -13,6 +14,18 @@ public class VolumeFillBar extends Button {
 	private static VolumeFillBar volumeFillBar = new VolumeFillBar();
 	
 	private final RoundRectangle2D.Double boundingBox = new RoundRectangle2D.Double(236, 102, 102, 7, 4, 4);
+	
+	private final RoundRectangle2D.Double outerRectangleFillShape = new RoundRectangle2D.Double(237, 103, 100, 5, 4, 4);
+	private final Color outerRectangleFillColor = new Color(50, 50, 50);
+	
+	private final RoundRectangle2D.Double outerRectangleOutlineShape = new RoundRectangle2D.Double(236, 102, 102, 7, 4, 4);
+	private final Color outerRectangleOutlineColor = new Color(30, 30, 30);
+	
+	private final RoundRectangle2D.Double innerRectangleFillShape = new RoundRectangle2D.Double(237, 103, 50, 5, 3, 3);
+	private final Color innerRectangleFillColor = new Color(90, 230, 0);
+	
+	private final RoundRectangle2D.Double innerRectangleOutlineShape = new RoundRectangle2D.Double(237, 103, 50, 5, 4, 4);
+	private final Color innerRectangleOutlineColor = new Color(34, 140, 30);
 	
 	private VolumeFillBar() {
 	}
@@ -28,6 +41,28 @@ public class VolumeFillBar extends Button {
 
 	@Override
 	public void render(Graphics2D g) {
+		// render volume fill bar outline box area
+		g.setColor(outerRectangleFillColor);
+		g.fill(outerRectangleFillShape);
+		
+		g.setColor(outerRectangleOutlineColor);
+		g.draw(outerRectangleOutlineShape);
+		
+		// if volume is muted then we render 0 volume otherwise render current song volume
+		if (!MuteVolumeButton.getInstance().isSelected()) {
+			innerRectangleFillShape.width = State.volume;
+			innerRectangleOutlineShape.width = State.volume;
+		} else {
+			innerRectangleFillShape.width = 0;
+			innerRectangleOutlineShape.width = 0;
+		}
+		
+		// now we render volume fill bar itself based on volume 
+		g.setColor(innerRectangleFillColor);
+		g.fill(innerRectangleFillShape);
+		
+		g.setColor(innerRectangleOutlineColor);
+		g.draw(innerRectangleOutlineShape);
 	}
 
 	@Override

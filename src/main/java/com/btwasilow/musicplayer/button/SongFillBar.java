@@ -28,6 +28,7 @@ public class SongFillBar extends Button {
 
 	@Override
 	public void render(Graphics2D g) {
+		// render song fill bar outline box area
 	}
 
 	@Override

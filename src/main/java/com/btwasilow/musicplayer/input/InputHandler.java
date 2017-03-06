@@ -13,17 +13,9 @@ import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.Button;
-import com.btwasilow.musicplayer.button.CenterButton;
-import com.btwasilow.musicplayer.button.ExitButton;
 import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
-import com.btwasilow.musicplayer.button.LeftButton;
-import com.btwasilow.musicplayer.button.MuteVolumeButton;
-import com.btwasilow.musicplayer.button.RightButton;
-import com.btwasilow.musicplayer.button.SongFillBar;
-import com.btwasilow.musicplayer.button.VolumeFillBar;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
-import com.btwasilow.musicplayer.utility.Utility;
 
 public class InputHandler implements MouseListener, FocusListener, MouseMotionListener, KeyListener, MouseWheelListener {
 	public Driver driver; // reference to AWT container of main class
@@ -196,83 +188,10 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			Button button = State.BUTTONS[index];
 	
 			if (button.isHoveredOver()) {
-	/*			if (button == ExitButton.getInstance()) {
-					updateExitButtonClickState();
-				} else if (button == LeftButton.getInstance()) {
-					updateLeftButtonClickState();
-				} else if (button == CenterButton.getInstance()) {
-					updateCenterButtonClickState();
-				} else if (button == RightButton.getInstance()) {
-					updateRightButtonClickState();
-				} else if (button == MuteVolumeButton.getInstance()) {
-					updateMuteVolumeButtonClickState();
-				} else if (button == VolumeFillBar.getInstance()) {
-					updateVolumeFillBarClickState();
-				} else if (button == ExpandMusicPlayerButton.getInstance()) {
-					updateExpandMusicPlayerButtonClickState();
-				} else if (button == SongFillBar.getInstance()) {
-					updateSongFillBarClickState();
-				} */
 				button.updateClickState(this);
 			}
 		}
 		updateMusicLibrarySongSelectionClickState();
-	}
-	
-	private void updateExitButtonClickState() {
-		System.exit(0);
-	}
-	
-	private void updateLeftButtonClickState() {
-		LeftButton.getInstance().select(true);
-	}
-	
-	private void updateCenterButtonClickState() {
-		CenterButton.getInstance().select(true);
-	}
-
-	private void updateRightButtonClickState() {
-		RightButton.getInstance().select(true);
-	}
-	
-	private void updateMuteVolumeButtonClickState() {
-		// like a switch (turns off button if clicked already
-		// or turns on button if not clicked already)
-	//	if (Utility.MUTE_VOLUME_BUTTON.isSelected()) {
-	//		Utility.MUTE_VOLUME_BUTTON.select(false);
-	//	} else {
-	//		Utility.MUTE_VOLUME_BUTTON.select(true);
-	//	}
-	}
-	
-	private void updateVolumeFillBarClickState() {
-		// unmute and update the volume level based on
-		// physical coordinates of click
-//		Utility.MUTE_VOLUME_BUTTON.select(false);
-//		State.volume = mouseClickedPosition.x - Consts.VOLUME_FILL_BAR_STARTING_PIXEL_POS;
-		
-		// squash volume level between 0 and 100 (min and max volume levels)
-//		if (State.volume < Consts.MIN_VOLUME_LEVEL) {
-//			State.volume = Consts.MIN_VOLUME_LEVEL;
-// 		} else if (State.volume > Consts.MAX_VOLUME_LEVEL) {
-// 			State.volume = Consts.MAX_VOLUME_LEVEL;
-// 		}
-	}
-	
-	private void updateExpandMusicPlayerButtonClickState() {
-		// switch music player mode based on current state
-		// (make mini if already expanded or expand if already mini)
-//		if (Utility.EXPAND_MUSIC_PLAYER_BUTTON.isSelected()) {
-//			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(false);
-//		} else {
-//			Utility.EXPAND_MUSIC_PLAYER_BUTTON.select(true);
-//		}
-	}
-	
-	private void updateSongFillBarClickState() {
-		// update song temporal position according to physical
-		// coordinates of click
-//		State.currentlyPlayingSongTimePosition = mouseClickedPosition.x - Consts.SONG_FILL_BAR_STARTING_PIXEL_POS;
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {

@@ -26,19 +26,17 @@ public class RenderPlayer {
 		renderLeftButton(g);
 		renderRightButton(g);
 		
-		renderTimeBarBox(g);
-		renderTimeBarFill(g);
+//		renderTimeBarBox(g);
+//		renderTimeBarFill(g);
 		
-		renderVolumeBarBox(g);
-		renderVolumeBarFill(g);
+//		renderVolumeBarBox(g);
+//		renderVolumeBarFill(g);
 		
 		renderCurrentlyPlayingSong(g);
 		
-		renderExpandMusicPlayerButton(g);
-//		renderVolumeMuteButton(g);
-		
-//		renderExitButton(g);
+//		renderExpandMusicPlayerButton(g);
 	
+		// render all buttons
 		for (int index = 0; index < State.BUTTONS.length; index++) {
 			State.BUTTONS[index].render(g);
 		}
@@ -326,34 +324,6 @@ public class RenderPlayer {
 		g.drawRoundRect(10, 131, State.currentlyPlayingSongTimePosition, 7, 4, 4);
 	}
 	
-	private static void renderVolumeBarBox(Graphics2D g) {
-		// dark volume bar fill box
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(237, 103, 100, 5, 4, 4);
-		
-		// darker volume bar outline
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(236, 102, 102, 7, 4, 4);
-	}
-	
-	private static void renderVolumeBarFill(Graphics2D g) {
-		// if volume is muted then we render 0 volume otherwise render current song volume
-		int volume;
-		if (MuteVolumeButton.getInstance().isSelected()) {
-			volume = 0;
-		} else {
-			volume = State.volume;
-		}
-		
-		// green volume bar fill color
-		g.setColor(new Color(90, 230, 0));
-		g.fillRoundRect(237, 103, volume, 5, 3, 3);
-		
-		// darker volume bar outline to provide contrast
-		g.setColor(new Color(34, 140, 30));
-		g.drawRoundRect(237, 103, volume, 5, 4, 4);
-	}
-	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
 		// clip the currently playing song name
 		String songName = "";
@@ -372,95 +342,4 @@ public class RenderPlayer {
 		g.setColor(new Color(175, 175, 175));
 		g.drawString(songName, 20, 112);
 	}
-	
-	private static void renderExpandMusicPlayerButton(Graphics2D g) {
-		if (!ExpandMusicPlayerButton.getInstance().isHoveredOver()) {
-			// dark rectangle fill
-			g.setColor(new Color(50, 50, 50));
-			g.fillRoundRect(182, 98, 16, 16, 4, 4);
-		
-			// darker rectangle outline
-			g.setColor(new Color(30, 30, 30));
-			g.drawRoundRect(181, 97, 18, 17, 4, 4);
-		
-			// set unhovered music player button inset color
-			g.setColor(new Color(150, 150, 150));
-		} else {
-			// lighter rectangle fill when hovered over
-			g.setColor(new Color(150, 150, 150));
-			g.fillRoundRect(182, 98, 17, 16, 4, 4);
-			
-			// darker rectangle outline
-			g.setColor(new Color(30, 30, 30));
-			g.drawRoundRect(181, 97, 18, 17, 4, 4);
-		
-			// set hovered music player button inset color (darker than unhovered)
-			g.setColor(new Color(50, 50, 50));
-		}
-		// draw maximize music player representation (shown visually as items-in-a-list)
-		g.drawLine(189,  101, 195, 101);
-		g.drawLine(189,  104, 195, 104);
-		g.drawLine(189, 107, 195, 107);
-		g.drawLine(189,  110, 195, 110);
-		g.fillOval(184, 101, 4, 4);
-		g.fillOval(184, 107, 4, 4);
-	}
-	
-	private static void renderVolumeMuteButton(Graphics2D g) {
-/*		if (!Utility.MUTE_VOLUME_BUTTON.isHoveredOver()) {
-			// dark fill box
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHFillColor());
-			g.fill(Utility.MUTE_VOLUME_BUTTON.getUHFillShape());
-			
-			// even darker outline box
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHInsetColor());
-			g.draw(Utility.MUTE_VOLUME_BUTTON.getUHInsetShape());
-			
-			// lighter button representation color
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHFillColor());
-		} else {
-			// lighter fill box in comparison to not being hovered over
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHFillColor());
-			g.fill(Utility.MUTE_VOLUME_BUTTON.getHFillShape());
-		
-			// darker outline box but still lighter than when not being hovered over
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getHInsetColor());
-			g.draw(Utility.MUTE_VOLUME_BUTTON.getHInsetShape());
-			
-			// darker button representation color
-			g.setColor(Utility.MUTE_VOLUME_BUTTON.getUHFillColor());
-		}
-
-		// draw volume mute button representation (speaker with arc for noise disseminating outward)
-		int[] volumeX = {219, 219, 212};
-		int[] volumeY = {111, 100, 105};
-		g.fillPolygon(volumeX, volumeY, 3);
-		g.fillRect(212, 103, 4, 5);
-	
-		// only draw arc if volume button isn't muted
-		if (!Utility.MUTE_VOLUME_BUTTON.isSelected()) {
-			g.drawArc(218, 102, 4, 6, 0, -90);
-			g.drawArc(218, 102, 4, 7, 0, 90);
-		}*/
-	}
-	
-	private static void renderExitButton(Graphics2D g) {
-/*		if (!Utility.EXIT_BUTTON.isHoveredOver()) {
-			// dark fill circle in corner of music player
-			g.setColor(Utility.EXIT_BUTTON.getUHFillColor());
-			g.fill(Utility.EXIT_BUTTON.getUHFillShape());
-			
-			// red circle inset
-			g.setColor(Utility.EXIT_BUTTON.getUHInsetColor());
-			g.fill(Utility.EXIT_BUTTON.getUHInsetShape());
-		} else {
-			// lighter fill circle in corner of music player when hovered over
-			g.setColor(Utility.EXIT_BUTTON.getHFillColor());
-			g.fill(Utility.EXIT_BUTTON.getHFillShape());
-			
-			// same red fill circle as inset regardless of hover
-			g.setColor(Utility.EXIT_BUTTON.getHInsetColor());
-			g.fill(Utility.EXIT_BUTTON.getHInsetShape());
-		}*/
-	} 
 }

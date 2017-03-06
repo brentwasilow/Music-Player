@@ -39,7 +39,7 @@ public class State {
 															   POSITION_10, POSITION_11, POSITION_12,
 															   POSITION_13, POSITION_14};
 	public static String currentlyPlayingSongName = "";
-	public static int volume = 25;
+	public static int volume = 50;
 	public static int currentlyPlayingSongTimePosition = 0;
 	public static int currentSongSelection = 0;
 	public static int currentDisplayableSongPosition = 0;
