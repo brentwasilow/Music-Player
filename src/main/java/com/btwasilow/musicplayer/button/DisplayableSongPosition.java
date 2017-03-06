@@ -6,7 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class DisplayableSongPosition extends Button {
+public class DisplayableSongPosition extends Component {
 	private RoundRectangle2D.Double boundingBox;
 	
 	public DisplayableSongPosition(RoundRectangle2D.Double boundingBox, boolean selected) {

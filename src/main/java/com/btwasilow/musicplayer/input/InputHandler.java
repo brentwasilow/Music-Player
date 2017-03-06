@@ -12,7 +12,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.button.Button;
+import com.btwasilow.musicplayer.button.Component;
 import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
@@ -185,7 +185,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	private void mousePressedUpdateRoutines() {
 		// update all of the clickable music player boxes/shapes/components
 		for (int index = 0; index < State.BUTTONS.length; index++) {
-			Button button = State.BUTTONS[index];
+			Component button = State.BUTTONS[index];
 	
 			if (button.isHoveredOver()) {
 				button.updateClickState(this);

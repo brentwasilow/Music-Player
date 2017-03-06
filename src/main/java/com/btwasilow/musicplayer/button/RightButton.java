@@ -9,7 +9,7 @@ import java.awt.geom.Rectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class RightButton extends Button {
+public class RightButton extends Component {
 	// singleton
 	private static RightButton rightButton = new RightButton();
 	

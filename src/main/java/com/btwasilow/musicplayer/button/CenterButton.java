@@ -8,7 +8,7 @@ import java.awt.geom.Ellipse2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class CenterButton extends Button {
+public class CenterButton extends Component {
 	// singleton
 	private static CenterButton centerButton = new CenterButton();
 	

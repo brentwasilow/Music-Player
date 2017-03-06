@@ -5,11 +5,11 @@ import java.awt.Shape;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public abstract class Button {
+public abstract class Component {
 	protected boolean hoveredOver = false;
 	protected boolean selected;
 	
-	public Button() {
+	public Component() {
 	}
 	
 	public void setHoveredOver(boolean hoveredOver) {

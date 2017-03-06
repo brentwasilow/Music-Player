@@ -7,7 +7,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class ArtworkDisplayBox extends Button {
+public class ArtworkDisplayBox extends Component {
 	// singleton
 	private static ArtworkDisplayBox artworkDisplayBox = new ArtworkDisplayBox();
 	

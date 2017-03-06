@@ -4,7 +4,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.util.Random;
 
 import com.btwasilow.musicplayer.button.ArtworkDisplayBox;
-import com.btwasilow.musicplayer.button.Button;
+import com.btwasilow.musicplayer.button.Component;
 import com.btwasilow.musicplayer.button.CenterButton;
 import com.btwasilow.musicplayer.button.DisplayableSongPosition;
 import com.btwasilow.musicplayer.button.ExitButton;
@@ -16,7 +16,7 @@ import com.btwasilow.musicplayer.button.SongFillBar;
 import com.btwasilow.musicplayer.button.VolumeFillBar;
 
 public class State {
-	public static final Button[] BUTTONS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
+	public static final Component[] BUTTONS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 										    RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
 										    SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance(), ArtworkDisplayBox.getInstance()};
 	
@@ -34,7 +34,7 @@ public class State {
 	private static final DisplayableSongPosition POSITION_12 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 463, 287, 23, 1, 1), false);
 	private static final DisplayableSongPosition POSITION_13 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 486, 287, 23, 1, 1), false);
 	private static final DisplayableSongPosition POSITION_14 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 509, 287, 23, 1, 1), false);
-	public static final Button[] DISPLAYABLE_SONG_POSITIONS = {POSITION_1, POSITION_2, POSITION_3,
+	public static final Component[] DISPLAYABLE_SONG_POSITIONS = {POSITION_1, POSITION_2, POSITION_3,
 															   POSITION_4, POSITION_5, POSITION_6,
 															   POSITION_7, POSITION_8, POSITION_9,
 															   POSITION_10, POSITION_11, POSITION_12,

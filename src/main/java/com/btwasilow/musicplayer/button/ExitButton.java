@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class ExitButton extends Button {
+public class ExitButton extends Component {
 	// singleton
 	private static ExitButton exitButton = new ExitButton();
 	
