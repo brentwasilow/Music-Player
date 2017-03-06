@@ -32,7 +32,7 @@ public class ExpandMusicPlayerButton extends Button {
 
 	
 	private final RoundRectangle2D.Double hoveredOuterRectangleFillShape = new RoundRectangle2D.Double(182, 98, 17, 16, 4, 4);
-	private final Color hoveredOuterRectangleFillColor = new Color(150, 150, 150);
+	private final Color hoveredOuterRectangleFillColor = new Color(200, 200, 200);
 	
 	private final RoundRectangle2D.Double hoveredOuterRectangleOutlineShape = new RoundRectangle2D.Double(181, 97, 18, 17, 4, 4);
 	private final Color hoveredOuterRectangleOutlineColor = new Color(30, 30, 30);

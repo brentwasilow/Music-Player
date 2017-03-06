@@ -8,7 +8,6 @@ import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.button.CenterButton;
 import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.button.LeftButton;
-import com.btwasilow.musicplayer.button.MuteVolumeButton;
 import com.btwasilow.musicplayer.button.RightButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;

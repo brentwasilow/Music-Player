@@ -31,7 +31,7 @@ public class MuteVolumeButton extends Button {
 	private final Arc2D.Double selectedInnerPolygonArcShape2 = new Arc2D.Double(218, 102, 4, 7, 0, 90, Arc2D.OPEN);
 	
 	private final RoundRectangle2D.Double hoveredOuterRectangleFillShape = new RoundRectangle2D.Double(209, 98, 17, 16, 4, 4);
-	private final Color hoveredOuterRectangleFillColor = new Color(150, 150, 150);
+	private final Color hoveredOuterRectangleFillColor = new Color(200, 200, 200);
 	
 	private final RoundRectangle2D.Double hoveredOuterRectangleOutlineShape = new RoundRectangle2D.Double(208, 97, 18, 17, 4, 4);
 	private final Color hoveredOuterRectangleOutlineColor = new Color(30, 30, 30);
