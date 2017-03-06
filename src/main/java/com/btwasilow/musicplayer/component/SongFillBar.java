@@ -1,4 +1,4 @@
-package com.btwasilow.musicplayer.button;
+package com.btwasilow.musicplayer.component;
 
 import java.awt.Color;
 import java.awt.Graphics2D;

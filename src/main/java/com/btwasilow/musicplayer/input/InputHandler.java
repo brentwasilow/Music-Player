@@ -12,8 +12,8 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.button.Component;
-import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.component.Component;
+import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 

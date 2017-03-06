@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
@@ -15,7 +15,7 @@ public class RenderPlayer {
 	}
 	
 	public static void render(Graphics2D g, Driver driver) {
-		renderMiniPlayerBackground(g);
+		//renderMiniPlayerBackground(g);
 	
 		// render all buttons
 		for (int index = 0; index < State.BUTTONS.length; index++) {
@@ -211,7 +211,7 @@ public class RenderPlayer {
 		g.setColor(new Color(100, 100, 100));
 		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
 	}
-	
+
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {
 		// clip the currently playing song name
 		String songName = "";

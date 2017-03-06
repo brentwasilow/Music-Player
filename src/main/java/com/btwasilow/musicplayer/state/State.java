@@ -3,20 +3,21 @@ package com.btwasilow.musicplayer.state;
 import java.awt.geom.RoundRectangle2D;
 import java.util.Random;
 
-import com.btwasilow.musicplayer.button.ArtworkDisplayBox;
-import com.btwasilow.musicplayer.button.Component;
-import com.btwasilow.musicplayer.button.CenterButton;
-import com.btwasilow.musicplayer.button.DisplayableSongPosition;
-import com.btwasilow.musicplayer.button.ExitButton;
-import com.btwasilow.musicplayer.button.ExpandMusicPlayerButton;
-import com.btwasilow.musicplayer.button.LeftButton;
-import com.btwasilow.musicplayer.button.MuteVolumeButton;
-import com.btwasilow.musicplayer.button.RightButton;
-import com.btwasilow.musicplayer.button.SongFillBar;
-import com.btwasilow.musicplayer.button.VolumeFillBar;
+import com.btwasilow.musicplayer.component.ArtworkDisplayBox;
+import com.btwasilow.musicplayer.component.CenterButton;
+import com.btwasilow.musicplayer.component.Component;
+import com.btwasilow.musicplayer.component.DisplayableSongPosition;
+import com.btwasilow.musicplayer.component.ExitButton;
+import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.component.LeftButton;
+import com.btwasilow.musicplayer.component.MiniPlayerBox;
+import com.btwasilow.musicplayer.component.MuteVolumeButton;
+import com.btwasilow.musicplayer.component.RightButton;
+import com.btwasilow.musicplayer.component.SongFillBar;
+import com.btwasilow.musicplayer.component.VolumeFillBar;
 
 public class State {
-	public static final Component[] BUTTONS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
+	public static final Component[] BUTTONS = {MiniPlayerBox.getInstance(), ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 										    RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
 										    SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance(), ArtworkDisplayBox.getInstance()};
 	
