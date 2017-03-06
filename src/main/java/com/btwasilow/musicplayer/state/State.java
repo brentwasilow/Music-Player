@@ -6,6 +6,7 @@ import java.util.Random;
 import com.btwasilow.musicplayer.component.ArtworkDisplayBox;
 import com.btwasilow.musicplayer.component.CenterButton;
 import com.btwasilow.musicplayer.component.ClickableComponent;
+import com.btwasilow.musicplayer.component.Component;
 import com.btwasilow.musicplayer.component.CurrentlyPlayingSongBox;
 import com.btwasilow.musicplayer.component.DisplayableSongPosition;
 import com.btwasilow.musicplayer.component.ExitButton;
@@ -19,11 +20,6 @@ import com.btwasilow.musicplayer.component.SongFillBar;
 import com.btwasilow.musicplayer.component.VolumeFillBar;
 
 public class State {
-	public static final NonClickableComponent[] NON_CLICKABLE_COMPONENTS = {MiniPlayerBox.getInstance(), ArtworkDisplayBox.getInstance(), CurrentlyPlayingSongBox.getInstance()};
-	public static final ClickableComponent[] CLICKABLE_COMPONENTS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
-														   RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
-														   SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance()};
-	
 	private static final DisplayableSongPosition POSITION_1 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 210, 287, 23, 1, 1), true);
 	private static final DisplayableSongPosition POSITION_2 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 233, 287, 23, 1, 1), false);
 	private static final DisplayableSongPosition POSITION_3 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 256, 287, 23, 1, 1), false);
@@ -38,11 +34,26 @@ public class State {
 	private static final DisplayableSongPosition POSITION_12 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 463, 287, 23, 1, 1), false);
 	private static final DisplayableSongPosition POSITION_13 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 486, 287, 23, 1, 1), false);
 	private static final DisplayableSongPosition POSITION_14 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 509, 287, 23, 1, 1), false);
-	public static final ClickableComponent[] DISPLAYABLE_SONG_POSITION_COMPONENTS = {POSITION_1, POSITION_2, POSITION_3,
-															   POSITION_4, POSITION_5, POSITION_6,
-															   POSITION_7, POSITION_8, POSITION_9,
-															   POSITION_10, POSITION_11, POSITION_12,
-															   POSITION_13, POSITION_14};
+	
+	public static final NonClickableComponent[] NON_CLICKABLE_COMPONENTS = {MiniPlayerBox.getInstance(), ArtworkDisplayBox.getInstance(), CurrentlyPlayingSongBox.getInstance()};
+
+	public static final ClickableComponent[] CLICKABLE_COMPONENTS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
+																	 RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
+																	 SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance()};
+	
+	public static final ClickableComponent[] DISPLAYABLE_SONG_POSITION_COMPONENTS = {POSITION_1, POSITION_2, POSITION_3, POSITION_4, POSITION_5, POSITION_6,
+																					 POSITION_7, POSITION_8, POSITION_9, POSITION_10, POSITION_11, POSITION_12,
+																					 POSITION_13, POSITION_14};
+	
+	public static final Component[] RENDERABLE_COMPONENTS = {MiniPlayerBox.getInstance(), ArtworkDisplayBox.getInstance(), CurrentlyPlayingSongBox.getInstance(),
+															 ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
+															 RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
+															 SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance()};
+	
+	public static final Component[] EXPANDED_MUSIC_PLAYER_RENDERABLE_COMPONENTS = {POSITION_1, POSITION_2, POSITION_3, POSITION_4, POSITION_5, POSITION_6,
+			 																	   POSITION_7, POSITION_8, POSITION_9, POSITION_10, POSITION_11, POSITION_12,
+			 																	   POSITION_13, POSITION_14};
+	
 	public static String currentlyPlayingSongName = "";
 	public static int volume = 50;
 	public static int currentlyPlayingSongTimePosition = 0;

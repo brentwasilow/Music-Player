@@ -19,7 +19,7 @@ public class RenderPlayer {
 		for (int index = 0; index < State.NON_CLICKABLE_COMPONENTS.length; index++) {
 			State.NON_CLICKABLE_COMPONENTS[index].render(g);
 		}
-		
+
 		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
 			State.CLICKABLE_COMPONENTS[index].render(g);
 		}
@@ -28,7 +28,7 @@ public class RenderPlayer {
 			Utility.miniMusicPlayerGUISetup(driver);
 		} else { // expanded music player rendering routines
 			Utility.expandedMusicPlayerGUISetup(driver);
-	    	
+			
 			renderExpandedMusicPlayerBackground(g);
 			renderExpandedMusicPlayerScrollBar(g);
 			renderExpandedMusicPlayerToolBar(g);
@@ -36,7 +36,9 @@ public class RenderPlayer {
 			renderExpandedMusicPlayerEqualizerBoxFill(g);
 			renderExpandedMusicPlayerEqualizer(g);
 			
-			renderExpandedMusicPlayerSongListPositionSelected(g);
+			for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].render(g);
+			}
 			renderExpandedMusicPlayerSongList(g);
 		}
 	}
@@ -184,36 +186,5 @@ public class RenderPlayer {
 			
 			j++;
 		}
-	}
-	
-	private static void renderExpandedMusicPlayerSongListPositionSelected(Graphics2D g) {
-		// for each of the 14 song display slots in the music library
-		for (int i = 0; i < 14; i++) {
-			// render a lighter inset box to signify that song
-			// selection has been picked
-			if (State.DISPLAYABLE_SONG_POSITION_COMPONENTS[i].isSelected()) {
-				g.setColor(new Color(64, 64, 64));
-				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
-			}
-		}
-	}
-
-	private static void renderCurrentlyPlayingSong(Graphics2D g) {
-		// clip the currently playing song name
-		String songName = "";
-		if (State.currentlyPlayingSongName.length() >= 23) {
-			songName = State.currentlyPlayingSongName.substring(0, 23);
-			songName += "...";
-		} else {
-			songName = State.currentlyPlayingSongName;
-		}
-		// draw current song using Arial font with dark fill
-		g.setFont(new Font("Arial", 1, 12));
-		g.setColor(new Color(50, 50, 50));
-		g.drawString(songName, 22, 114);
-		
-		// draw current song over dark fill with lighter fill to provide contrast
-		g.setColor(new Color(175, 175, 175));
-		g.drawString(songName, 20, 112);
 	}
 }
