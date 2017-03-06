@@ -30,30 +30,11 @@ public class RenderPlayer {
 		
 		Utility.musicPlayerGUISetup(driver);
 		
-		if (!ExpandMusicPlayerButton.getInstance().isSelected()) { // miniplayer rendering routines
-		} else { // expanded music player rendering routines
-			renderExpandedMusicPlayerScrollBar(g);
+		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
 			renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
 			renderExpandedMusicPlayerSongList(g);
 		}
-	}
-	
-	private static void renderExpandedMusicPlayerScrollBar(Graphics2D g) {
-		// darker inset inset
-		g.setColor(new Color(40, 40, 40));
-		g.fillRoundRect(327, 187, 5, 344, 3, 3);
-		
-		// determine scroll bar size and change in scrollbar placement
-		float scrollBarChange = 14.0F / State.songs.length;
-		float scrollBarSize = scrollBarChange * Consts.SCROLL_BAR_PIXEL_HEIGHT; 
-		float restOfScroll = Consts.SCROLL_BAR_PIXEL_HEIGHT - scrollBarSize;
-		float restOfScrollIncrement = restOfScroll / (State.songs.length - 14.0F);
-		float scrollBarPlacement =  restOfScrollIncrement * State.block;
-		
-		// lighter scroll bar drag area (white)
-		g.setColor(new Color(150, 150, 150));
-		g.fillRoundRect(327, 187 + (int)(scrollBarPlacement), 5, (int)(scrollBarSize), 3, 3);
 	}
 	
 	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {
