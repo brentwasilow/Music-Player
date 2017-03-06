@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.state.State;
-import com.btwasilow.musicplayer.utility.Consts;
 import com.btwasilow.musicplayer.utility.Utility;
 
 public class RenderPlayer {
@@ -31,7 +30,7 @@ public class RenderPlayer {
 		Utility.musicPlayerGUISetup(driver);
 		
 		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
-			renderExpandedMusicPlayerToolBar(g);
+	//		renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
 			renderExpandedMusicPlayerSongList(g);
 		}

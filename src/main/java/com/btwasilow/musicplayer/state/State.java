@@ -18,6 +18,7 @@ import com.btwasilow.musicplayer.component.NonClickableComponent;
 import com.btwasilow.musicplayer.component.RightButton;
 import com.btwasilow.musicplayer.component.ScrollBar;
 import com.btwasilow.musicplayer.component.SongFillBar;
+import com.btwasilow.musicplayer.component.FileButton;
 import com.btwasilow.musicplayer.component.VolumeFillBar;
 
 public class State {
@@ -41,7 +42,7 @@ public class State {
 
 	public static final ClickableComponent[] CLICKABLE_COMPONENTS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 																	 RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
-																	 SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance()};
+																	 SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance(), FileButton.getInstance()};
 	
 	public static final ClickableComponent[] DISPLAYABLE_SONG_POSITION_COMPONENTS = {POSITION_1, POSITION_2, POSITION_3, POSITION_4, POSITION_5, POSITION_6,
 																					 POSITION_7, POSITION_8, POSITION_9, POSITION_10, POSITION_11, POSITION_12,
