@@ -22,24 +22,16 @@ public class RenderPlayer {
 		renderMiniPlayerBackground(g);
 		renderArtworkDisplayBox(g);
 		
-		renderCenterButton(g);
-		renderLeftButton(g);
-		renderRightButton(g);
-		
-//		renderTimeBarBox(g);
-//		renderTimeBarFill(g);
-		
-//		renderVolumeBarBox(g);
-//		renderVolumeBarFill(g);
-		
-		renderCurrentlyPlayingSong(g);
-		
-//		renderExpandMusicPlayerButton(g);
+//		renderCenterButton(g);
+//		renderLeftButton(g);
+//		renderRightButton(g);
 	
 		// render all buttons
 		for (int index = 0; index < State.BUTTONS.length; index++) {
 			State.BUTTONS[index].render(g);
 		}
+		
+		renderCurrentlyPlayingSong(g);
 		
 		if (!ExpandMusicPlayerButton.getInstance().isSelected()) { // miniplayer rendering routines
 			Utility.miniMusicPlayerGUISetup(driver);
@@ -302,26 +294,6 @@ public class RenderPlayer {
 		g.setColor(new Color(50, 50, 50));
 		g.fillPolygon(x, y, 3);
 		g.fillRect(292, 44, 6, 15);
-	}
-	
-	private static void renderTimeBarBox(Graphics2D g) {
-		// dark time bar fill
-		g.setColor(new Color(50, 50, 50));
-		g.fillRoundRect(10, 131, 328, 7, 4, 4);
-		
-		// darker time bar inset
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(9, 130, 330, 9, 4, 4);
-	}
-	
-	private static void renderTimeBarFill(Graphics2D g) {
-		// blue time bar fill color
-		g.setColor(new Color(161, 202, 241));
-		g.fillRoundRect(10, 131, State.currentlyPlayingSongTimePosition, 7, 3, 3);
-		
-		// daker blue time bar fill outline
-		g.setColor(new Color(100, 140, 180));
-		g.drawRoundRect(10, 131, State.currentlyPlayingSongTimePosition, 7, 4, 4);
 	}
 	
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {

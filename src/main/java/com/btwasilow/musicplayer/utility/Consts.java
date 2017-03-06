@@ -27,6 +27,8 @@ public class Consts {
 	public static final int MAX_VOLUME_LEVEL = 100;
 	
 	public static final int SONG_FILL_BAR_STARTING_PIXEL_POS = 10;
+	public static final int MIN_SONG_TIME_POSITION = 0;
+	public static final int MAX_SONG_TIME_POSITION = 328;
 	
 	public static final RenderingHints renderingHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,
 																		   RenderingHints.VALUE_ANTIALIAS_ON);
