@@ -9,7 +9,7 @@ import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 
-public class VolumeFillBar extends Component {
+public class VolumeFillBar extends ClickableComponent {
 	// singleton
 	private static VolumeFillBar volumeFillBar = new VolumeFillBar();
 	

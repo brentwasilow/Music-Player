@@ -8,11 +8,9 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class MiniPlayerBox extends Component {
+public class MiniPlayerBox extends NonClickableComponent {
 	// singleton
 	private static MiniPlayerBox miniPlayerBox = new MiniPlayerBox();
-	
-	private final Rectangle2D.Double boundingBox = new Rectangle2D.Double(0, 0, 350, 150);
 	
 	private final Rectangle2D.Double outerRectangleFillShape = new Rectangle2D.Double(0, 0, 350, 150);
 	private final Color outerRectangleFillColor = new Color(64, 64, 64);
@@ -32,11 +30,6 @@ public class MiniPlayerBox extends Component {
 	}
 
 	@Override
-	public Shape getBoundingBox() {
-		return boundingBox;
-	}
-
-	@Override
 	public void render(Graphics2D g) {
 		g.setColor(outerRectangleFillColor);
 		g.fill(outerRectangleFillShape);
@@ -47,9 +40,4 @@ public class MiniPlayerBox extends Component {
 		g.setColor(innerRectangleOutlineColor);
 		g.draw(innerRectangleOutlineShape);
 	}
-
-	@Override
-	public void updateClickState(InputHandler input) {
-	}
-
 }

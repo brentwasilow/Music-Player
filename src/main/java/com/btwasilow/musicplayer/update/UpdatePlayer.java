@@ -16,28 +16,28 @@ public class UpdatePlayer {
 	private static void resetStateVariables() {
 		// reset the state of all buttons such that we assume none of them
 		// are being hovered over until deemed otherwise
-		for (int index = 0; index < State.BUTTONS.length; index++) {
-			State.BUTTONS[index].setHoveredOver(false);
+		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
+			State.CLICKABLE_COMPONENTS[index].setHoveredOver(false);
 		}
 		
 		// assume same state reset but for all of the displayable song positions
-		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITIONS.length; index++) {
-			State.DISPLAYABLE_SONG_POSITIONS[index].setHoveredOver(false);
+		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
+			State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].setHoveredOver(false);
 		}
 }
 	
 	private static void updateHoverStates(InputHandler input) {
 		// for each button check if mouse is inside bounding box
-		for (int index = 0; index < State.BUTTONS.length; index++) {
-			if (State.BUTTONS[index].getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
-				State.BUTTONS[index].setHoveredOver(true);
+		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
+			if (State.CLICKABLE_COMPONENTS[index].getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+				State.CLICKABLE_COMPONENTS[index].setHoveredOver(true);
 			}
 		}
 		
 		// perform the same check but with all of the displayable song positions
-		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITIONS.length; index++) {
-			if (State.DISPLAYABLE_SONG_POSITIONS[index].getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
-				State.DISPLAYABLE_SONG_POSITIONS[index].setHoveredOver(true);
+		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
+			if (State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].getBoundingBox().contains(input.mouseMovedPosition.x, input.mouseMovedPosition.y)) {
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].setHoveredOver(true);
 			}
 		}
 	}

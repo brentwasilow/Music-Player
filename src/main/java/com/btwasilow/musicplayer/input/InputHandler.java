@@ -12,7 +12,7 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
-import com.btwasilow.musicplayer.component.Component;
+import com.btwasilow.musicplayer.component.ClickableComponent;
 import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
@@ -73,8 +73,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				// down by one place (handled by moving the block variable in the else) 
 				if (State.currentDisplayableSongPosition != Consts.LAST_DISPLAYABLE_SONG_POSITION) {
 					State.currentDisplayableSongPosition++;
-					State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition-1].select(false);
-					State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
+					State.DISPLAYABLE_SONG_POSITION_COMPONENTS[State.currentDisplayableSongPosition-1].select(false);
+					State.DISPLAYABLE_SONG_POSITION_COMPONENTS[State.currentDisplayableSongPosition].select(true);
 				} else {
 					State.block++;
 				}
@@ -91,8 +91,8 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 			// up by one place (handled by moving the block variable in the else) 
 			if (State.currentDisplayableSongPosition != Consts.FIRST_DISPLAYABLE_SONG_POSITION) {
 				State.currentDisplayableSongPosition--;
-				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition+1].select(false);
-				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(true);
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[State.currentDisplayableSongPosition+1].select(false);
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[State.currentDisplayableSongPosition].select(true);
 			} else {
 				State.block--;
 			}
@@ -103,7 +103,12 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// set the currently playing song (will begin the logic for
 		// playing the audio)
 		if (keys[KeyEvent.VK_ENTER]) {
-			State.currentlyPlayingSongName = State.songs[State.currentSongSelection];
+			// clip the currently playing song name
+			if (State.songs[State.currentSongSelection].length() >= 23) {
+				State.currentlyPlayingSongName = State.songs[State.currentSongSelection].substring(0, 23) + "...";
+			} else {
+				State.currentlyPlayingSongName = State.songs[State.currentSongSelection];
+			}
 		}
 	}
 
@@ -184,11 +189,11 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 	
 	private void mousePressedUpdateRoutines() {
 		// update all of the clickable music player boxes/shapes/components
-		for (int index = 0; index < State.BUTTONS.length; index++) {
-			Component button = State.BUTTONS[index];
+		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
+			ClickableComponent clickableComponent = State.CLICKABLE_COMPONENTS[index];
 	
-			if (button.isHoveredOver()) {
-				button.updateClickState(this);
+			if (clickableComponent.isHoveredOver()) {
+				clickableComponent.updateClickState(this);
 			}
 		}
 		updateMusicLibrarySongSelectionClickState();
@@ -203,10 +208,10 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		
 		// check each displayable song position for the one being clicked right now
 		for (int index = 0; index < Consts.NUM_OF_DISPLAYABLE_SONG_POSITIONS; index++) {
-			if (State.DISPLAYABLE_SONG_POSITIONS[index].isHoveredOver()) {
+			if (State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].isHoveredOver()) {
 				// unset the old displayable song position and set the new one
-				State.DISPLAYABLE_SONG_POSITIONS[State.currentDisplayableSongPosition].select(false);
-				State.DISPLAYABLE_SONG_POSITIONS[index].select(true);
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[State.currentDisplayableSongPosition].select(false);
+				State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].select(true);
 				
 				// check to see if click state is lower on the list or higher, and adjust
 				// song selection and displayable song position variables accordingly

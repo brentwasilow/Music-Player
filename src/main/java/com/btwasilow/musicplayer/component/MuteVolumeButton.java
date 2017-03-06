@@ -10,7 +10,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class MuteVolumeButton extends Component {
+public class MuteVolumeButton extends ClickableComponent {
 	// singleton
 	private static MuteVolumeButton muteVolumeButton = new MuteVolumeButton();
 	

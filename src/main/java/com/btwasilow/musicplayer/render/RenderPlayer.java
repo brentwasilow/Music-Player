@@ -15,14 +15,14 @@ public class RenderPlayer {
 	}
 	
 	public static void render(Graphics2D g, Driver driver) {
-		//renderMiniPlayerBackground(g);
-	
-		// render all buttons
-		for (int index = 0; index < State.BUTTONS.length; index++) {
-			State.BUTTONS[index].render(g);
+		// render all non clickable and clickable components
+		for (int index = 0; index < State.NON_CLICKABLE_COMPONENTS.length; index++) {
+			State.NON_CLICKABLE_COMPONENTS[index].render(g);
 		}
 		
-		renderCurrentlyPlayingSong(g);
+		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
+			State.CLICKABLE_COMPONENTS[index].render(g);
+		}
 		
 		if (!ExpandMusicPlayerButton.getInstance().isSelected()) { // miniplayer rendering routines
 			Utility.miniMusicPlayerGUISetup(driver);
@@ -191,25 +191,11 @@ public class RenderPlayer {
 		for (int i = 0; i < 14; i++) {
 			// render a lighter inset box to signify that song
 			// selection has been picked
-			if (State.DISPLAYABLE_SONG_POSITIONS[i].isSelected()) {
+			if (State.DISPLAYABLE_SONG_POSITION_COMPONENTS[i].isSelected()) {
 				g.setColor(new Color(64, 64, 64));
 				g.fillRoundRect(25, (210+(i*23)), 287, 23, 1, 1);
 			}
 		}
-	}
-
-	private static void renderMiniPlayerBackground(Graphics2D g) {
-		// dark gray fill
-		g.setColor(new Color(64, 64, 64));
-		g.fillRect(0, 0, 350, 150);
-		
-		// dark black outline to frame component
-		g.setColor(new Color(30, 30, 30));
-		g.drawRoundRect(0, 0, 349, 149, 15, 15);
-		
-		// whiter in-set line to give depth at corner
-		g.setColor(new Color(100, 100, 100));
-		g.drawRoundRect(1, 1, 350-3, 150-3, 15, 15);
 	}
 
 	private static void renderCurrentlyPlayingSong(Graphics2D g) {

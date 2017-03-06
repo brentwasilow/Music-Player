@@ -9,7 +9,7 @@ import com.btwasilow.musicplayer.input.InputHandler;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 
-public class SongFillBar extends Component {
+public class SongFillBar extends ClickableComponent {
 	// singleton
 	private static SongFillBar songFillBar = new SongFillBar();
 	
