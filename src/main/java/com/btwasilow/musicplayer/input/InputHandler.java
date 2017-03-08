@@ -13,7 +13,10 @@ import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.component.ClickableComponent;
+import com.btwasilow.musicplayer.component.EditButton;
 import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
+import com.btwasilow.musicplayer.component.FileButton;
+import com.btwasilow.musicplayer.component.ViewButton;
 import com.btwasilow.musicplayer.state.State;
 import com.btwasilow.musicplayer.utility.Consts;
 
@@ -191,6 +194,16 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		// update all of the clickable music player boxes/shapes/components
 		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
 			ClickableComponent clickableComponent = State.CLICKABLE_COMPONENTS[index];
+			
+			// if any non-toolbar components are clicked we must deselect the toolbar
+			// components to handle the case where they are potentially selected
+			if (clickableComponent != FileButton.getInstance() && 
+					clickableComponent != EditButton.getInstance() &&
+					clickableComponent != ViewButton.getInstance()) {
+				FileButton.getInstance().select(false);
+				EditButton.getInstance().select(false);
+				ViewButton.getInstance().select(false);
+			}
 	
 			if (clickableComponent.isHoveredOver()) {
 				clickableComponent.updateClickState(this);
