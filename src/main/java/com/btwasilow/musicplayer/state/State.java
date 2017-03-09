@@ -5,6 +5,7 @@ import java.awt.geom.RoundRectangle2D;
 import com.btwasilow.musicplayer.component.ArtworkDisplayBox;
 import com.btwasilow.musicplayer.component.CenterButton;
 import com.btwasilow.musicplayer.component.ClickableComponent;
+import com.btwasilow.musicplayer.component.ControlsButton;
 import com.btwasilow.musicplayer.component.CurrentlyPlayingSongBox;
 import com.btwasilow.musicplayer.component.DisplayableSongPosition;
 import com.btwasilow.musicplayer.component.EditButton;
@@ -45,7 +46,7 @@ public class State {
 	public static final ClickableComponent[] CLICKABLE_COMPONENTS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 																	 RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),
 																	 SongFillBar.getInstance(), ExpandMusicPlayerButton.getInstance(), FileButton.getInstance(),
-																	 EditButton.getInstance(), ViewButton.getInstance()};
+																	 EditButton.getInstance(), ViewButton.getInstance(), ControlsButton.getInstance()};
 	
 	public static final ClickableComponent[] DISPLAYABLE_SONG_POSITION_COMPONENTS = {POSITION_1, POSITION_2, POSITION_3, POSITION_4, POSITION_5, POSITION_6,
 																					 POSITION_7, POSITION_8, POSITION_9, POSITION_10, POSITION_11, POSITION_12,

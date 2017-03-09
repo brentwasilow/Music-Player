@@ -40,6 +40,7 @@ public class EditButton extends ClickableComponent {
 			selected = true;
 			FileButton.getInstance().select(false);
 			ViewButton.getInstance().select(false);
+			ControlsButton.getInstance().select(false);
 		}
 	}
 

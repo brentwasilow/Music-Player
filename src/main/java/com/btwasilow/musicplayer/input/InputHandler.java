@@ -13,6 +13,7 @@ import java.awt.event.MouseWheelListener;
 
 import com.btwasilow.musicplayer.Driver;
 import com.btwasilow.musicplayer.component.ClickableComponent;
+import com.btwasilow.musicplayer.component.ControlsButton;
 import com.btwasilow.musicplayer.component.EditButton;
 import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.component.FileButton;
@@ -185,25 +186,34 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		mouseClickedPosition = arg0.getPoint();
 		driver.getComponentAt(mouseClickedPosition);
 		
+		// deselect toolbar file/edit/view/controls button if mouse is clicked anywhere
+		// else in the music player
+		checkToolbarButtonFocus();
+		
 		// handles all checks for possible scenarios
 		// of any given mouse press
 		mousePressedUpdateRoutines();
+	}
+	
+	private void checkToolbarButtonFocus() {
+		if (!FileButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+			FileButton.getInstance().select(false);
+		}
+		if (!EditButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+			EditButton.getInstance().select(false);
+		}
+		if (!ViewButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+			ViewButton.getInstance().select(false);
+		}
+		if (!ControlsButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+			ControlsButton.getInstance().select(false);
+		}
 	}
 	
 	private void mousePressedUpdateRoutines() {
 		// update all of the clickable music player boxes/shapes/components
 		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
 			ClickableComponent clickableComponent = State.CLICKABLE_COMPONENTS[index];
-			
-			// if any non-toolbar components are clicked we must deselect the toolbar
-			// components to handle the case where they are potentially selected
-			if (clickableComponent != FileButton.getInstance() && 
-					clickableComponent != EditButton.getInstance() &&
-					clickableComponent != ViewButton.getInstance()) {
-				FileButton.getInstance().select(false);
-				EditButton.getInstance().select(false);
-				ViewButton.getInstance().select(false);
-			}
 	
 			if (clickableComponent.isHoveredOver()) {
 				clickableComponent.updateClickState(this);

@@ -8,11 +8,11 @@ import java.awt.geom.Rectangle2D;
 
 import com.btwasilow.musicplayer.input.InputHandler;
 
-public class ViewButton extends ClickableComponent {
+public class ControlsButton extends ClickableComponent {
 	// singleton
-	private static ViewButton viewButton = new ViewButton();
+	private static ControlsButton controlsButton = new ControlsButton();
 	
-	private final Rectangle2D.Double boundingBox = new Rectangle2D.Double(85, 152, 40, 27);
+	private final Rectangle2D.Double boundingBox = new Rectangle2D.Double(126, 152, 61, 27);
 	
 	private final Font font = new Font("Arial", 1, 12);
 	private final Color unSelectedOutlineColor = new Color(30, 30, 30);
@@ -20,11 +20,11 @@ public class ViewButton extends ClickableComponent {
 	
 	private final Color selectedOutlineColor = new Color(255, 255, 255);
 	
-	private ViewButton() {
+	private ControlsButton() {
 	}
 	
-	public static ViewButton getInstance() {
-		return viewButton;
+	public static ControlsButton getInstance() {
+		return controlsButton;
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ViewButton extends ClickableComponent {
 			selected = true;
 			FileButton.getInstance().select(false);
 			EditButton.getInstance().select(false);
-			ControlsButton.getInstance().select(false);
+			ViewButton.getInstance().select(false);
 		}
 	}
 
@@ -50,16 +50,16 @@ public class ViewButton extends ClickableComponent {
 		
 		if (!selected) {
 			g.setColor(unSelectedOutlineColor);
-			g.drawString("View", 93, 172);
+			g.drawString("Controls", 134, 172);
 		
 			g.setColor(unSelectedFillColor);
-			g.drawString("View", 91, 170);
+			g.drawString("Controls", 132, 170);
 		} else {
 			g.setColor(new Color(43, 94, 255));
 			g.fill(boundingBox);
 			
 			g.setColor(selectedOutlineColor);
-			g.drawString("View", 91, 170);
+			g.drawString("Controls", 132, 170);
 		}
 	}
 }
