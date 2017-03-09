@@ -72,10 +72,6 @@ public class FileButton extends ClickableComponent {
 			// dropdown menu rendering
 			g.setColor(dropdownBoxColor);
 			g.fill(dropdownBox);
-			
-			//g.setFont(new Font("Arial", 1, 12));
-			//g.setColor(new Color(30, 30, 30));
-			//g.drawString("Add File to Library", 36, 200);
 		}
 	}
 }
