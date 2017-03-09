@@ -13,8 +13,9 @@ public class ViewButton extends ClickableComponent {
 	private static ViewButton viewButton = new ViewButton();
 	
 	private final Rectangle2D.Double boundingBox = new Rectangle2D.Double(85, 152, 40, 27);
-	private final Rectangle2D.Double boundingBox2 = new Rectangle2D.Double(85, 179, 150, 200);
-	private final Color boundingBox2Color = new Color(175, 175, 175);
+	
+	private final Rectangle2D.Double dropdownBox = new Rectangle2D.Double(85, 179, 150, 200);
+	private final Color dropdownBoxColor = new Color(175, 175, 175);
 	
 	private final Font font = new Font("Arial", 1, 12);
 	private final Color unSelectedOutlineColor = new Color(30, 30, 30);
@@ -32,6 +33,10 @@ public class ViewButton extends ClickableComponent {
 	@Override
 	public Shape getBoundingBox() {
 		return boundingBox;
+	}
+	
+	public Shape getDropdownBox() {
+		return dropdownBox;
 	}
 
 	@Override
@@ -60,11 +65,11 @@ public class ViewButton extends ClickableComponent {
 			g.setColor(new Color(43, 94, 255));
 			g.fill(boundingBox);
 			
-			g.setColor(boundingBox2Color);
-			g.fill(boundingBox2);
-			
 			g.setColor(selectedOutlineColor);
 			g.drawString("View", 91, 170);
+			
+			g.setColor(dropdownBoxColor);
+			g.fill(dropdownBox);
 		}
 	}
 }

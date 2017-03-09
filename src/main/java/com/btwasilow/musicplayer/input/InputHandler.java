@@ -192,20 +192,26 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		
 		// handles all checks for possible scenarios
 		// of any given mouse press
-		mousePressedUpdateRoutines();
+		if (!FileButton.getInstance().isSelected()) {
+			mousePressedUpdateRoutines();
+		}
 	}
 	
 	private void checkToolbarButtonFocus() {
-		if (!FileButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+		if (!FileButton.getInstance().getBoundingBox().contains(mouseClickedPosition) &&
+				!FileButton.getInstance().getDropdownBox().contains(mouseClickedPosition)) {
 			FileButton.getInstance().select(false);
 		}
-		if (!EditButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+		if (!EditButton.getInstance().getBoundingBox().contains(mouseClickedPosition) &&
+				!EditButton.getInstance().getDropdownBox().contains(mouseClickedPosition)) {
 			EditButton.getInstance().select(false);
 		}
-		if (!ViewButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+		if (!ViewButton.getInstance().getBoundingBox().contains(mouseClickedPosition) &&
+				!ViewButton.getInstance().getDropdownBox().contains(mouseClickedPosition)) {
 			ViewButton.getInstance().select(false);
 		}
-		if (!ControlsButton.getInstance().getBoundingBox().contains(mouseClickedPosition)) {
+		if (!ControlsButton.getInstance().getBoundingBox().contains(mouseClickedPosition) &&
+				!ControlsButton.getInstance().getDropdownBox().contains(mouseClickedPosition)) {
 			ControlsButton.getInstance().select(false);
 		}
 	}
