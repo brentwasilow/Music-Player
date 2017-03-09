@@ -192,9 +192,7 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 		
 		// handles all checks for possible scenarios
 		// of any given mouse press
-		if (!FileButton.getInstance().isSelected()) {
-			mousePressedUpdateRoutines();
-		}
+		mousePressedUpdateRoutines();
 	}
 	
 	private void checkToolbarButtonFocus() {
@@ -225,7 +223,15 @@ public class InputHandler implements MouseListener, FocusListener, MouseMotionLi
 				clickableComponent.updateClickState(this);
 			}
 		}
+		
+		// only update displayable song positions if none of the toolbar buttons
+		// are currently selected (i.e.,  dropdown menus are showing)
+		if (!FileButton.getInstance().isSelected() &&
+				!EditButton.getInstance().isSelected() &&
+				!ViewButton.getInstance().isSelected() &&
+				!ControlsButton.getInstance().isSelected()) {
 		updateMusicLibrarySongSelectionClickState();
+		}
 	}
 	
 	private void updateMusicLibrarySongSelectionClickState() {
