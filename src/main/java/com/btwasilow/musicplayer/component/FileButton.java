@@ -13,6 +13,8 @@ public class FileButton extends ClickableComponent {
 	private static FileButton fileButton = new FileButton();
 	
 	private final Rectangle2D.Double boundingBox = new Rectangle2D.Double(16, 152, 32, 27);
+	private final Rectangle2D.Double boundingBox2 = new Rectangle2D.Double(16, 179, 150, 200);
+	private final Color boundingBox2Color = new Color(175, 175, 175);
 	
 	private final Font font = new Font("Arial", 1, 12);
 	private final Color unSelectedOutlineColor = new Color(30, 30, 30);
@@ -57,6 +59,9 @@ public class FileButton extends ClickableComponent {
 		} else {
 			g.setColor(new Color(43, 94, 255));
 			g.fill(boundingBox);
+			
+			g.setColor(boundingBox2Color);
+			g.fill(boundingBox2);
 			
 			g.setColor(selectedOutlineColor);
 			g.drawString("File", 22, 170);

@@ -18,41 +18,21 @@ public class RenderPlayer {
 		for (int index = 0; index < State.NON_CLICKABLE_COMPONENTS.length; index++) {
 			State.NON_CLICKABLE_COMPONENTS[index].render(g);
 		}
-
-		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
-			State.CLICKABLE_COMPONENTS[index].render(g);
-		}
 		
 		for (int index = 0; index < State.DISPLAYABLE_SONG_POSITION_COMPONENTS.length; index++) {
 			State.DISPLAYABLE_SONG_POSITION_COMPONENTS[index].render(g);
 		}
 		
-		Utility.musicPlayerGUISetup(driver);
-		
 		if (ExpandMusicPlayerButton.getInstance().isSelected()) {
-	//		renderExpandedMusicPlayerToolBar(g);
 			renderExpandedMusicPlayerMusicLibraryHeader(g);
 			renderExpandedMusicPlayerSongList(g);
 		}
-	}
-	
-	private static void renderExpandedMusicPlayerToolBar(Graphics2D g) {
-		// font and color of toolbar options
-		g.setFont(new Font("Arial", 1, 12));
-	
-		// render options dark inset color
-		g.setColor(new Color(30, 30, 30));
-		g.drawString("File", 22, 172);
-		g.drawString("Edit", 53, 172);
-		g.drawString("View", 86, 172);
-		g.drawString("Controls", 125, 172);
 		
-		// render options lighter fill color
-		g.setColor(new Color(175, 175, 175));
-		g.drawString("File", 20, 170);
-		g.drawString("Edit", 51, 170);
-		g.drawString("View", 84, 170);
-		g.drawString("Controls", 123, 170);
+		for (int index = 0; index < State.CLICKABLE_COMPONENTS.length; index++) {
+			State.CLICKABLE_COMPONENTS[index].render(g);
+		}
+		
+		Utility.musicPlayerGUISetup(driver);
 	}
 	
 	private static void renderExpandedMusicPlayerMusicLibraryHeader(Graphics2D g) {
