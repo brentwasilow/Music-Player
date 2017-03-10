@@ -13,15 +13,16 @@ import com.btwasilow.musicplayer.component.EqualizerBox;
 import com.btwasilow.musicplayer.component.ExitButton;
 import com.btwasilow.musicplayer.component.ExpandMusicPlayerButton;
 import com.btwasilow.musicplayer.component.ExpandedMusicPlayerBox;
+import com.btwasilow.musicplayer.component.FileButton;
 import com.btwasilow.musicplayer.component.LeftButton;
 import com.btwasilow.musicplayer.component.MiniPlayerBox;
+import com.btwasilow.musicplayer.component.MusicLibraryHeader;
 import com.btwasilow.musicplayer.component.MuteVolumeButton;
 import com.btwasilow.musicplayer.component.NonClickableComponent;
 import com.btwasilow.musicplayer.component.RightButton;
 import com.btwasilow.musicplayer.component.ScrollBar;
 import com.btwasilow.musicplayer.component.SongFillBar;
 import com.btwasilow.musicplayer.component.ViewButton;
-import com.btwasilow.musicplayer.component.FileButton;
 import com.btwasilow.musicplayer.component.VolumeFillBar;
 
 public class State {
@@ -41,7 +42,7 @@ public class State {
 	private static final DisplayableSongPosition POSITION_14 = new DisplayableSongPosition(new RoundRectangle2D.Double(25, 509, 287, 23, 1, 1), false);
 	
 	public static final NonClickableComponent[] NON_CLICKABLE_COMPONENTS = {MiniPlayerBox.getInstance(), ExpandedMusicPlayerBox.getInstance(), ArtworkDisplayBox.getInstance(),
-																			CurrentlyPlayingSongBox.getInstance(), EqualizerBox.getInstance(), ScrollBar.getInstance()};
+																			CurrentlyPlayingSongBox.getInstance(), EqualizerBox.getInstance(), ScrollBar.getInstance(), MusicLibraryHeader.getInstance()};
 
 	public static final ClickableComponent[] CLICKABLE_COMPONENTS = {ExitButton.getInstance(), LeftButton.getInstance(), CenterButton.getInstance(),
 																	 RightButton.getInstance(), MuteVolumeButton.getInstance(), VolumeFillBar.getInstance(),

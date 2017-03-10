@@ -43,6 +43,4 @@ public class ScrollBar extends NonClickableComponent {
 			g.fill(innerRectangleFillShape);
 		}
 	}
-	
-
 }
